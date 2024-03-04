@@ -1,21 +1,21 @@
+import { GoogleIcon,LogoIcon } from '@constants/icons';
+
+import { NavLinks } from './config';
 import {
-  StyledSignUp,
   Banner,
-  Content,
-  Title,
-  Subtitle,
   Buttons,
-  SignButton,
-  TermsText,
-  LogInText,
+  Content,
   InfoLink,
+  LogInText,
   Nav,
   NavLink,
+  SignButton,
+  StyledSignUp,
+  Subtitle,
+  TermsText,
+  Title,
   Topper,
 } from './styled';
-
-import { LogoIcon, GoogleIcon } from '@constants/icons';
-import { NavLinks } from './config';
 
 const SignUpPage = () => {
   return (

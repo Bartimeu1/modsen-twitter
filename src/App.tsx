@@ -1,10 +1,9 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 
 import { pageRoutes } from '@constants/routes';
-import { GlobalStyles, theme } from '@root/theme';
-
 import { useAppSelector } from '@root/hooks';
+import { GlobalStyles, theme } from '@root/theme';
+import { ThemeProvider } from 'styled-components';
 
 export const App = () => {
   const currentTheme = useAppSelector(({ theme }) => theme.currentTheme);

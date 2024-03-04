@@ -1,5 +1,6 @@
-import { ThemeColorsEnum } from '@root/types/theme';
 import { createSlice } from '@reduxjs/toolkit';
+import { ThemeColorsEnum } from '@root/types/theme';
+
 import { IThemeSliceState } from './types';
 
 const initialState: IThemeSliceState = {
