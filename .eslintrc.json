@@ -37,7 +37,8 @@
           ["@constants", "./src/constants"],
           ["@pages", "./src/pages"],
           ["@middlewares", "./src/middlewares"],
-          ["@utils", "./src/utils"]
+          ["@utils", "./src/utils"],
+          ["@assets", "./src/assets"]
         ]
       }
     }
