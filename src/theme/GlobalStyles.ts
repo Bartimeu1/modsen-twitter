@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     width: 100%;
     font-size: ${({ theme }) => theme.fontSize.xs4};
+    font-family: ${({ theme }) => theme.fontFamily.primary};
   }
 
   *, *:before, *:after {
