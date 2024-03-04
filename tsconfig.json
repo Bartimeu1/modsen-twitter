@@ -21,12 +21,13 @@
     "baseUrl": "./",
     "paths": {
       "@root/*": ["src/*"],
+      "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
-      "@widgets/*": ["src/widgets/*"],
-      "@features/*": ["src/features/*"],
-      "@entities/*": ["src/entities/*"],
-      "@shared/*": ["src/shared/*"],
-      "@store/*": ["src/store/*"]
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
+      "@assets/*": ["src/assets/*"]
     },
   },
   "include": ["src"],
