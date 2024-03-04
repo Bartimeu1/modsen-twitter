@@ -1,0 +1,18 @@
+export const NavLinks = [
+  { id: 1, href: '#', text: 'About' },
+  { id: 2, href: '#', text: 'Help Center' },
+  { id: 3, href: '#', text: 'Terms of Service' },
+  { id: 4, href: '#', text: 'Privacy Policy' },
+  { id: 5, href: '#', text: 'Cookie Policy' },
+  { id: 6, href: '#', text: 'Ads info' },
+  { id: 7, href: '#', text: 'Blog' },
+  { id: 8, href: '#', text: 'Status' },
+  { id: 9, href: '#', text: 'Careers' },
+  { id: 10, href: '#', text: 'Brand Resources' },
+  { id: 11, href: '#', text: 'Advertising' },
+  { id: 12, href: '#', text: 'Marketing' },
+  { id: 13, href: '#', text: 'Twitter for Business' },
+  { id: 14, href: '#', text: 'Developers' },
+  { id: 15, href: '#', text: 'Directory' },
+  { id: 16, href: '#', text: 'Settings' },
+];

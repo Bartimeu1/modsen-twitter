@@ -4,11 +4,13 @@ const commonColors = {
   grey: '#828282',
   blue: '#1D9BF0',
   ltBlue: '#1DA1F2',
+  mdBlue: '#1E97E1',
 };
 
 const lightThemeColors = {
   background: '#fff',
   primary: '#000',
+  border: '#E4EAED',
 };
 
 const darkThemeColors = {
@@ -19,7 +21,7 @@ const darkThemeColors = {
 const layoutValues = {
   fontFamily: {
     primary: 'Roboto, sans-serif',
-    secondary: 'Roboto Serif, sans-serif',
+    secondary: 'Roboto Serif, Arial',
   },
   fontSize: {
     xs3: 13,
@@ -41,8 +43,9 @@ const layoutValues = {
     black: 900,
   },
   borderRadius: {
-    xs3: 6,
-    xs2: 10,
+    xs4: 6,
+    xs3: 10,
+    xs2: 14,
     xs: 27,
     sm: 31,
     md: 42,

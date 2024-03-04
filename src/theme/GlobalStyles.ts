@@ -11,8 +11,8 @@ export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     width: 100%;
-    font-size: ${({ theme }) => theme.fontSize.xs4};
-    font-family: ${({ theme }) => theme.fontFamily.primary};
+    height: 100%;
+    font-size: ${({ theme }) => theme.fontSize.xs};
   }
 
   *, *:before, *:after {
@@ -37,8 +37,9 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.color.background};
     color: ${({ theme }) => theme.color.primary};
-    font-family: ${({ theme }) => theme.fontFamily.main};
+    font-family: ${({ theme }) => theme.fontFamily.primary};
     width: 100%;
+    height: 100%;
     position: relative;
     overflow-x: hidden;
     transition: background 0.1s ease;
@@ -51,7 +52,11 @@ export const GlobalStyles = createGlobalStyle`
   button {
     background-color: inherit;
     cursor: pointer;
-    font-family: ${({ theme }) => theme.fontFamily.main};
+    font-family: ${({ theme }) => theme.fontFamily.primary};
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
 
