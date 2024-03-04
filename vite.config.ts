@@ -18,6 +18,17 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
     },
   },
-  plugins: [react(), svgr()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        exportType: 'named',
+        ref: true,
+        svgo: false,
+        titleProp: true,
+      },
+      include: '**/*.svg',
+    }),
+  ],
 });
 
