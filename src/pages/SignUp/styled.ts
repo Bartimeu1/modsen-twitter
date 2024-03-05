@@ -31,14 +31,14 @@ export const Content = styled.div`
 
 export const Title = styled.h2`
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl3}px;
+  font-size: ${({ theme }) => theme.fontSize.xl4}px;
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin: 50px 0 46px 0;
 `;
 
 export const Subtitle = styled.p`
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl2}px;
+  font-size: ${({ theme }) => theme.fontSize.xl3}px;
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 31px;
 `;
@@ -49,7 +49,7 @@ export const Buttons = styled.div`
   margin-bottom: 31px;
 `;
 
-export const SignButton = styled.button`
+export const SignButton = styled(Link)`
   ${FlexMixin({ align: 'center', justify: 'center' })}
 
   color: ${({ theme }) => theme.color.primary};

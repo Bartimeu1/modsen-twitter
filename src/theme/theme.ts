@@ -10,12 +10,13 @@ const commonColors = {
 const lightThemeColors = {
   background: '#fff',
   primary: '#000',
-  border: '#E4EAED',
+  border: '#00000020;',
 };
 
 const darkThemeColors = {
   background: '#030304',
   primary: '#fff',
+  border: '#ffffff20',
 };
 
 const layoutValues = {
@@ -31,8 +32,9 @@ const layoutValues = {
     md: 20,
     lg: 22,
     xl: 24,
-    xl2: 42,
-    xl3: 84,
+    xl2: 30,
+    xl3: 42,
+    xl4: 84,
   },
   fontWeight: {
     light: 300,

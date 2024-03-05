@@ -1,4 +1,4 @@
-import { GoogleIcon,LogoIcon } from '@constants/icons';
+import { GoogleIcon, LogoIcon } from '@constants/icons';
 
 import { NavLinks } from './config';
 import {
@@ -17,7 +17,7 @@ import {
   Topper,
 } from './styled';
 
-const SignUpPage = () => {
+export const SignUpPage = () => {
   return (
     <StyledSignUp>
       <Topper>
@@ -27,11 +27,11 @@ const SignUpPage = () => {
           <Title>Happening now</Title>
           <Subtitle>Join Twitter today</Subtitle>
           <Buttons>
-            <SignButton>
+            <SignButton to="#">
               <GoogleIcon />
               Sign up with Google
             </SignButton>
-            <SignButton>Sign up with email</SignButton>
+            <SignButton to="/register">Sign up with email</SignButton>
           </Buttons>
           <TermsText>
             By singing up you agree to the
@@ -54,5 +54,3 @@ const SignUpPage = () => {
     </StyledSignUp>
   );
 };
-
-export default SignUpPage;
