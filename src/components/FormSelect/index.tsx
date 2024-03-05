@@ -1,10 +1,11 @@
-import { useRef,useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { ChevronIcon } from '@constants/icons';
 import { useOnClickOutside } from '@root/hooks';
 
 import {
   Dropdown,
+  DropdownOption,
   Label,
   LabelPlaceholder,
   LabelValue,
@@ -13,7 +14,7 @@ import {
 import { IFormSelectProps } from './types';
 
 export const FormSelect = (props: IFormSelectProps) => {
-  const { width, placeholder } = props;
+  const { width, placeholder, onChange, options } = props;
 
   const selectRef = useRef(null);
 
@@ -24,23 +25,37 @@ export const FormSelect = (props: IFormSelectProps) => {
     setIsSelectVisible((prevValue) => !prevValue);
   };
 
-  const onSelectClickOutside = () => {
+  const closeSelect = () => {
     setIsSelectVisible(false);
   };
 
-  useOnClickOutside(selectRef, onSelectClickOutside);
+  const onDropdownOptionClick = (itemValue: string) => () => {
+    setTargetValue(itemValue);
+    onChange(itemValue);
+    closeSelect();
+  };
+
+  useOnClickOutside(selectRef, closeSelect);
 
   return (
     <StyledFormSelect ref={selectRef} $width={width}>
       <Label onClick={onHeaderClick} $isSelectVisible={isSelectVisible}>
         {targetValue ? (
-          <LabelValue>targetValue</LabelValue>
+          <LabelValue>{targetValue}</LabelValue>
         ) : (
           <LabelPlaceholder>{placeholder}</LabelPlaceholder>
         )}
         <ChevronIcon />
       </Label>
-      {isSelectVisible && <Dropdown>123</Dropdown>}
+      {isSelectVisible && (
+        <Dropdown>
+          {options.map(({ id, value }) => (
+            <DropdownOption key={id} onClick={onDropdownOptionClick(value)}>
+              {value}
+            </DropdownOption>
+          ))}
+        </Dropdown>
+      )}
     </StyledFormSelect>
   );
 };

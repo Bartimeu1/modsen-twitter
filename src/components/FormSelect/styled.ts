@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { ISelectLabel, IStyledFormSelect } from './types';
 
 export const StyledFormSelect = styled.div<IStyledFormSelect>`
-  position: relative;
   width: ${({ $width }) => $width || '100%'};
+  position: relative;
 `;
 
 export const Label = styled.div<ISelectLabel>`
@@ -15,6 +15,7 @@ export const Label = styled.div<ISelectLabel>`
   padding: 19px 0 20px 20px;
   position: relative;
   transition: 0.3s all;
+  cursor: pointer;
 
   & svg {
     position: absolute;
@@ -43,10 +44,17 @@ export const Dropdown = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.xs4}px;
   position: absolute;
   z-index: 5;
-  bottom: -43px;
+  bottom: -150px;
+  max-height: 150px;
   left: 0;
   width: 100%;
+  overflow-y: scroll;
   padding: 10px 0 10px 20px;
 `;
 
-export const DropdownOption = styled.div``;
+export const DropdownOption = styled.div`
+  color: ${({ theme }) => theme.color.primary};
+  font-size: ${({ theme }) => theme.fontSize.sm}px;
+  margin-bottom: 5px;
+  cursor: pointer;
+`;
