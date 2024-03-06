@@ -31,14 +31,6 @@ export const RegisterTitle = styled.h2`
   margin-bottom: 30px;
 `;
 
-export const FormField = styled.div`
-  margin-bottom: 24px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
 export const AuthLink = styled(Link)`
   color: ${({ theme }) => theme.color.ltBlue};
   font-size: ${({ theme }) => theme.fontSize.sm}px;

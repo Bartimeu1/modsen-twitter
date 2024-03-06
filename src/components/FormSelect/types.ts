@@ -1,6 +1,7 @@
 export interface IFormSelectProps {
   placeholder?: string;
   width?: string;
+  validationText?: string;
   onChange: (value: string) => void;
   options: { value: string; id: string }[];
 }

@@ -6,7 +6,8 @@ import { FormInput } from '@components/FormInput';
 import { FormSelect } from '@components/FormSelect';
 import { endRegisterSelectYear } from '@constants/date';
 import { LogoIcon } from '@constants/icons';
-import { RegisterBirthText } from '@constants/text';
+import { registerBirthText } from '@constants/text';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import {
@@ -16,13 +17,16 @@ import {
 } from '@utils/date';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
-import { monthSelectOptions } from './config';
+import {
+  inputControllers,
+  monthSelectOptions,
+  validationSchema,
+} from './config';
 import {
   AuthLink,
   BirthInfoText,
   BirthSelects,
   BirthTitle,
-  FormField,
   RegisterForm,
   RegisterTitle,
   StyledRegisterPage,
@@ -34,7 +38,15 @@ export const RegisterPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { control, handleSubmit, watch } = useForm<IRegisterFormValues>();
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IRegisterFormValues>({
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -57,9 +69,9 @@ export const RegisterPage = () => {
     });
   };
 
-  const yearSelectOptions = useMemo(
-    () => generateYearsArray(endRegisterSelectYear, getTargetYear()),
-    [],
+  const yearSelectOptions = generateYearsArray(
+    endRegisterSelectYear,
+    getTargetYear(),
   );
 
   const daySelectOptions = useMemo(() => {
@@ -75,53 +87,24 @@ export const RegisterPage = () => {
       <LogoIcon />
       <RegisterForm onSubmit={handleSubmit(onRegisterFormSubmit)}>
         <RegisterTitle>Create an account</RegisterTitle>
-        <FormField>
+        {inputControllers.map(({ id, name, type, placeholder }) => (
           <Controller
-            name="name"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <FormInput type="text" placeholder="Name" onChange={onChange} />
-            )}
-          />
-        </FormField>
-        <FormField>
-          <Controller
-            name="phone"
+            key={id}
+            name={name}
             control={control}
             render={({ field: { onChange } }) => (
               <FormInput
-                type="text"
-                placeholder="Phone number"
+                type={type}
+                placeholder={placeholder}
                 onChange={onChange}
+                validationText={errors?.[name]?.message}
               />
             )}
           />
-        </FormField>
-        <FormField>
-          <Controller
-            name="email"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <FormInput type="text" placeholder="Email" onChange={onChange} />
-            )}
-          />
-        </FormField>
-        <FormField>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <FormInput
-                type="text"
-                placeholder="Password"
-                onChange={onChange}
-              />
-            )}
-          />
-        </FormField>
+        ))}
         <AuthLink to="#">Use email</AuthLink>
         <BirthTitle>Date of birth</BirthTitle>
-        <BirthInfoText>{RegisterBirthText}</BirthInfoText>
+        <BirthInfoText>{registerBirthText}</BirthInfoText>
         <BirthSelects>
           <Controller
             name="birthMonth"
@@ -132,6 +115,7 @@ export const RegisterPage = () => {
                 placeholder="Month"
                 onChange={onChange}
                 options={monthSelectOptions}
+                validationText={errors?.birthMonth?.message}
               />
             )}
           />
@@ -144,11 +128,12 @@ export const RegisterPage = () => {
                 placeholder="Year"
                 onChange={onChange}
                 options={yearSelectOptions}
+                validationText={errors?.birthYear?.message}
               />
             )}
           />
           <Controller
-            name="birthYear"
+            name="birthDay"
             control={control}
             render={({ field: { onChange } }) => (
               <FormSelect
@@ -156,6 +141,7 @@ export const RegisterPage = () => {
                 placeholder="Day"
                 onChange={onChange}
                 options={daySelectOptions}
+                validationText={errors?.birthDay?.message}
               />
             )}
           />

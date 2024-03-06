@@ -58,3 +58,11 @@ export const DropdownOption = styled.div`
   margin-bottom: 5px;
   cursor: pointer;
 `;
+
+export const ValidationText = styled.p`
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  color: ${({ theme }) => theme.color.red};
+  font-size: ${({ theme }) => theme.fontSize.xs3}px;
+`;
