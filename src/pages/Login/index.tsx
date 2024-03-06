@@ -8,8 +8,14 @@ import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import { inputControllers,validationSchema } from './config';
-import { LoginForm, LoginTitle, StyledLoginPage, SubmitButton } from './styled';
+import { inputControllers, validationSchema } from './config';
+import {
+  LoginForm,
+  LoginTitle,
+  SignLink,
+  StyledLoginPage,
+  SubmitButton,
+} from './styled';
 import { ILoginFormValues } from './types';
 
 export const LoginPage = () => {
@@ -68,6 +74,7 @@ export const LoginPage = () => {
         ))}
         <SubmitButton type="submit" value="Log In" />
       </LoginForm>
+      <SignLink to="/signup">Sign up to Twitter</SignLink>
     </StyledLoginPage>
   );
 };

@@ -1,4 +1,11 @@
+import { useNavigate } from 'react-router';
+
 import { GoogleIcon, LogoIcon } from '@constants/icons';
+import { provider } from '@root/config/firebase';
+import { useAppDispatch } from '@root/hooks';
+import { setUser } from '@store/features/user/userSlice';
+import { createUser } from '@utils/firestore';
+import { getAuth, signInWithPopup } from 'firebase/auth';
 
 import { NavLinks } from './config';
 import {
@@ -10,6 +17,7 @@ import {
   Nav,
   NavLink,
   SignButton,
+  SignLink,
   StyledSignUp,
   Subtitle,
   TermsText,
@@ -18,6 +26,28 @@ import {
 } from './styled';
 
 export const SignUpPage = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSignWithGoogleClick = () => {
+    const auth = getAuth();
+
+    signInWithPopup(auth, provider).then(({ user }) => {
+      // eslint-disable-next-line
+      const { email, accessToken, uid, displayName } = user as any;
+      dispatch(
+        setUser({
+          email,
+          id: uid,
+          token: accessToken,
+        }),
+      );
+
+      createUser({ email, name: displayName });
+      navigate('/profile');
+    });
+  };
+
   return (
     <StyledSignUp>
       <Topper>
@@ -27,11 +57,11 @@ export const SignUpPage = () => {
           <Title>Happening now</Title>
           <Subtitle>Join Twitter today</Subtitle>
           <Buttons>
-            <SignButton to="#">
+            <SignButton onClick={onSignWithGoogleClick}>
               <GoogleIcon />
               Sign up with Google
             </SignButton>
-            <SignButton to="/register">Sign up with email</SignButton>
+            <SignLink to="/register">Sign up with email</SignLink>
           </Buttons>
           <TermsText>
             By singing up you agree to the

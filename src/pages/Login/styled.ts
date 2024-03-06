@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FlexMixin } from '@root/theme';
 import styled from 'styled-components';
 
@@ -16,6 +18,7 @@ export const StyledLoginPage = styled.div`
 
 export const LoginForm = styled.form`
   width: 100%;
+  margin-bottom: 35px;
 `;
 
 export const SubmitButton = styled.input`
@@ -35,4 +38,11 @@ export const LoginTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.xl3}px;
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
+`;
+
+export const SignLink = styled(Link)`
+  color: ${({ theme }) => theme.color.ltBlue};
+  font-size: ${({ theme }) => theme.fontSize.xs}px;
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  text-align: end;
 `;
