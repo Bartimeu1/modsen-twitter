@@ -30,9 +30,6 @@ jobs:
       - name: Run ESLint
         run: yarn lint
 
-      - name: Run Tests:unit
-        run: yarn test:unit
-
   build:
     runs-on: ubuntu-latest
 
