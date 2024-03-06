@@ -19,6 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "allowUnreachableCode": false,
     "baseUrl": "./",
+    "types": ["vite/client"],
     "paths": {
       "@root/*": ["src/*"],
       "@components/*": ["src/components/*"],
