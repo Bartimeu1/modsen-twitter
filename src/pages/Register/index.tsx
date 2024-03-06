@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Controller,useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/FormInput';
@@ -34,8 +34,7 @@ export const RegisterPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { register, control, handleSubmit, watch } =
-    useForm<IRegisterFormValues>();
+  const { control, handleSubmit, watch } = useForm<IRegisterFormValues>();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -77,39 +76,47 @@ export const RegisterPage = () => {
       <RegisterForm onSubmit={handleSubmit(onRegisterFormSubmit)}>
         <RegisterTitle>Create an account</RegisterTitle>
         <FormField>
-          <FormInput
-            type="text"
-            register={register}
+          <Controller
             name="name"
-            placeholder="Name"
-            validation={{ required: true }}
+            control={control}
+            render={({ field: { onChange } }) => (
+              <FormInput type="text" placeholder="Name" onChange={onChange} />
+            )}
           />
         </FormField>
         <FormField>
-          <FormInput
-            type="text"
-            register={register}
+          <Controller
             name="phone"
-            placeholder="Phone number"
-            validation={{ required: true }}
+            control={control}
+            render={({ field: { onChange } }) => (
+              <FormInput
+                type="text"
+                placeholder="Phone number"
+                onChange={onChange}
+              />
+            )}
           />
         </FormField>
         <FormField>
-          <FormInput
-            type="text"
-            register={register}
+          <Controller
             name="email"
-            placeholder="Email"
-            validation={{ required: true }}
+            control={control}
+            render={({ field: { onChange } }) => (
+              <FormInput type="text" placeholder="Email" onChange={onChange} />
+            )}
           />
         </FormField>
         <FormField>
-          <FormInput
-            type="text"
-            register={register}
+          <Controller
             name="password"
-            placeholder="Password"
-            validation={{ required: true }}
+            control={control}
+            render={({ field: { onChange } }) => (
+              <FormInput
+                type="text"
+                placeholder="Password"
+                onChange={onChange}
+              />
+            )}
           />
         </FormField>
         <AuthLink to="#">Use email</AuthLink>
