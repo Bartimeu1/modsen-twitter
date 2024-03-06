@@ -5,6 +5,7 @@ const commonColors = {
   blue: '#1D9BF0',
   ltBlue: '#1DA1F2',
   mdBlue: '#1E97E1',
+  red: '#FF0000'
 };
 
 const lightThemeColors = {

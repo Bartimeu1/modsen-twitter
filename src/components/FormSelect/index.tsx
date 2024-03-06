@@ -10,11 +10,12 @@ import {
   LabelPlaceholder,
   LabelValue,
   StyledFormSelect,
+  ValidationText,
 } from './styled';
 import { IFormSelectProps } from './types';
 
 export const FormSelect = (props: IFormSelectProps) => {
-  const { width, placeholder, onChange, options } = props;
+  const { width, placeholder, onChange, options, validationText } = props;
 
   const selectRef = useRef(null);
 
@@ -47,6 +48,7 @@ export const FormSelect = (props: IFormSelectProps) => {
         )}
         <ChevronIcon />
       </Label>
+      {validationText && <ValidationText>{validationText}</ValidationText>}
       {isSelectVisible && (
         <Dropdown>
           {options.map(({ id, value }) => (

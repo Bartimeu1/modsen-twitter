@@ -3,24 +3,27 @@ import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/FormInput';
 import { LogoIcon } from '@constants/icons';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
-import {
-  FormField,
-  LoginForm,
-  LoginTitle,
-  StyledLoginPage,
-  SubmitButton,
-} from './styled';
+import { inputControllers,validationSchema } from './config';
+import { LoginForm, LoginTitle, StyledLoginPage, SubmitButton } from './styled';
 import { ILoginFormValues } from './types';
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { control, handleSubmit } = useForm<ILoginFormValues>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ILoginFormValues>({
+    mode: 'onChange',
+    resolver: yupResolver(validationSchema),
+  });
 
   const onLoginFormSubmit = (data: ILoginFormValues) => {
     const { email, password } = data;
@@ -48,32 +51,21 @@ export const LoginPage = () => {
       <LogoIcon />
       <LoginTitle>Log in to Twitter</LoginTitle>
       <LoginForm onSubmit={handleSubmit(onLoginFormSubmit)}>
-        <FormField>
+        {inputControllers.map(({ id, name, type, placeholder }) => (
           <Controller
-            name="email"
+            key={id}
+            name={name}
             control={control}
             render={({ field: { onChange } }) => (
               <FormInput
-                type="text"
-                placeholder="Phone number, email address"
+                type={type}
+                placeholder={placeholder}
                 onChange={onChange}
+                validationText={errors?.[name]?.message}
               />
             )}
           />
-        </FormField>
-        <FormField>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <FormInput
-                type="text"
-                placeholder="Password"
-                onChange={onChange}
-              />
-            )}
-          />
-        </FormField>
+        ))}
         <SubmitButton type="submit" value="Log In" />
       </LoginForm>
     </StyledLoginPage>

@@ -7,3 +7,19 @@ export interface IRegisterFormValues {
   birthYear: number;
   birthDay: string;
 }
+
+type inputNamesType =
+  | 'name'
+  | 'phone'
+  | 'email'
+  | 'password'
+  | 'birthMonth'
+  | 'birthDay'
+  | 'birthYear';
+
+export interface IInputController {
+  id: number;
+  name: inputNamesType;
+  type: string;
+  placeholder: string;
+}

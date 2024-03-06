@@ -36,11 +36,3 @@ export const LoginTitle = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
 `;
-
-export const FormField = styled.div`
-  margin-bottom: 24px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;

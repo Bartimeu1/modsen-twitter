@@ -1,10 +1,10 @@
-import { ChangeEvent,useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-import { StyledFormInput } from './styled';
+import { FormInputField, Input, ValidationText } from './styled';
 import { IFormInputProps } from './types';
 
 export const FormInput = (props: IFormInputProps) => {
-  const { placeholder, type, onChange } = props;
+  const { placeholder, type, onChange, validationText } = props;
 
   const [inputValue, setInputValue] = useState('');
 
@@ -16,11 +16,14 @@ export const FormInput = (props: IFormInputProps) => {
   };
 
   return (
-    <StyledFormInput
-      value={inputValue}
-      type={type}
-      placeholder={placeholder}
-      onChange={onInputChange}
-    />
+    <FormInputField>
+      <Input
+        value={inputValue}
+        type={type}
+        placeholder={placeholder}
+        onChange={onInputChange}
+      />
+      {validationText && <ValidationText>{validationText}</ValidationText>}
+    </FormInputField>
   );
 };
