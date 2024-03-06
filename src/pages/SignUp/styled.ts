@@ -49,7 +49,7 @@ export const Buttons = styled.div`
   margin-bottom: 31px;
 `;
 
-export const SignButton = styled(Link)`
+export const SignButton = styled.button`
   ${FlexMixin({ align: 'center', justify: 'center' })}
 
   color: ${({ theme }) => theme.color.primary};
@@ -67,6 +67,17 @@ export const SignButton = styled(Link)`
     margin-right: 3px;
     padding-bottom: 3px;
   }
+`;
+
+export const SignLink = styled(Link)`
+  ${FlexMixin({ align: 'center', justify: 'center' })}
+
+  color: ${({ theme }) => theme.color.primary};
+  font-size: ${({ theme }) => theme.fontSize.md}px;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  border: 1px solid ${({ theme }) => theme.color.border};
+  border-radius: ${({ theme }) => theme.borderRadius.md}px;
+  padding: 14px 97px;
 `;
 
 export const TermsText = styled.p`

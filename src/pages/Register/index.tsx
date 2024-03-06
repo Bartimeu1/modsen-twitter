@@ -11,10 +11,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import {
+  generateDate,
   generateDaysArray,
   generateYearsArray,
   getTargetYear,
 } from '@utils/date';
+import { createUser } from '@utils/firestore';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import {
@@ -50,8 +52,10 @@ export const RegisterPage = () => {
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
-  const onRegisterFormSubmit = (data: IRegisterFormValues) => {
-    const { email, password } = data;
+  const onRegisterFormSubmit = async (data: IRegisterFormValues) => {
+    const { email, name, password, phone, birthDay, birthMonth, birthYear } =
+      data;
+    const userBirthDate = generateDate(birthYear, birthMonth, birthDay);
 
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
@@ -65,6 +69,9 @@ export const RegisterPage = () => {
           token: accessToken,
         }),
       );
+
+      createUser({ email, name, password, phone, birth: userBirthDate });
+
       navigate('/profile');
     });
   };
