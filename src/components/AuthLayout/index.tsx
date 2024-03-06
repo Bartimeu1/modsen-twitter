@@ -10,6 +10,6 @@ export const AuthLayout = () => {
       <Outlet />
     </>
   ) : (
-    <Navigate to="/register" />
+    <Navigate to="/signup" />
   );
 };
