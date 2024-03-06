@@ -40,7 +40,7 @@ export const SignUpPage = () => {
             <InfoLink to="#"> Cookie Use</InfoLink>.
           </TermsText>
           <LogInText>
-            Already have an account? <InfoLink to="#">Log in</InfoLink>
+            Already have an account? <InfoLink to="/login">Log in</InfoLink>
           </LogInText>
         </Content>
       </Topper>
