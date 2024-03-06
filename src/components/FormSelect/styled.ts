@@ -44,8 +44,8 @@ export const Dropdown = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.xs4}px;
   position: absolute;
   z-index: 5;
-  bottom: -150px;
-  max-height: 150px;
+  bottom: -120px;
+  max-height: 120px;
   left: 0;
   width: 100%;
   overflow-y: scroll;

@@ -1,17 +1,20 @@
 import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
-import { Controller } from 'react-hook-form';
+import { Controller,useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/FormInput';
 import { FormSelect } from '@components/FormSelect';
 import { endRegisterSelectYear } from '@constants/date';
 import { LogoIcon } from '@constants/icons';
 import { RegisterBirthText } from '@constants/text';
+import { useAppDispatch } from '@root/hooks';
+import { setUser } from '@store/features/user/userSlice';
 import {
   generateDaysArray,
   generateYearsArray,
   getTargetYear,
 } from '@utils/date';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import { monthSelectOptions } from './config';
 import {
@@ -28,13 +31,31 @@ import {
 import { IRegisterFormValues } from './types';
 
 export const RegisterPage = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const { register, control, handleSubmit, watch } =
     useForm<IRegisterFormValues>();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
   const onRegisterFormSubmit = (data: IRegisterFormValues) => {
-    console.log(data);
+    const { email, password } = data;
+
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      // eslint-disable-next-line
+      const { email, uid, accessToken } = user as any;
+
+      dispatch(
+        setUser({
+          email,
+          id: uid,
+          token: accessToken,
+        }),
+      );
+      navigate('/profile');
+    });
   };
 
   const yearSelectOptions = useMemo(
@@ -79,6 +100,15 @@ export const RegisterPage = () => {
             register={register}
             name="email"
             placeholder="Email"
+            validation={{ required: true }}
+          />
+        </FormField>
+        <FormField>
+          <FormInput
+            type="text"
+            register={register}
+            name="password"
+            placeholder="Password"
             validation={{ required: true }}
           />
         </FormField>
