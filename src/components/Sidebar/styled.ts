@@ -15,6 +15,7 @@ export const TweetButton = styled.button`
   color: ${({ theme }) => theme.color.white};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   border-radius: ${({ theme }) => theme.borderRadius.xs}px;
+  font-size: ${({ theme }) => theme.fontSize.xs}px;
   border: 1px solid ${({ theme }) => theme.color.blue};
   display: inline-block;
   padding: 15px 0 19px 0;
