@@ -1,6 +1,7 @@
 import { LoginPage } from '@pages/Login';
 import { RegisterPage } from '@pages/Register';
 import { SignUpPage } from '@pages/SignUp';
+import { ProfilePage } from '@pages/Profile';
 
 export const publicRoutes = [
   { id: 1, path: '/signup', element: <SignUpPage /> },
@@ -12,6 +13,11 @@ export const privateRoutes = [
   {
     id: 1,
     path: '/profile',
-    element: <div>test</div>,
+    element: <ProfilePage />,
+  },
+  {
+    id: 2,
+    path: '/home',
+    element: <div>home</div>,
   },
 ];
