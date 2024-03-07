@@ -1,3 +1,11 @@
 export { ReactComponent as LogoIcon } from '@assets/images/logo.svg';
 export { ReactComponent as GoogleIcon } from '@assets/images/google.svg';
 export { ReactComponent as ChevronIcon } from '@assets/images/chevron.svg';
+export { ReactComponent as HomeIcon } from '@assets/images/home.svg';
+export { ReactComponent as ExploreIcon } from '@assets/images/explore.svg';
+export { ReactComponent as NotificationsIcon } from '@assets/images/notifications.svg';
+export { ReactComponent as MessagesIcon } from '@assets/images/messages.svg';
+export { ReactComponent as BookmarksIcon } from '@assets/images/bookmarks.svg';
+export { ReactComponent as ListsIcon } from '@assets/images/lists.svg';
+export { ReactComponent as ProfileIcon } from '@assets/images/profile.svg';
+export { ReactComponent as MoreIcon } from '@assets/images/more.svg';

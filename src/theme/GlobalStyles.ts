@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, styled, css } from 'styled-components';
 
 interface IFlexMixin {
   align?: string;
@@ -71,4 +71,13 @@ export const FlexMixin = ({
   justify-content: ${justify};
   flex-direction: ${direction};
   flex-wrap: ${wrap};
+`;
+
+export const Container = styled.div`
+  ${FlexMixin({ justify: 'space-between' })}
+
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1640px;
 `;
