@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
 import { FlexMixin } from '@root/theme';
+import styled from 'styled-components';
 
 export const StyledUserPanel = styled.div`
   ${FlexMixin({ direction: 'column' })}

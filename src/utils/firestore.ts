@@ -1,7 +1,6 @@
 import { addDoc, collection, getDocs, query, where } from '@firebase/firestore';
 import { db } from '@root/config/firebase';
 import { IUserData } from '@root/types/firebase';
-
 import { formatEmailToSlug } from '@utils/format';
 
 export const createUser = async (data: IUserData) => {

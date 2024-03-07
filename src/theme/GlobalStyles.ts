@@ -1,4 +1,4 @@
-import { createGlobalStyle, styled, css } from 'styled-components';
+import { createGlobalStyle, css,styled } from 'styled-components';
 
 interface IFlexMixin {
   align?: string;

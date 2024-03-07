@@ -1,6 +1,5 @@
-import { IPictureProps } from './types';
-
 import { StyledPicture } from './styled';
+import { IPictureProps } from './types';
 
 export const Picture = (props: IPictureProps) => {
   const { width, image, height, alt } = props;

@@ -1,7 +1,7 @@
 import { LoginPage } from '@pages/Login';
+import { ProfilePage } from '@pages/Profile';
 import { RegisterPage } from '@pages/Register';
 import { SignUpPage } from '@pages/SignUp';
-import { ProfilePage } from '@pages/Profile';
 
 export const publicRoutes = [
   { id: 1, path: '/signup', element: <SignUpPage /> },

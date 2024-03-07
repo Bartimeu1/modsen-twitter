@@ -1,23 +1,19 @@
-import { useState, useEffect } from 'react';
-
-import {
-  StyledUserPanel,
-  UserInfo,
-  UserDetails,
-  UserName,
-  UserSlug,
-  LogoutButton,
-} from './styled';
-
-import { getUserByEmail } from '@utils/firestore';
-
-import { IUserData } from '@root/types/firebase';
-
-import { Picture } from '@components/Picture';
+import { useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
-
+import { Picture } from '@components/Picture';
 import { useAppSelector } from '@root/hooks';
+import { IUserData } from '@root/types/firebase';
+import { getUserByEmail } from '@utils/firestore';
+
+import {
+  LogoutButton,
+  StyledUserPanel,
+  UserDetails,
+  UserInfo,
+  UserName,
+  UserSlug,
+} from './styled';
 
 export const UserPanel = () => {
   const userEmail = useAppSelector((state) => state.user.email);
@@ -33,7 +29,7 @@ export const UserPanel = () => {
         setUserData(userDataFromFirestore);
       });
     }
-  }, []);
+  }, [userEmail]);
 
   return (
     <StyledUserPanel>

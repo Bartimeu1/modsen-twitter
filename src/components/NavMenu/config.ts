@@ -1,12 +1,12 @@
 import {
-  HomeIcon,
-  ExploreIcon,
-  NotificationsIcon,
-  MessagesIcon,
   BookmarksIcon,
+  ExploreIcon,
+  HomeIcon,
   ListsIcon,
-  ProfileIcon,
+  MessagesIcon,
   MoreIcon,
+  NotificationsIcon,
+  ProfileIcon,
 } from '@constants/icons';
 
 export const navLinks = [

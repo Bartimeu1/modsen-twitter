@@ -1,9 +1,9 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { INavigationLink } from './types';
-
 import { FlexMixin } from '@root/theme';
+import styled from 'styled-components';
+
+import { INavigationLink } from './types';
 
 export const StyledNavMenu = styled.nav`
   ${FlexMixin({ direction: 'column' })}

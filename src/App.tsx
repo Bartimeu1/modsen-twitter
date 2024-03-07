@@ -1,11 +1,11 @@
-import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter, Navigate,Route, Routes } from 'react-router-dom';
 
+import { PrivateLayout } from '@components/PrivateLayout';
+import { PublicLayout } from '@components/PublicLayout';
 import { privateRoutes, publicRoutes } from '@constants/routes';
 import { useAppSelector } from '@root/hooks';
 import { GlobalStyles, theme } from '@root/theme';
 import { ThemeProvider } from 'styled-components';
-import { PrivateLayout } from '@components/PrivateLayout';
-import { PublicLayout } from '@components/PublicLayout';
 
 export const App = () => {
   const currentTheme = useAppSelector(({ theme }) => theme.currentTheme);

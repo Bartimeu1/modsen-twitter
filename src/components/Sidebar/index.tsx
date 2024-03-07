@@ -1,8 +1,8 @@
 import { NavMenu } from '@components/NavMenu';
-import { LogoIcon } from '@constants/icons';
 import { UserPanel } from '@components/UserPanel';
+import { LogoIcon } from '@constants/icons';
 
-import { StyledSidebar, Logo, TweetButton } from './styled';
+import { Logo, StyledSidebar, TweetButton } from './styled';
 
 const Sidebar = () => {
   return (

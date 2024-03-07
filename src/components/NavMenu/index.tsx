@@ -1,8 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
-import { StyledNavMenu, NavigationLink } from './styled';
-
 import { navLinks } from './config';
+import { NavigationLink,StyledNavMenu } from './styled';
 
 export const NavMenu = () => {
   const location = useLocation();
