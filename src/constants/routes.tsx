@@ -12,6 +12,11 @@ export const publicRoutes = [
 export const privateRoutes = [
   {
     id: 1,
+    path: '/profile/:userSlug',
+    element: <ProfilePage />,
+  },
+  {
+    id: 2,
     path: '/profile',
     element: <ProfilePage />,
   },

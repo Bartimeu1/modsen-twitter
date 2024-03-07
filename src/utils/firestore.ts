@@ -1,4 +1,11 @@
-import { addDoc, collection, getDocs, query, where } from '@firebase/firestore';
+import {
+  addDoc,
+  collection,
+  CollectionReference,
+  getDocs,
+  query,
+  where,
+} from '@firebase/firestore';
 import { db } from '@root/config/firebase';
 import { IUserData } from '@root/types/firebase';
 
@@ -29,6 +36,16 @@ export const createUser = async (data: IUserData) => {
 export const getUserByEmail = async (email: string) => {
   const dbRef = collection(db, 'Users');
   const matchSlugQuery = query(dbRef, where('email', '==', email));
+
+  const snapshot = await getDocs(matchSlugQuery);
+  const userData = snapshot.docs.map((doc) => doc.data())[0];
+
+  return userData;
+};
+
+export const getUserBySlug = async (slug: string) => {
+  const dbRef = collection(db, 'Users') as CollectionReference<IUserData>;
+  const matchSlugQuery = query(dbRef, where('slug', '==', slug));
 
   const snapshot = await getDocs(matchSlugQuery);
   const userData = snapshot.docs.map((doc) => doc.data())[0];

@@ -16,6 +16,6 @@ export const navLinks = [
   { id: 4, Icon: MessagesIcon, name: 'Messages', href: '#' },
   { id: 5, Icon: BookmarksIcon, name: 'Bookmarks', href: '#' },
   { id: 6, Icon: ListsIcon, name: 'Lists', href: '#' },
-  { id: 7, Icon: ProfileIcon, name: 'Profile', href: '/profile' },
+  { id: 7, Icon: ProfileIcon, name: 'Profile', href: `/profile` },
   { id: 8, Icon: MoreIcon, name: 'More', href: '#' },
 ];

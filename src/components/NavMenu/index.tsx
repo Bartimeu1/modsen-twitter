@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
 import { navLinks } from './config';
-import { NavigationLink,StyledNavMenu } from './styled';
+import { NavigationLink, StyledNavMenu } from './styled';
 
 export const NavMenu = () => {
   const location = useLocation();
@@ -10,7 +10,10 @@ export const NavMenu = () => {
   return (
     <StyledNavMenu>
       {navLinks.map(({ id, name, Icon, href }) => (
-        <NavigationLink key={id} to={href} $isTarget={href === currentPath}>
+        <NavigationLink
+          key={id}
+          to={href}
+          $isTarget={currentPath.includes(href)}>
           <Icon />
           {name}
         </NavigationLink>

@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { useAppDispatch,useAppSelector } from '@root/hooks';
-import { IUserData } from '@root/types/firebase';
+import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { removeUser } from '@store/features/user/userSlice';
-import { getUserByEmail } from '@utils/firestore';
 import { getAuth, signOut } from 'firebase/auth';
 
 import {
@@ -19,24 +15,7 @@ import {
 
 export const UserPanel = () => {
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state) => state.user.email);
-
-  const [userDetailsData, setUserDetailsData] = useState<IUserData | null>(
-    null,
-  );
-
-  useEffect(() => {
-    if (userEmail) {
-      getUserByEmail(userEmail).then((data) => {
-        console.log(data)
-        const userDataFromFirestore: IUserData = {
-          name: data.name,
-          slug: data.slug,
-        };
-        setUserDetailsData(userDataFromFirestore);
-      });
-    }
-  }, [userEmail]);
+  const userData = useAppSelector(({ user }) => user.data);
 
   const onLogoutButtonClick = () => {
     const auth = getAuth();
@@ -50,10 +29,8 @@ export const UserPanel = () => {
       <UserInfo>
         <Picture alt="panelAvatar" image={defaultAvatar} width={50} />
         <UserDetails>
-          <UserName>{userDetailsData?.name}</UserName>
-          <UserSlug>
-            {userDetailsData?.slug && '@' + userDetailsData.slug}
-          </UserSlug>
+          <UserName>{userData?.name}</UserName>
+          <UserSlug>{userData?.slug && '@' + userData.slug}</UserSlug>
         </UserDetails>
       </UserInfo>
       <LogoutButton onClick={onLogoutButtonClick}>Log out</LogoutButton>
