@@ -43,7 +43,7 @@ export const SignUpPage = () => {
         }),
       );
 
-      createUser({ email, name: displayName });
+      createUser({ userId: uid, email, name: displayName });
       navigate('/profile');
     });
   };

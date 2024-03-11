@@ -7,6 +7,7 @@ export const StyledTweetMenu = styled.div`
   width: 100%;
   position: relative;
   padding: 18px 0 13px 0;
+  margin-bottom: 30px;
 
   &::after,
   &::before {

@@ -70,7 +70,14 @@ export const RegisterPage = () => {
         }),
       );
 
-      createUser({ email, name, password, phone, birth: userBirthDate });
+      createUser({
+        userId: uid,
+        email,
+        name,
+        password,
+        phone,
+        birth: userBirthDate,
+      });
 
       navigate('/profile');
     });

@@ -3,10 +3,10 @@ import { Navigate, useParams } from 'react-router-dom';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { TweetMenu } from '@components/TweetMenu';
+import { TweetFeed } from '@components/TweetFeed';
 import { useAppSelector } from '@root/hooks';
-import { IUserData } from '@root/types/firebase';
-import { getUserBySlug } from '@utils/firestore';
+import { ITweetResponse, IUserData } from '@root/types/firebase';
+import { getTweetsById, getUserBySlug } from '@utils/firestore';
 
 import {
   EditButton,
@@ -26,11 +26,12 @@ import {
 } from './styled';
 
 export const ProfilePage = () => {
-  const userSlug = useAppSelector(({ user }) => user.data?.slug);
+  const userData = useAppSelector(({ user }) => user.data);
   const params = useParams();
   const paramSlug = params.userSlug;
 
   const [profileData, setProfileData] = useState<IUserData | null>(null);
+  const [tweetsData, setTweetsData] = useState<ITweetResponse[] | null>(null);
 
   useEffect(() => {
     if (paramSlug) {
@@ -44,8 +45,20 @@ export const ProfilePage = () => {
     }
   }, [paramSlug]);
 
+  useEffect(() => {
+    if (userData?.userId) {
+      getTweetsById(userData.userId)
+        .then((data) => {
+          setTweetsData(data);
+        })
+        .catch(() => {
+          setTweetsData(null);
+        });
+    }
+  }, [paramSlug, userData?.userId]);
+
   if (!paramSlug) {
-    return <Navigate to={`/profile/${userSlug}`} />;
+    return <Navigate to={`/profile/${userData?.slug}`} />;
   }
 
   return (
@@ -70,7 +83,7 @@ export const ProfilePage = () => {
         <SubscriptionBlock>67 Following</SubscriptionBlock>
         <SubscriptionBlock>47 Followers</SubscriptionBlock>
       </SubscriptionInfo>
-      <TweetMenu />
+      {tweetsData && <TweetFeed tweets={tweetsData} />}
     </StyledProfilePage>
   );
 };

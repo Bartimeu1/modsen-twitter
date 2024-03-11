@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { UploadImage } from '@constants/icons';
+import { useAppSelector } from '@root/hooks';
 import { createTweet } from '@utils/firestore';
 
 import {
@@ -16,6 +17,8 @@ import {
 } from './styled';
 
 export const TweetMenu = () => {
+  const userId = useAppSelector((state) => state.user.id);
+
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [tweetText, setTweetText] = useState('');
   const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(true);
@@ -38,6 +41,7 @@ export const TweetMenu = () => {
     const tweetData = {
       text: tweetText || null,
       image: uploadedImage || null,
+      userId: userId,
     };
 
     createTweet(tweetData);
