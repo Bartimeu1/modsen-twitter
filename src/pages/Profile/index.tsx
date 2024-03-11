@@ -1,9 +1,28 @@
-import { useEffect,useState } from 'react';
-import { Navigate,useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
+import defaultAvatar from '@assets/images/defaultAvatar.png';
+import { Picture } from '@components/Picture';
 import { useAppSelector } from '@root/hooks';
 import { IUserData } from '@root/types/firebase';
 import { getUserBySlug } from '@utils/firestore';
+
+import {
+  EditButton,
+  HeaderFollowers,
+  HeaderName,
+  HeaderText,
+  HeaderWallpaper,
+  ProfileContent,
+  ProfileHeader,
+  StyledProfilePage,
+  SubscriptionBlock,
+  SubscriptionInfo,
+  UserDesc,
+  UserInfo,
+  UserName,
+  UserSlug,
+} from './styled';
 
 export const ProfilePage = () => {
   const userSlug = useAppSelector(({ user }) => user.data?.slug);
@@ -25,8 +44,31 @@ export const ProfilePage = () => {
   }, [paramSlug]);
 
   if (!paramSlug) {
-    return <Navigate to={`/profile/:${userSlug}`} />;
+    return <Navigate to={`/profile/${userSlug}`} />;
   }
 
-  return <div>{profileData?.email}</div>;
+  return (
+    <StyledProfilePage>
+      <ProfileHeader>
+        <HeaderText>
+          <HeaderName>{profileData?.name}</HeaderName>
+          <HeaderFollowers>1231 Tweets</HeaderFollowers>
+        </HeaderText>
+        <HeaderWallpaper />
+      </ProfileHeader>
+      <ProfileContent>
+        <UserInfo>
+          <Picture alt="profileAvatar" image={defaultAvatar} width={150} />
+          <UserName>{profileData?.name}</UserName>
+          <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
+          <UserDesc>UX&UI designer at @abutechuz</UserDesc>
+        </UserInfo>
+        <EditButton>Edit profile</EditButton>
+      </ProfileContent>
+      <SubscriptionInfo>
+        <SubscriptionBlock>67 Following</SubscriptionBlock>
+        <SubscriptionBlock>47 Followers</SubscriptionBlock>
+      </SubscriptionInfo>
+    </StyledProfilePage>
+  );
 };

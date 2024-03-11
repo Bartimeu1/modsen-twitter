@@ -28,6 +28,7 @@ export const UserSlug = styled.p`
   color: ${({ theme }) => theme.color.primary};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   font-size: ${({ theme }) => theme.fontSize.xs}px;
+  opacity: 60%;
 `;
 
 export const LogoutButton = styled.button`

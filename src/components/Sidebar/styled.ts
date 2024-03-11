@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledSidebar = styled.aside``;
+export const StyledSidebar = styled.aside`
+  width: 100%;
+  max-width: 230px;
+  margin-right: 53px;
+`;
 
 export const Logo = styled.div`
   margin-bottom: 20px;
