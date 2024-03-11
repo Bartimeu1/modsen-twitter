@@ -16,6 +16,7 @@ import {
   TweetImage,
   TweetLikes,
   TweetText,
+  UserLink,
   UserName,
   UserSlug,
 } from './styled';
@@ -58,7 +59,9 @@ export const TweetItem = (props: ITweetResponse) => {
 
   return (
     <StyledTweetItem>
-      <Picture image={defaultAvatar} alt="tweet-avatar" width={50} />
+      <UserLink to={`/profile/${userData?.slug}`}>
+        <Picture image={defaultAvatar} alt="tweet-avatar" width={50} />
+      </UserLink>
       <TweetContent>
         <TweetHeader>
           <UserName>{userData?.name}</UserName>

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FlexMixin } from '@root/theme';
 import styled from 'styled-components';
 
@@ -20,6 +22,10 @@ export const StyledTweetItem = styled.div`
     opacity: 20%;
     content: '';
   }
+`;
+
+export const UserLink = styled(Link)`
+  cursor: pointer;
 `;
 
 export const TweetContent = styled.div`
