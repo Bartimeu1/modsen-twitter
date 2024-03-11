@@ -23,6 +23,7 @@ export const App = () => {
       });
     }
   }, [dispatch, userEmail]);
+  
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -36,7 +37,7 @@ export const App = () => {
           <Route element={<PrivateLayout />}>
             <Route
               path="/"
-              element={<Navigate to={`/profile/ ${userSlug}`} />}
+              element={<Navigate to={`/profile/${userSlug}`} />}
             />
             {privateRoutes.map(({ id, path, element }) => (
               <Route key={id} path={path} element={element} />

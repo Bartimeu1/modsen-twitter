@@ -84,3 +84,24 @@ export const TweetButton = styled.button`
     color: ${({ theme }) => theme.color.ltBlue};
   }
 `;
+
+export const ImagePreview = styled.div`
+  position: relative;
+
+  & img {
+    max-width: 150px;
+  }
+`;
+
+export const PreviewCloseButton = styled.button`
+  position: absolute;
+  border: none;
+  right: 15px;
+  height: auto;
+  width: 20px;
+  height: 20px;
+
+  & svg {
+    width: 20px;
+  }
+`;

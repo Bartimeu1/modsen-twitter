@@ -1,5 +1,5 @@
 export interface IPictureProps {
-  image: string;
+  image: string | File;
   alt: string;
   width?: number;
   height?: number;

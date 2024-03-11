@@ -4,7 +4,29 @@ import styled from 'styled-components';
 
 export const StyledProfilePage = styled.main`
   width: 100%;
-  max-width: 910px;
+  max-width: 930px;
+  position: relative;
+  padding: 0 15px;
+
+  &:before,
+  &:after {
+    background: ${({ theme }) => theme.color.primary};
+    opacity: 10%;
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    max-height: 870px;
+    content: '';
+    top: 0;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
 `;
 
 export const ProfileHeader = styled.header`
@@ -79,7 +101,7 @@ export const EditButton = styled.button`
 export const SubscriptionInfo = styled.div`
   ${FlexMixin({ align: 'center' })}
 
-  margin: 0 -15px;
+  margin: 0 -15px 50px -15px;
 `;
 
 export const SubscriptionBlock = styled.div`

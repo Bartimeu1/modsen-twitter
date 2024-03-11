@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { UploadImage } from '@constants/icons';
+import { CloseIcon,UploadImage } from '@constants/icons';
 import { useAppSelector } from '@root/hooks';
 import { createTweet } from '@utils/firestore';
+import { generateImageURL } from '@utils/helpers';
 
 import {
   FileInput,
   ImageButton,
+  ImagePreview,
+  PreviewCloseButton,
   StyledTweetMenu,
   TweetButton,
   TweetContent,
@@ -49,6 +52,10 @@ export const TweetMenu = () => {
     setUploadedImage(null);
   };
 
+  const onPreviewCloseButtonClick = () => {
+    setUploadedImage(null);
+  };
+
   return (
     <StyledTweetMenu>
       <Picture image={defaultAvatar} width={50} alt="tweet-avatar" />
@@ -59,10 +66,22 @@ export const TweetMenu = () => {
           value={tweetText}
         />
         <TweetControls>
-          <ImageButton>
-            <FileInput type="file" onChange={onFileInputChange} />
-            <UploadImage />
-          </ImageButton>
+          {uploadedImage ? (
+            <ImagePreview>
+              <Picture
+                image={generateImageURL(uploadedImage)}
+                alt="preview-image"
+              />
+              <PreviewCloseButton onClick={onPreviewCloseButtonClick}>
+                <CloseIcon />
+              </PreviewCloseButton>
+            </ImagePreview>
+          ) : (
+            <ImageButton>
+              <FileInput type="file" onChange={onFileInputChange} />
+              <UploadImage />
+            </ImageButton>
+          )}
           <TweetButton
             onClick={onTweetButtonClick}
             disabled={isTweetButtonDisabled}>
