@@ -9,3 +9,4 @@ export { ReactComponent as BookmarksIcon } from '@assets/images/bookmarks.svg';
 export { ReactComponent as ListsIcon } from '@assets/images/lists.svg';
 export { ReactComponent as ProfileIcon } from '@assets/images/profile.svg';
 export { ReactComponent as MoreIcon } from '@assets/images/more.svg';
+export { ReactComponent as UploadImage } from '@assets/images/uploadImage.svg';

@@ -6,3 +6,8 @@ export interface IUserData {
   password?: string;
   birth?: Date;
 }
+
+export interface ITweetData {
+  text: string | null;
+  image: File | null;
+}

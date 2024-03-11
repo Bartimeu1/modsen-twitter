@@ -6,8 +6,10 @@ import {
   query,
   where,
 } from '@firebase/firestore';
-import { db } from '@root/config/firebase';
-import { IUserData } from '@root/types/firebase';
+import { db, storage } from '@root/config/firebase';
+import { ITweetData,IUserData } from '@root/types/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
 
 import { generateSlug } from './helpers';
 
@@ -51,4 +53,23 @@ export const getUserBySlug = async (slug: string) => {
   const userData = snapshot.docs.map((doc) => doc.data())[0];
 
   return userData;
+};
+
+export const createTweet = async (data: ITweetData) => {
+  const { text, image } = data;
+  const dbref = collection(db, 'Tweets');
+
+  let imageUrl = null;
+
+  if (image) {
+    const imageRef = ref(storage, `images/${image.name + v4()}`);
+    await uploadBytes(imageRef, image);
+
+    imageUrl = await getDownloadURL(imageRef);
+  }
+
+  await addDoc(dbref, {
+    text,
+    image: imageUrl,
+  });
 };

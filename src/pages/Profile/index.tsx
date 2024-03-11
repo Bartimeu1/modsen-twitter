@@ -3,6 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
+import { TweetMenu } from '@components/TweetMenu';
 import { useAppSelector } from '@root/hooks';
 import { IUserData } from '@root/types/firebase';
 import { getUserBySlug } from '@utils/firestore';
@@ -69,6 +70,7 @@ export const ProfilePage = () => {
         <SubscriptionBlock>67 Following</SubscriptionBlock>
         <SubscriptionBlock>47 Followers</SubscriptionBlock>
       </SubscriptionInfo>
+      <TweetMenu />
     </StyledProfilePage>
   );
 };
