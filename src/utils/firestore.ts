@@ -88,6 +88,17 @@ export const createTweet = async (data: ITweetData) => {
   });
 };
 
+export const getAllTweets = async () => {
+  const dbRef = collection(db, 'Tweets');
+
+  const snapshot = await getDocs(dbRef);
+  const tweetsData: ITweetResponse[] = snapshot.docs.map(
+    (doc) => doc.data() as ITweetResponse,
+  );
+
+  return tweetsData;
+};
+
 export const getTweetsById = async (userId: string) => {
   const dbRef = collection(db, 'Tweets') as CollectionReference<ITweetResponse>;
   const matchIdQuery = query(dbRef, where('userId', '==', userId));

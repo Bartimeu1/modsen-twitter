@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { LikeIcon } from '@constants/icons';
-import { ITweetResponse, IUserData } from '@root/types/firebase';
+import { useAppSelector } from '@root/hooks';
+import { IUserData } from '@root/types/firebase';
 import { getUserById } from '@utils/firestore';
 import { likeTweet } from '@utils/firestore';
 
@@ -20,9 +21,11 @@ import {
   UserName,
   UserSlug,
 } from './styled';
+import { ITweetItemProps } from './types';
 
-export const TweetItem = (props: ITweetResponse) => {
-  const { userId, image, text, tweetId, likes } = props;
+export const TweetItem = (props: ITweetItemProps) => {
+  const userId = useAppSelector((state) => state.user.id);
+  const { image, text, tweetId, likes } = props;
 
   const [userData, setUserData] = useState<IUserData | null>(null);
   const [isTweetLiked, setIsTweetLiked] = useState(() => {

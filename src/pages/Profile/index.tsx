@@ -46,8 +46,8 @@ export const ProfilePage = () => {
   }, [paramSlug]);
 
   useEffect(() => {
-    if (userData?.userId) {
-      getTweetsById(userData.userId)
+    if (profileData?.userId) {
+      getTweetsById(profileData.userId)
         .then((data) => {
           setTweetsData(data);
         })
@@ -55,7 +55,7 @@ export const ProfilePage = () => {
           setTweetsData(null);
         });
     }
-  }, [paramSlug, userData?.userId]);
+  }, [paramSlug, profileData?.userId]);
 
   if (!paramSlug) {
     return <Navigate to={`/profile/${userData?.slug}`} />;

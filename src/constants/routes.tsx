@@ -1,3 +1,4 @@
+import { HomePage } from '@pages/Home';
 import { LoginPage } from '@pages/Login';
 import { ProfilePage } from '@pages/Profile';
 import { RegisterPage } from '@pages/Register';
@@ -21,8 +22,8 @@ export const privateRoutes = [
     element: <ProfilePage />,
   },
   {
-    id: 2,
+    id: 3,
     path: '/home',
-    element: <div>home</div>,
+    element: <HomePage />,
   },
 ];

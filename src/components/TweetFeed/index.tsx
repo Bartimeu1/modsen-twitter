@@ -16,7 +16,6 @@ export const TweetFeed = (props: ITweetFeedProps) => {
             key={tweet.tweetId}
             likes={tweet.likes}
             tweetId={tweet.tweetId}
-            userId={tweet.userId}
             text={tweet.text}
             image={tweet.image}
           />
