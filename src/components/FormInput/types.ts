@@ -3,4 +3,5 @@ export interface IFormInputProps {
   type: string;
   onChange: (value: string) => void;
   validationText?: string;
+  baseValue?: string;
 }

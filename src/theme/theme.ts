@@ -58,6 +58,7 @@ const layoutValues = {
     xl: 60,
     xl2: 76,
     xl3: 120,
+    circle: '50%',
   },
 };
 

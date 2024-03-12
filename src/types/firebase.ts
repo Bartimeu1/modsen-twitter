@@ -6,6 +6,9 @@ export interface IUserData {
   phone?: string;
   password?: string;
   birth?: Date;
+  avatar?: string;
+  bio?: string;
+  image?: string;
 }
 
 export interface ITweetData {
@@ -20,4 +23,12 @@ export interface ITweetResponse {
   text: string | null;
   image: string | null;
   userId: string | null;
+}
+
+export interface IChangeUserData {
+  name: string;
+  email: string;
+  slug: string;
+  image: File | null;
+  bio?: string;
 }

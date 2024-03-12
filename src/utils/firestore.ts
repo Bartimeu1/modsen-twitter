@@ -8,7 +8,12 @@ import {
   where,
 } from '@firebase/firestore';
 import { db, storage } from '@root/config/firebase';
-import { ITweetData, ITweetResponse, IUserData } from '@root/types/firebase';
+import {
+  IChangeUserData,
+  ITweetData,
+  ITweetResponse,
+  IUserData,
+} from '@root/types/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 
@@ -65,6 +70,35 @@ export const getUserById = async (id: string) => {
   const userData = snapshot.docs.map((doc) => doc.data())[0];
 
   return userData;
+};
+
+export const updateUserData = async (userId: string, data: IChangeUserData) => {
+  const { email, name, bio, slug, image } = data;
+  const dbRef = collection(db, 'Users');
+  const matchIdQuery = query(dbRef, where('userId', '==', userId));
+
+  const snapshot = await getDocs(matchIdQuery);
+
+  let imageUrl = null;
+
+  if (image) {
+    const imageRef = ref(storage, `images/${image.name + v4()}`);
+    await uploadBytes(imageRef, image);
+
+    imageUrl = await getDownloadURL(imageRef);
+  }
+
+  const userDoc = snapshot.docs[0];
+  const userData = userDoc.data();
+
+  await updateDoc(userDoc.ref, {
+    ...userData,
+    email,
+    name,
+    bio,
+    slug,
+    image: imageUrl,
+  });
 };
 
 export const createTweet = async (data: ITweetData) => {

@@ -1,12 +1,18 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import { FormInputField, Input, ValidationText } from './styled';
 import { IFormInputProps } from './types';
 
 export const FormInput = (props: IFormInputProps) => {
-  const { placeholder, type, onChange, validationText } = props;
+  const { placeholder, type, onChange, validationText, baseValue } = props;
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(baseValue);
+
+  useEffect(() => {
+    if (baseValue) {
+      onChange(baseValue);
+    }
+  }, [baseValue, onChange]);
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

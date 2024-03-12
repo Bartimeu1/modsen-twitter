@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
+import { EditModal } from '@components/EditModal';
 import { Picture } from '@components/Picture';
 import { TweetFeed } from '@components/TweetFeed';
 import { useAppSelector } from '@root/hooks';
@@ -32,6 +33,7 @@ export const ProfilePage = () => {
 
   const [profileData, setProfileData] = useState<IUserData | null>(null);
   const [tweetsData, setTweetsData] = useState<ITweetResponse[] | null>(null);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
 
   useEffect(() => {
     if (paramSlug) {
@@ -61,6 +63,10 @@ export const ProfilePage = () => {
     return <Navigate to={`/profile/${userData?.slug}`} />;
   }
 
+  const onEditButtonClick = () => {
+    setIsEditModalVisible((prevState) => !prevState);
+  };
+
   return (
     <StyledProfilePage>
       <ProfileHeader>
@@ -77,13 +83,19 @@ export const ProfilePage = () => {
           <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
           <UserDesc>UX&UI designer at @abutechuz</UserDesc>
         </UserInfo>
-        <EditButton>Edit profile</EditButton>
+        <EditButton onClick={onEditButtonClick}>Edit profile</EditButton>
       </ProfileContent>
       <SubscriptionInfo>
         <SubscriptionBlock>67 Following</SubscriptionBlock>
         <SubscriptionBlock>47 Followers</SubscriptionBlock>
       </SubscriptionInfo>
       {tweetsData && <TweetFeed tweets={tweetsData} />}
+      {isEditModalVisible && (
+        <EditModal
+          profileData={profileData}
+          setIsVisible={setIsEditModalVisible}
+        />
+      )}
     </StyledProfilePage>
   );
 };

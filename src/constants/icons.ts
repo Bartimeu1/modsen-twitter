@@ -12,3 +12,4 @@ export { ReactComponent as MoreIcon } from '@assets/images/more.svg';
 export { ReactComponent as UploadImage } from '@assets/images/uploadImage.svg';
 export { ReactComponent as LikeIcon } from '@assets/images/like.svg';
 export { ReactComponent as CloseIcon } from '@assets/images/close.svg';
+export { ReactComponent as EditUpload } from '@assets/images/editUpload.svg';
