@@ -1,7 +1,7 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import { db } from '@root/config/firebase';
 import { IChangeUserData, IUserData } from '@root/types/firebase';
-import { addImageIntoStorage,getUserByValue } from '@utils/firestore';
+import { addImageIntoStorage, getUserByValue } from '@utils/firestore';
 import { generateSlug } from '@utils/helpers';
 import {
   addDoc,
@@ -61,7 +61,7 @@ export const userApi = createApi({
           const snapshot = await getDocs(matchEmailQuery);
 
           if (!snapshot.empty) {
-            throw new Error('User already exist');
+            return { data: null };
           }
 
           await addDoc(dbref, {
@@ -99,13 +99,15 @@ export const userApi = createApi({
           }
 
           const userDoc = snapshot.docs[0];
+          const userData = userDoc.data();
+
           await updateDoc(userDoc.ref, {
-            ...userDoc.data(),
+            ...userData,
             email,
             name,
             bio: bio || null,
             slug,
-            avatar: imageUrl || userDoc.data().avatar,
+            avatar: imageUrl || userData.avatar || null,
           });
 
           return { data: null };

@@ -19,7 +19,6 @@ export const tweetApi = createApi({
   endpoints: (builder) => ({
     getTweetsById: builder.query<ITweetResponse[], { userId: string }>({
       queryFn: async (credentials) => {
-        console.log(credentials.userId);
         try {
           const dbRef = collection(
             db,

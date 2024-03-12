@@ -35,21 +35,19 @@ export const LoginPage = () => {
     const { email, password } = data;
 
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        // eslint-disable-next-line
-        const { email, uid, accessToken } = user as any;
+    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      // eslint-disable-next-line
+      const { email, uid, accessToken } = user as any;
 
-        dispatch(
-          setUser({
-            email,
-            id: uid,
-            token: accessToken,
-          }),
-        );
-        navigate('/profile');
-      })
-      .catch((err) => console.log(err));
+      dispatch(
+        setUser({
+          email,
+          id: uid,
+          token: accessToken,
+        }),
+      );
+      navigate('/profile');
+    });
   };
 
   return (

@@ -9,7 +9,7 @@ export const StyledTweetItem = styled.div`
   ${FlexMixin({ align: 'start' })}
 
   padding-bottom: 20px;
-  margin: 10px 15px 0 15px;
+  margin-top: 10px;
   position: relative;
 
   &:after {
@@ -26,6 +26,7 @@ export const StyledTweetItem = styled.div`
 
 export const UserLink = styled(Link)`
   cursor: pointer;
+  padding-left: 15px;
 
   & img {
     border-radius: ${({ theme }) => theme.borderRadius.circle};

@@ -5,15 +5,16 @@ import { TweetsList } from './styled';
 import { ITweetFeedProps } from './types';
 
 export const TweetFeed = (props: ITweetFeedProps) => {
-  const { tweets } = props;
+  const { tweets, refetch, isMenuVisible } = props;
 
   return (
     <>
-      <TweetMenu />
+      {isMenuVisible && <TweetMenu refetch={refetch} />}
       <TweetsList>
         {tweets.map((tweet) => (
           <TweetItem
             key={tweet.tweetId}
+            userId={tweet.userId}
             likes={tweet.likes}
             tweetId={tweet.tweetId}
             text={tweet.text}

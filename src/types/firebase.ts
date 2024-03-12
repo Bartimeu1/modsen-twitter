@@ -1,7 +1,7 @@
 export interface IUserData {
   userId: string;
   name: string;
-  email?: string;
+  email: string;
   slug?: string;
   phone?: string;
   password?: string;
@@ -21,7 +21,7 @@ export interface ITweetResponse {
   likes: string[] | null;
   text: string | null;
   image: string | null;
-  userId: string | null;
+  userId: string;
 }
 
 export interface IChangeUserData {

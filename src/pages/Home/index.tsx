@@ -5,7 +5,7 @@ import { useGetAllTweetsQuery } from '@store/features/tweet/tweetApi';
 import { HomeHeader, HomeTitle, StyledHomePage } from './styled';
 
 export const HomePage = () => {
-  const { data: tweetsData } = useGetAllTweetsQuery({});
+  const { data: tweetsData, refetch } = useGetAllTweetsQuery({});
 
   return (
     <StyledHomePage>
@@ -13,7 +13,9 @@ export const HomePage = () => {
         <HomeTitle>Home</HomeTitle>
         <ToggleButton />
       </HomeHeader>
-      {tweetsData && <TweetFeed tweets={tweetsData} />}
+      {tweetsData && (
+        <TweetFeed tweets={tweetsData} refetch={refetch} isMenuVisible={true} />
+      )}
     </StyledHomePage>
   );
 };

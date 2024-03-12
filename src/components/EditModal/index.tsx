@@ -26,7 +26,7 @@ import {
 import { IEditFormValues, IEditModalProps } from './types';
 
 export const EditModal = (props: IEditModalProps) => {
-  const { profileData, setIsVisible } = props;
+  const { profileData, setIsVisible, refetch } = props;
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
@@ -61,6 +61,7 @@ export const EditModal = (props: IEditModalProps) => {
       });
     }
 
+    refetch();
     closeModal();
   };
 
@@ -101,7 +102,7 @@ export const EditModal = (props: IEditModalProps) => {
                     <FormInput
                       type={type}
                       placeholder={placeholder}
-                      baseValue={profileData ? profileData[name] : ''}
+                      baseValue={profileData?.[name] ?? ''}
                       onChange={onChange}
                       validationText={errors?.[name]?.message}
                     />
