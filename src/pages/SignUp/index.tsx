@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { GoogleIcon, LogoIcon } from '@constants/icons';
 import { provider } from '@root/config/firebase';
 import { useAppDispatch } from '@root/hooks';
+import { useCreateUserMutation } from '@store/features/user/userApi';
 import { setUser } from '@store/features/user/userSlice';
-import { createUser } from '@utils/firestore';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 
 import { NavLinks } from './config';
@@ -29,6 +29,8 @@ export const SignUpPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [createUser] = useCreateUserMutation();
+
   const onSignWithGoogleClick = () => {
     const auth = getAuth();
 
@@ -43,7 +45,7 @@ export const SignUpPage = () => {
         }),
       );
 
-      createUser({ userId: uid, email, name: displayName });
+      createUser({ data: { userId: uid, email, name: displayName } });
       navigate('/profile');
     });
   };

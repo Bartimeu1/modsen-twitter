@@ -4,7 +4,7 @@ import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { CloseIcon, UploadImage } from '@constants/icons';
 import { useAppSelector } from '@root/hooks';
-import { createTweet } from '@utils/firestore';
+import { useCreateTweetMutation } from '@store/features/tweet/tweetApi';
 import { generateImageURL } from '@utils/helpers';
 
 import {
@@ -27,6 +27,8 @@ export const TweetMenu = () => {
   const [tweetText, setTweetText] = useState('');
   const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(true);
 
+  const [createTweet] = useCreateTweetMutation();
+
   useEffect(() => {
     setIsTweetButtonDisabled(!tweetText && !uploadedImage);
   }, [uploadedImage, tweetText]);
@@ -48,7 +50,7 @@ export const TweetMenu = () => {
       userId: userData.id,
     };
 
-    createTweet(tweetData);
+    createTweet({ data: tweetData });
     setTweetText('');
     setUploadedImage(null);
   };

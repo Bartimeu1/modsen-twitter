@@ -9,6 +9,7 @@ import { LogoIcon } from '@constants/icons';
 import { registerBirthText } from '@constants/text';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch } from '@root/hooks';
+import { useCreateUserMutation } from '@store/features/user/userApi';
 import { setUser } from '@store/features/user/userSlice';
 import {
   generateDate,
@@ -16,7 +17,6 @@ import {
   generateYearsArray,
   getTargetYear,
 } from '@utils/date';
-import { createUser } from '@utils/firestore';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import {
@@ -49,6 +49,7 @@ export const RegisterPage = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
+  const [createUser] = useCreateUserMutation();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -71,12 +72,14 @@ export const RegisterPage = () => {
       );
 
       createUser({
-        userId: uid,
-        email,
-        name,
-        password,
-        phone,
-        birth: userBirthDate,
+        data: {
+          userId: uid,
+          email,
+          name,
+          password,
+          phone,
+          birth: userBirthDate,
+        },
       });
 
       navigate('/profile');

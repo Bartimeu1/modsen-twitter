@@ -1,7 +1,7 @@
 import { IUserData } from '@root/types/firebase';
 
 export interface IEditModalProps {
-  profileData: IUserData | null;
+  profileData: IUserData | undefined;
   setIsVisible: (value: boolean) => void;
 }
 

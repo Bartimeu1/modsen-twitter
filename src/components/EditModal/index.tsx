@@ -8,7 +8,7 @@ import { PortalWrapper } from '@components/PortalWrapper';
 import { CloseIcon, EditUpload } from '@constants/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useOnClickOutside } from '@root/hooks';
-import { updateUserData } from '@utils/firestore';
+import { useUpdateUserDataMutation } from '@store/features/user/userApi';
 import { generateImageURL } from '@utils/helpers';
 
 import { inputControllers, validationSchema } from './config';
@@ -29,6 +29,8 @@ export const EditModal = (props: IEditModalProps) => {
   const { profileData, setIsVisible } = props;
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+
+  const [updateUserData] = useUpdateUserDataMutation();
 
   const modalRef = useRef(null);
 
@@ -53,7 +55,10 @@ export const EditModal = (props: IEditModalProps) => {
 
   const onEditFormSubmit = async (data: IEditFormValues) => {
     if (profileData?.userId) {
-      updateUserData(profileData.userId, { ...data, avatar: uploadedImage });
+      updateUserData({
+        userId: profileData.userId,
+        data: { ...data, avatar: uploadedImage },
+      });
     }
 
     closeModal();

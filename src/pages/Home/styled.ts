@@ -5,7 +5,6 @@ export const StyledHomePage = styled.section`
   width: 100%;
   max-width: 930px;
   position: relative;
-  padding: 0 15px;
 
   &:before,
   &:after {
@@ -32,6 +31,7 @@ export const HomeHeader = styled.header`
   ${FlexMixin({ justify: 'space-between', align: 'center' })}
 
   margin-bottom: 17px;
+  padding: 0 15px;
 `;
 
 export const HomeTitle = styled.h3`

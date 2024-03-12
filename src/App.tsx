@@ -6,8 +6,8 @@ import { PublicLayout } from '@components/PublicLayout';
 import { privateRoutes, publicRoutes } from '@constants/routes';
 import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { GlobalStyles, theme } from '@root/theme';
+import { useGetUserByEmailQuery } from '@store/features/user/userApi';
 import { setUserData } from '@store/features/user/userSlice';
-import { getUserByEmail } from '@utils/firestore';
 import { ThemeProvider } from 'styled-components';
 
 export const App = () => {
@@ -16,14 +16,13 @@ export const App = () => {
   const userEmail = useAppSelector(({ user }) => user.email);
   const userSlug = useAppSelector(({ user }) => user.data?.slug);
 
+  const { data: userData } = useGetUserByEmailQuery({ email: userEmail });
+
   useEffect(() => {
-    if (userEmail) {
-      getUserByEmail(userEmail).then((data) => {
-        dispatch(setUserData(data));
-      });
+    if (userData) {
+      dispatch(setUserData(userData));
     }
-  }, [dispatch, userEmail]);
-  
+  }, [dispatch, userData]);
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>

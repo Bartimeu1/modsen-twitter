@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
-
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
-import { ITweetResponse } from '@root/types/firebase';
-import { getAllTweets } from '@utils/firestore';
+import { useGetAllTweetsQuery } from '@store/features/tweet/tweetApi';
 
 import { HomeHeader, HomeTitle, StyledHomePage } from './styled';
 
 export const HomePage = () => {
-  const [tweetsData, setTweetsData] = useState<ITweetResponse[] | null>(null);
-
-  useEffect(() => {
-    getAllTweets().then((data) => setTweetsData(data));
-  }, []);
+  const { data: tweetsData } = useGetAllTweetsQuery({});
 
   return (
     <StyledHomePage>

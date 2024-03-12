@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
@@ -7,8 +7,8 @@ import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
 import { useAppSelector } from '@root/hooks';
-import { ITweetResponse, IUserData } from '@root/types/firebase';
-import { getTweetsById, getUserBySlug } from '@utils/firestore';
+import { useGetTweetsByIdQuery } from '@root/store/features/tweet/tweetApi';
+import { useGetUserBySlugQuery } from '@store/features/user/userApi';
 
 import {
   EditButton,
@@ -31,43 +31,25 @@ import {
 export const ProfilePage = () => {
   const userData = useAppSelector(({ user }) => user.data);
   const params = useParams();
-  const paramSlug = params.userSlug;
+  const paramSlug = params.userSlug || '';
 
-  const [profileData, setProfileData] = useState<IUserData | null>(null);
-  const [tweetsData, setTweetsData] = useState<ITweetResponse[] | null>(null);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
 
-  useEffect(() => {
-    if (paramSlug) {
-      getUserBySlug(paramSlug)
-        .then((data) => {
-          setProfileData(data);
-        })
-        .catch(() => {
-          setProfileData(null);
-        });
-    }
-  }, [paramSlug]);
+  const { data: profileData } = useGetUserBySlugQuery({
+    slug: paramSlug,
+  });
 
-  useEffect(() => {
-    if (profileData?.userId) {
-      getTweetsById(profileData.userId)
-        .then((data) => {
-          setTweetsData(data);
-        })
-        .catch(() => {
-          setTweetsData(null);
-        });
-    }
-  }, [paramSlug, profileData?.userId]);
-
-  if (!paramSlug) {
-    return <Navigate to={`/profile/${userData?.slug}`} />;
-  }
+  const { data: tweetsData } = useGetTweetsByIdQuery({
+    userId: profileData?.userId || '',
+  });
 
   const onEditButtonClick = () => {
     setIsEditModalVisible((prevState) => !prevState);
   };
+
+  if (!paramSlug) {
+    return <Navigate to={`/profile/${userData?.slug}`} />;
+  }
 
   return (
     <StyledProfilePage>
