@@ -4,6 +4,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { EditModal } from '@components/EditModal';
 import { Picture } from '@components/Picture';
+import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
 import { useAppSelector } from '@root/hooks';
 import { ITweetResponse, IUserData } from '@root/types/firebase';
@@ -11,6 +12,7 @@ import { getTweetsById, getUserBySlug } from '@utils/firestore';
 
 import {
   EditButton,
+  HeaderContent,
   HeaderFollowers,
   HeaderName,
   HeaderText,
@@ -70,10 +72,13 @@ export const ProfilePage = () => {
   return (
     <StyledProfilePage>
       <ProfileHeader>
-        <HeaderText>
-          <HeaderName>{profileData?.name}</HeaderName>
-          <HeaderFollowers>1231 Tweets</HeaderFollowers>
-        </HeaderText>
+        <HeaderContent>
+          <HeaderText>
+            <HeaderName>{profileData?.name}</HeaderName>
+            <HeaderFollowers>1231 Tweets</HeaderFollowers>
+          </HeaderText>
+          <ToggleButton />
+        </HeaderContent>
         <HeaderWallpaper />
       </ProfileHeader>
       <ProfileContent>

@@ -32,10 +32,14 @@ export const ProfileHeader = styled.header`
   padding-bottom: 17px;
 `;
 
+export const HeaderContent = styled.div`
+  ${FlexMixin({ justify: 'space-between', align: 'center' })}
+  padding: 0 15px;
+  margin-bottom: 13px;
+`;
+
 export const HeaderText = styled.div`
   ${FlexMixin({ direction: 'column' })}
-  margin-bottom: 13px;
-  padding: 0 15px;
 `;
 
 export const HeaderName = styled.h3`
