@@ -63,7 +63,11 @@ export const TweetItem = (props: ITweetItemProps) => {
   return (
     <StyledTweetItem>
       <UserLink to={`/profile/${userData?.slug}`}>
-        <Picture image={defaultAvatar} alt="tweet-avatar" width={50} />
+        <Picture
+          image={userData?.avatar || defaultAvatar}
+          alt="tweet-avatar"
+          width={50}
+        />
       </UserLink>
       <TweetContent>
         <TweetHeader>
@@ -71,7 +75,7 @@ export const TweetItem = (props: ITweetItemProps) => {
           <UserSlug>@{userData?.slug}</UserSlug>
         </TweetHeader>
         <TweetText>{text}</TweetText>
-        {image && <TweetImage src={image} />}
+        {image && <TweetImage alt="tweet-image" src={image} />}
         <TweetLikes $isLiked={isTweetLiked}>
           <LikeButton onClick={onLikeButtonClick}>
             <LikeIcon />

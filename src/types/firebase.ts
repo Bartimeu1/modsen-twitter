@@ -8,7 +8,6 @@ export interface IUserData {
   birth?: Date;
   avatar?: string;
   bio?: string;
-  image?: string;
 }
 
 export interface ITweetData {
@@ -29,6 +28,6 @@ export interface IChangeUserData {
   name: string;
   email: string;
   slug: string;
-  image: File | null;
+  avatar: File | null;
   bio?: string;
 }

@@ -6,7 +6,7 @@ export const StyledTweetMenu = styled.div`
 
   width: 100%;
   position: relative;
-  padding: 18px 0 13px 0;
+  padding: 18px 15px 13px 15px;
   margin-bottom: 30px;
 
   &::after,
@@ -39,6 +39,7 @@ export const TweetContent = styled.div`
 export const TweetTextarea = styled.textarea`
   color: ${({ theme }) => theme.color.primary};
   font-size: ${({ theme }) => theme.fontSize.lg}px;
+  font-family: ${({ theme }) => theme.fontFamily.primary};
   margin-bottom: 20px;
   border: none;
   outline: none;
@@ -103,5 +104,11 @@ export const PreviewCloseButton = styled.button`
 
   & svg {
     width: 20px;
+  }
+`;
+
+export const UserAvatar = styled.div`
+  & img {
+    border-radius: ${({ theme }) => theme.borderRadius.circle};
   }
 `;

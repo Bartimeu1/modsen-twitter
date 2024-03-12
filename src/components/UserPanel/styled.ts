@@ -9,6 +9,10 @@ export const UserInfo = styled.div`
   ${FlexMixin({ align: 'center' })}
 
   margin-bottom: 30px;
+
+  & img {
+    border-radius: ${({ theme }) => theme.borderRadius.circle};
+  }
 `;
 
 export const UserDetails = styled.div`

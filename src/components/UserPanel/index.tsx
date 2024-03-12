@@ -27,7 +27,11 @@ export const UserPanel = () => {
   return (
     <StyledUserPanel>
       <UserInfo>
-        <Picture alt="panelAvatar" image={defaultAvatar} width={50} />
+        <Picture
+          alt="panelAvatar"
+          image={userData?.avatar || defaultAvatar}
+          width={50}
+        />
         <UserDetails>
           <UserName>{userData?.name}</UserName>
           <UserSlug>{userData?.slug && '@' + userData.slug}</UserSlug>

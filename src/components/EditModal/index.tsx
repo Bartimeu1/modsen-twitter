@@ -1,10 +1,10 @@
 import { Fragment, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { Controller, useForm } from 'react-hook-form';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { FormInput } from '@components/FormInput';
 import { Picture } from '@components/Picture';
+import { PortalWrapper } from '@components/PortalWrapper';
 import { CloseIcon, EditUpload } from '@constants/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useOnClickOutside } from '@root/hooks';
@@ -53,7 +53,7 @@ export const EditModal = (props: IEditModalProps) => {
 
   const onEditFormSubmit = async (data: IEditFormValues) => {
     if (profileData?.userId) {
-      updateUserData(profileData.userId, { ...data, image: uploadedImage });
+      updateUserData(profileData.userId, { ...data, avatar: uploadedImage });
     }
 
     closeModal();
@@ -61,52 +61,53 @@ export const EditModal = (props: IEditModalProps) => {
 
   useOnClickOutside(modalRef, closeModal);
 
-  return createPortal(
-    <StyledEditModal>
-      <ModalContent ref={modalRef}>
-        <CloseButton onClick={closeModal}>
-          <CloseIcon />
-        </CloseButton>
-        <AvatarContainer>
-          <UploadImageButton>
-            <FileInput type="file" onChange={onFileInputChange} />
-            <EditUpload />
-          </UploadImageButton>
-          {uploadedImage ? (
-            <Picture
-              image={generateImageURL(uploadedImage)}
-              alt="edit-avatar"
-            />
-          ) : (
-            <Picture
-              image={profileData?.avatar || defaultAvatar}
-              alt="edit-avatar"
-            />
-          )}
-        </AvatarContainer>
-        <EditForm onSubmit={handleSubmit(onEditFormSubmit)}>
-          {inputControllers.map(({ id, name, type, placeholder, label }) => (
-            <Fragment key={id}>
-              <InputLabel>{label}</InputLabel>
-              <Controller
-                name={name}
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <FormInput
-                    type={type}
-                    placeholder={placeholder}
-                    baseValue={profileData ? profileData[name] : ''}
-                    onChange={onChange}
-                    validationText={errors?.[name]?.message}
-                  />
-                )}
+  return (
+    <PortalWrapper>
+      <StyledEditModal>
+        <ModalContent ref={modalRef}>
+          <CloseButton onClick={closeModal}>
+            <CloseIcon />
+          </CloseButton>
+          <AvatarContainer>
+            <UploadImageButton>
+              <FileInput type="file" onChange={onFileInputChange} />
+              <EditUpload />
+            </UploadImageButton>
+            {uploadedImage ? (
+              <Picture
+                image={generateImageURL(uploadedImage)}
+                alt="edit-avatar"
               />
-            </Fragment>
-          ))}
-          <SubmitButton type="submit" value="Save" />
-        </EditForm>
-      </ModalContent>
-    </StyledEditModal>,
-    document.body,
+            ) : (
+              <Picture
+                image={profileData?.avatar || defaultAvatar}
+                alt="edit-avatar"
+              />
+            )}
+          </AvatarContainer>
+          <EditForm onSubmit={handleSubmit(onEditFormSubmit)}>
+            {inputControllers.map(({ id, name, type, placeholder, label }) => (
+              <Fragment key={id}>
+                <InputLabel>{label}</InputLabel>
+                <Controller
+                  name={name}
+                  control={control}
+                  render={({ field: { onChange } }) => (
+                    <FormInput
+                      type={type}
+                      placeholder={placeholder}
+                      baseValue={profileData ? profileData[name] : ''}
+                      onChange={onChange}
+                      validationText={errors?.[name]?.message}
+                    />
+                  )}
+                />
+              </Fragment>
+            ))}
+            <SubmitButton type="submit" value="Save" />
+          </EditForm>
+        </ModalContent>
+      </StyledEditModal>
+    </PortalWrapper>
   );
 };

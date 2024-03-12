@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { CloseIcon,UploadImage } from '@constants/icons';
+import { CloseIcon, UploadImage } from '@constants/icons';
 import { useAppSelector } from '@root/hooks';
 import { createTweet } from '@utils/firestore';
 import { generateImageURL } from '@utils/helpers';
@@ -17,10 +17,11 @@ import {
   TweetContent,
   TweetControls,
   TweetTextarea,
+  UserAvatar,
 } from './styled';
 
 export const TweetMenu = () => {
-  const userId = useAppSelector((state) => state.user.id);
+  const userData = useAppSelector((state) => state.user);
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [tweetText, setTweetText] = useState('');
@@ -44,7 +45,7 @@ export const TweetMenu = () => {
     const tweetData = {
       text: tweetText || null,
       image: uploadedImage || null,
-      userId: userId,
+      userId: userData.id,
     };
 
     createTweet(tweetData);
@@ -58,7 +59,13 @@ export const TweetMenu = () => {
 
   return (
     <StyledTweetMenu>
-      <Picture image={defaultAvatar} width={50} alt="tweet-avatar" />
+      <UserAvatar>
+        <Picture
+          image={userData.data?.avatar || defaultAvatar}
+          width={50}
+          alt="tweet-avatar"
+        />
+      </UserAvatar>
       <TweetContent>
         <TweetTextarea
           placeholder="What’s happening"

@@ -6,7 +6,6 @@ export const StyledProfilePage = styled.main`
   width: 100%;
   max-width: 930px;
   position: relative;
-  padding: 0 15px;
 
   &:before,
   &:after {
@@ -36,6 +35,7 @@ export const ProfileHeader = styled.header`
 export const HeaderText = styled.div`
   ${FlexMixin({ direction: 'column' })}
   margin-bottom: 13px;
+  padding: 0 15px;
 `;
 
 export const HeaderName = styled.h3`
@@ -63,6 +63,7 @@ export const ProfileContent = styled.div`
   ${FlexMixin({ justify: 'space-between', align: 'start' })}
 
   width: 100%;
+  padding: 0 15px;
   margin-bottom: 35px;
 `;
 
@@ -71,6 +72,11 @@ export const UserInfo = styled.div`
 
   color: ${({ theme }) => theme.color.primary};
   margin-top: -80px;
+
+  & img {
+    border-radius: ${({ theme }) => theme.borderRadius.circle};
+    margin-bottom: 5px;
+  }
 `;
 
 export const UserName = styled.h3`
@@ -102,6 +108,7 @@ export const SubscriptionInfo = styled.div`
   ${FlexMixin({ align: 'center' })}
 
   margin: 0 -15px 50px -15px;
+  padding: 0 15px;
 `;
 
 export const SubscriptionBlock = styled.div`

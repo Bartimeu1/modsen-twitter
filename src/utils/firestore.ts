@@ -73,7 +73,8 @@ export const getUserById = async (id: string) => {
 };
 
 export const updateUserData = async (userId: string, data: IChangeUserData) => {
-  const { email, name, bio, slug, image } = data;
+  const { email, name, bio, slug, avatar } = data;
+
   const dbRef = collection(db, 'Users');
   const matchIdQuery = query(dbRef, where('userId', '==', userId));
 
@@ -81,9 +82,9 @@ export const updateUserData = async (userId: string, data: IChangeUserData) => {
 
   let imageUrl = null;
 
-  if (image) {
-    const imageRef = ref(storage, `images/${image.name + v4()}`);
-    await uploadBytes(imageRef, image);
+  if (avatar) {
+    const imageRef = ref(storage, `images/${avatar.name + v4()}`);
+    await uploadBytes(imageRef, avatar);
 
     imageUrl = await getDownloadURL(imageRef);
   }
@@ -97,7 +98,7 @@ export const updateUserData = async (userId: string, data: IChangeUserData) => {
     name,
     bio,
     slug,
-    image: imageUrl,
+    avatar: imageUrl,
   });
 };
 

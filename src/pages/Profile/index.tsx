@@ -78,10 +78,14 @@ export const ProfilePage = () => {
       </ProfileHeader>
       <ProfileContent>
         <UserInfo>
-          <Picture alt="profileAvatar" image={defaultAvatar} width={150} />
+          <Picture
+            alt="profileAvatar"
+            image={userData?.avatar || defaultAvatar}
+            width={150}
+          />
           <UserName>{profileData?.name}</UserName>
           <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
-          <UserDesc>UX&UI designer at @abutechuz</UserDesc>
+          <UserDesc>{userData?.bio}</UserDesc>
         </UserInfo>
         <EditButton onClick={onEditButtonClick}>Edit profile</EditButton>
       </ProfileContent>
