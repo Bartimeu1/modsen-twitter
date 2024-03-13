@@ -22,6 +22,7 @@ export interface ITweetResponse {
   text: string | null;
   image: string | null;
   userId: string;
+  date: number;
 }
 
 export interface IChangeUserData {

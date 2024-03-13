@@ -54,7 +54,21 @@ export const UserName = styled.p`
 `;
 
 export const UserSlug = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
+  font-size: ${({ theme }) => theme.fontSize.xs}px;
+  color: ${({ theme }) => theme.color.primary};
+  opacity: 60%;
+  margin-right: 12px;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '·';
+    right: -8px;
+  }
+`;
+
+export const TweetDate = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.xs}px;
   color: ${({ theme }) => theme.color.primary};
   opacity: 60%;
 `;

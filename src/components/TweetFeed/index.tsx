@@ -11,16 +11,20 @@ export const TweetFeed = (props: ITweetFeedProps) => {
     <>
       {isMenuVisible && <TweetMenu refetch={refetch} />}
       <TweetsList>
-        {tweets.map((tweet) => (
-          <TweetItem
-            key={tweet.tweetId}
-            userId={tweet.userId}
-            likes={tweet.likes}
-            tweetId={tweet.tweetId}
-            text={tweet.text}
-            image={tweet.image}
-          />
-        ))}
+        {tweets
+          .slice()
+          .sort((a, b) => b.date - a.date)
+          .map((tweet) => (
+            <TweetItem
+              key={tweet.tweetId}
+              date={tweet.date}
+              userId={tweet.userId}
+              likes={tweet.likes}
+              tweetId={tweet.tweetId}
+              text={tweet.text}
+              image={tweet.image}
+            />
+          ))}
       </TweetsList>
     </>
   );

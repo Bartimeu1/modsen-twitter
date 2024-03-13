@@ -67,6 +67,7 @@ export const tweetApi = createApi({
 
           await addDoc(dbref, {
             tweetId: v4(),
+            date: Date.now(),
             text,
             image: imageUrl,
             userId,

@@ -5,12 +5,14 @@ import { Picture } from '@components/Picture';
 import { LikeIcon } from '@constants/icons';
 import { useLikeTweetMutation } from '@store/features/tweet/tweetApi';
 import { useGetUserByIdQuery } from '@store/features/user/userApi';
+import { formatDate } from '@utils/date';
 
 import {
   LikeButton,
   LikesCounter,
   StyledTweetItem,
   TweetContent,
+  TweetDate,
   TweetHeader,
   TweetImage,
   TweetLikes,
@@ -22,7 +24,7 @@ import {
 import { ITweetItemProps } from './types';
 
 export const TweetItem = (props: ITweetItemProps) => {
-  const { image, text, tweetId, likes, userId } = props;
+  const { image, text, tweetId, likes, userId, date } = props;
 
   const [isTweetLiked, setIsTweetLiked] = useState(() => {
     return userId && likes ? likes.includes(userId) : false;
@@ -46,6 +48,8 @@ export const TweetItem = (props: ITweetItemProps) => {
     setIsTweetLiked((prevState) => !prevState);
   };
 
+  const formattedDate = formatDate(new Date(date));
+
   return (
     <StyledTweetItem>
       <UserLink to={`/profile/${userData?.slug}`}>
@@ -59,6 +63,7 @@ export const TweetItem = (props: ITweetItemProps) => {
         <TweetHeader>
           <UserName>{userData?.name}</UserName>
           <UserSlug>@{userData?.slug}</UserSlug>
+          <TweetDate>{formattedDate}</TweetDate>
         </TweetHeader>
         <TweetText>{text}</TweetText>
         {image && <TweetImage alt="tweet-image" src={image} />}
