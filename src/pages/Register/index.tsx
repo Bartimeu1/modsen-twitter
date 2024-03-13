@@ -82,7 +82,7 @@ export const RegisterPage = () => {
         },
       });
 
-      navigate('/profile');
+      navigate('/');
     });
   };
 

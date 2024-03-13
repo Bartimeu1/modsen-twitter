@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router';
-
 import { GoogleIcon, LogoIcon } from '@constants/icons';
 import { provider } from '@root/config/firebase';
 import { useAppDispatch } from '@root/hooks';
@@ -27,7 +25,6 @@ import {
 
 export const SignUpPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [createUser] = useCreateUserMutation();
 
@@ -37,6 +34,9 @@ export const SignUpPage = () => {
     signInWithPopup(auth, provider).then(({ user }) => {
       // eslint-disable-next-line
       const { email, accessToken, uid, displayName } = user as any;
+
+      createUser({ data: { userId: uid, email, name: displayName } });
+
       dispatch(
         setUser({
           email,
@@ -44,9 +44,6 @@ export const SignUpPage = () => {
           token: accessToken,
         }),
       );
-
-      createUser({ data: { userId: uid, email, name: displayName } });
-      navigate('/profile');
     });
   };
 

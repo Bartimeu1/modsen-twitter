@@ -2,6 +2,7 @@ import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { removeUser } from '@store/features/user/userSlice';
+import { persistor } from '@store/store';
 import { getAuth, signOut } from 'firebase/auth';
 
 import {
@@ -21,6 +22,7 @@ export const UserPanel = () => {
     const auth = getAuth();
 
     signOut(auth);
+    persistor.purge();
     dispatch(removeUser());
   };
 
