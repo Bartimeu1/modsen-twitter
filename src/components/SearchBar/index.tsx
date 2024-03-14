@@ -1,10 +1,10 @@
 import { SearchIcon } from '@constants/icons';
 
-import { SearchInput,StyledSearchBar } from './styled';
+import { SearchInput, StyledSearchBar } from './styled';
 import { ISearchBarProps } from './types';
 
 export const SearchBar = (props: ISearchBarProps) => {
-  const { value, onChange } = props;
+  const { value, onChange, placeholder } = props;
 
   return (
     <StyledSearchBar>
@@ -13,7 +13,7 @@ export const SearchBar = (props: ISearchBarProps) => {
         value={value}
         onChange={onChange}
         type="text"
-        placeholder="Search Users"
+        placeholder={placeholder}
       />
     </StyledSearchBar>
   );

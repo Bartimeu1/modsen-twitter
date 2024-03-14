@@ -1,7 +1,7 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import { db } from '@root/config/firebase';
 import { ITweetData, ITweetResponse } from '@root/types/firebase';
-import { addImageIntoStorage } from '@utils/firestore';
+import { addImageIntoStorage, getTweetByValue } from '@utils/firestore';
 import {
   addDoc,
   collection,
@@ -17,22 +17,29 @@ export const tweetApi = createApi({
   reducerPath: 'tweetApi',
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getTweetsById: builder.query<ITweetResponse[], { userId: string }>({
+    getTweetsByUserId: builder.query<ITweetResponse[], { userId: string }>({
       queryFn: async (credentials) => {
         try {
-          const dbRef = collection(
-            db,
-            'Tweets',
-          ) as CollectionReference<ITweetResponse>;
-          const matchIdQuery = query(
-            dbRef,
-            where('userId', '==', credentials.userId),
+          const tweetsData = await getTweetByValue(
+            'userId',
+            credentials.userId,
           );
 
-          const snapshot = await getDocs(matchIdQuery);
-          const tweetsData = snapshot.docs.map((doc) => doc.data());
-
           return { data: tweetsData };
+        } catch (error) {
+          return { error };
+        }
+      },
+    }),
+    getTweetById: builder.query<ITweetResponse, { tweetId: string }>({
+      queryFn: async (credentials) => {
+        try {
+          const tweetsData = await getTweetByValue(
+            'tweetId',
+            credentials.tweetId,
+          );
+
+          return { data: tweetsData[0] };
         } catch (error) {
           return { error };
         }
@@ -137,7 +144,8 @@ export const tweetApi = createApi({
 export const {
   useCreateTweetMutation,
   useGetAllTweetsQuery,
-  useGetTweetsByIdQuery,
+  useGetTweetsByUserIdQuery,
+  useGetTweetByIdQuery,
   useSearchTweetsByTextQuery,
   useLikeTweetMutation,
 } = tweetApi;

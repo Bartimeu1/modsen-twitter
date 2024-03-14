@@ -1,7 +1,7 @@
 import { FlexMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledHomePage = styled.section`
+export const StyledHomePage = styled.main`
   width: 100%;
   max-width: 930px;
   position: relative;

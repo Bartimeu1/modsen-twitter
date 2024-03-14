@@ -28,17 +28,21 @@ export const TweetSearchSidebar = () => {
 
   return (
     <StyledSearchSidebar>
-      <SearchBar value={searchInputValue} onChange={onSearchInputValueChange} />
+      <SearchBar
+        value={searchInputValue}
+        onChange={onSearchInputValueChange}
+        placeholder="Search Tweets"
+      />
       {foundedTweets?.length ? (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
-          {foundedTweets.map((tweet) => (
-            <TweetItem key={tweet.tweetId}>
+          {foundedTweets.map(({ tweetId, text }) => (
+            <TweetItem key={tweetId}>
               <TweetContent>
                 <LogoIcon />
-                <TweetText>{tweet.text}</TweetText>
+                <TweetText>{text}</TweetText>
               </TweetContent>
-              <VisitLink to="#">Visit</VisitLink>
+              <VisitLink to={`/tweet/${tweetId}`}>Visit</VisitLink>
             </TweetItem>
           ))}
         </SearchResults>

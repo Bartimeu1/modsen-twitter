@@ -32,25 +32,29 @@ export const UserSearchSidebar = () => {
 
   return (
     <StyledSearchSidebar>
-      <SearchBar value={searchInputValue} onChange={onSearchInputValueChange} />
+      <SearchBar
+        value={searchInputValue}
+        onChange={onSearchInputValueChange}
+        placeholder="Search Users"
+      />
       {foundedUsers?.length ? (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
           <ResultsList>
-            {foundedUsers.map((user) => (
-              <UserItem key={user.userId}>
+            {foundedUsers.map(({ userId, avatar, name, slug }) => (
+              <UserItem key={userId}>
                 <UserContent>
                   <Picture
                     width={60}
                     alt="search-avatar"
-                    image={user.avatar || defaultAvatar}
+                    image={avatar || defaultAvatar}
                   />
                   <UserInfo>
-                    <UserName>{user.name}</UserName>
-                    <UserSlug>@{user.slug}</UserSlug>
+                    <UserName>{name}</UserName>
+                    <UserSlug>@{slug}</UserSlug>
                   </UserInfo>
                 </UserContent>
-                <VisitLink to={`profile/${user.slug}`}>Visit</VisitLink>
+                <VisitLink to={`profile/${slug}`}>Visit</VisitLink>
               </UserItem>
             ))}
           </ResultsList>

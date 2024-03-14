@@ -2,18 +2,17 @@ import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
+import { BackPanel } from '@components/BackPanel';
 import { EditModal } from '@components/EditModal';
 import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
-import { BackArrowIcon } from '@constants/icons';
 import { UserSearchSidebar } from '@root/components/UserSearchSidebar';
 import { useAppSelector } from '@root/hooks';
-import { useGetTweetsByIdQuery } from '@root/store/features/tweet/tweetApi';
+import { useGetTweetsByUserIdQuery } from '@root/store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
 
 import {
-  BackLink,
   EditButton,
   HeaderContent,
   HeaderFollowers,
@@ -43,9 +42,10 @@ export const ProfilePage = () => {
     slug: paramSlug,
   });
 
-  const { data: tweetsData, refetch: refetchTweets } = useGetTweetsByIdQuery({
-    userId: profileData?.userId || '',
-  });
+  const { data: tweetsData, refetch: refetchTweets } =
+    useGetTweetsByUserIdQuery({
+      userId: profileData?.userId || '',
+    });
 
   const onEditButtonClick = () => {
     setIsEditModalVisible((prevState) => !prevState);
@@ -59,20 +59,17 @@ export const ProfilePage = () => {
     <>
       <StyledProfilePage>
         <ProfileHeader>
-          <HeaderContent>
-            {isMyProfile ? (
+          {isMyProfile ? (
+            <HeaderContent>
               <HeaderText>
                 <HeaderName>{profileData?.name}</HeaderName>
                 <HeaderFollowers>1231 Tweets</HeaderFollowers>
               </HeaderText>
-            ) : (
-              <BackLink to="/home">
-                <BackArrowIcon />
-                Home
-              </BackLink>
-            )}
-            <ToggleButton />
-          </HeaderContent>
+              <ToggleButton />
+            </HeaderContent>
+          ) : (
+            <BackPanel />
+          )}
           <HeaderWallpaper />
         </ProfileHeader>
         <ProfileContent>
