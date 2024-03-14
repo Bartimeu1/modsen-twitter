@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { Loader } from '@components/Loader';
 import { NavSidebar } from '@components/NavSidebar';
 import { useAppDispatch, useAppSelector, useTimeout } from '@root/hooks';
 import { Container } from '@root/theme';
@@ -27,15 +28,15 @@ export const PrivateLayout = () => {
 
   useTimeout(getUser, 500);
 
+  if (!userData.data) {
+    return <Loader />;
+  }
+
   return authToken ? (
-    userData.data ? (
-      <Container>
-        <NavSidebar />
-        <Outlet />
-      </Container>
-    ) : (
-      <p>loading</p>
-    )
+    <Container>
+      <NavSidebar />
+      <Outlet />
+    </Container>
   ) : (
     <Navigate to="/signup" />
   );

@@ -4,6 +4,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { BackPanel } from '@components/BackPanel';
 import { EditModal } from '@components/EditModal';
+import { Loader } from '@components/Loader';
 import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
@@ -53,6 +54,10 @@ export const ProfilePage = () => {
 
   if (!paramSlug) {
     return <Navigate to={`/profile/${userData?.slug}`} />;
+  }
+
+  if (!profileData || !tweetsData) {
+    return <Loader />;
   }
 
   return (

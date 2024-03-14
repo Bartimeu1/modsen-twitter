@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { BackPanel } from '@components/BackPanel';
+import { Loader } from '@components/Loader';
 import { TweetItem } from '@components/TweetItem';
 import { TweetSearchSidebar } from '@components/TweetSearchSidebar';
 import { useGetTweetByIdQuery } from '@store/features/tweet/tweetApi';
@@ -12,6 +13,10 @@ export const TweetPage = () => {
   const paramTweetId = params.tweetId || '';
 
   const { data: tweetData } = useGetTweetByIdQuery({ tweetId: paramTweetId });
+
+  if (!tweetData) {
+    return <Loader />;
+  }
 
   return (
     <>

@@ -6,7 +6,6 @@ import { ITweetFeedProps } from './types';
 
 export const TweetFeed = (props: ITweetFeedProps) => {
   const { tweets, refetch, isMenuVisible } = props;
-
   return (
     <>
       {isMenuVisible && <TweetMenu refetch={refetch} />}
