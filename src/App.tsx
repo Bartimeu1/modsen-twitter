@@ -3,6 +3,7 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { PrivateLayout } from '@components/PrivateLayout';
 import { PublicLayout } from '@components/PublicLayout';
 import { privateRoutes, publicRoutes } from '@constants/routes';
+import { NotFoundPage } from '@pages/NotFound';
 import { useAppSelector } from '@root/hooks';
 import { GlobalStyles, theme } from '@root/theme';
 import { ThemeProvider } from 'styled-components';
@@ -14,6 +15,7 @@ export const App = () => {
     <ThemeProvider theme={theme[currentTheme]}>
       <HashRouter>
         <Routes>
+          <Route path="*" element={<NotFoundPage />} />
           <Route element={<PublicLayout />}>
             {publicRoutes.map(({ id, path, element }) => (
               <Route key={id} path={path} element={element} />
