@@ -19,9 +19,8 @@ import {
   TweetTextarea,
   UserAvatar,
 } from './styled';
-import { ITweetMenuProps } from './types';
 
-export const TweetMenu = ({ refetch }: ITweetMenuProps) => {
+export const TweetMenu = () => {
   const userData = useAppSelector((state) => state.user);
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -54,7 +53,6 @@ export const TweetMenu = ({ refetch }: ITweetMenuProps) => {
     createTweet({ data: tweetData });
     setTweetText('');
     setUploadedImage(null);
-    refetch();
   };
 
   const onPreviewCloseButtonClick = () => {

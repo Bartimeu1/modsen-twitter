@@ -39,11 +39,13 @@ export const ProfilePage = () => {
 
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
 
-  const { data: profileData, refetch: refetchProfile } = useGetUserBySlugQuery({
-    slug: paramSlug,
-  });
+  const { data: profileData, isLoading: isUserLoading } = useGetUserBySlugQuery(
+    {
+      slug: paramSlug,
+    },
+  );
 
-  const { data: tweetsData, refetch: refetchTweets } =
+  const { data: tweetsData, isLoading: isTweetsLoading } =
     useGetTweetsByUserIdQuery({
       userId: profileData?.userId || '',
     });
@@ -56,7 +58,7 @@ export const ProfilePage = () => {
     return <Navigate to={`/profile/${userData?.slug}`} />;
   }
 
-  if (!profileData || !tweetsData) {
+  if (isTweetsLoading || isUserLoading) {
     return <Loader />;
   }
 
@@ -99,15 +101,10 @@ export const ProfilePage = () => {
           <SubscriptionBlock>47 Followers</SubscriptionBlock>
         </SubscriptionInfo>
         {tweetsData && (
-          <TweetFeed
-            refetch={refetchTweets}
-            tweets={tweetsData}
-            isMenuVisible={isMyProfile}
-          />
+          <TweetFeed tweets={tweetsData} isMenuVisible={isMyProfile} />
         )}
         {isEditModalVisible && (
           <EditModal
-            refetch={refetchProfile}
             profileData={profileData}
             setIsVisible={setIsEditModalVisible}
           />

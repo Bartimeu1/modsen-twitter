@@ -5,10 +5,10 @@ import { TweetsList } from './styled';
 import { ITweetFeedProps } from './types';
 
 export const TweetFeed = (props: ITweetFeedProps) => {
-  const { tweets, refetch, isMenuVisible } = props;
+  const { tweets, isMenuVisible } = props;
   return (
     <>
-      {isMenuVisible && <TweetMenu refetch={refetch} />}
+      {isMenuVisible && <TweetMenu />}
       <TweetsList>
         {tweets
           .slice()

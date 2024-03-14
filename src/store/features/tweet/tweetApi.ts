@@ -16,6 +16,7 @@ import { v4 } from 'uuid';
 export const tweetApi = createApi({
   reducerPath: 'tweetApi',
   baseQuery: fakeBaseQuery(),
+  tagTypes: ['Tweet'],
   endpoints: (builder) => ({
     getTweetsByUserId: builder.query<ITweetResponse[], { userId: string }>({
       queryFn: async (credentials) => {
@@ -30,6 +31,7 @@ export const tweetApi = createApi({
           return { error };
         }
       },
+      providesTags: ['Tweet'],
     }),
     getTweetById: builder.query<ITweetResponse, { tweetId: string }>({
       queryFn: async (credentials) => {
@@ -44,6 +46,7 @@ export const tweetApi = createApi({
           return { error };
         }
       },
+      providesTags: ['Tweet'],
     }),
     getAllTweets: builder.query<ITweetResponse[], object>({
       queryFn: async () => {
@@ -60,6 +63,7 @@ export const tweetApi = createApi({
           return { error };
         }
       },
+      providesTags: ['Tweet'],
     }),
     createTweet: builder.mutation<null, { data: ITweetData }>({
       queryFn: async (credentials) => {
@@ -85,6 +89,7 @@ export const tweetApi = createApi({
           return { error };
         }
       },
+      invalidatesTags: ['Tweet'],
     }),
     searchTweetsByText: builder.query<ITweetResponse[], { value: string }>({
       queryFn: async (credentials) => {
@@ -137,6 +142,7 @@ export const tweetApi = createApi({
           return { error };
         }
       },
+      invalidatesTags: ['Tweet'],
     }),
   }),
 });

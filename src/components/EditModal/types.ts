@@ -3,7 +3,6 @@ import { IUserData } from '@root/types/firebase';
 export interface IEditModalProps {
   profileData: IUserData | undefined;
   setIsVisible: (value: boolean) => void;
-  refetch: () => void;
 }
 
 export interface IEditFormValues {

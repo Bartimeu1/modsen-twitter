@@ -16,6 +16,7 @@ import {
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fakeBaseQuery(),
+  tagTypes: ['User'],
   endpoints: (builder) => ({
     getUserById: builder.query<IUserData, { userId: string }>({
       queryFn: async (credentials) => {
@@ -27,6 +28,7 @@ export const userApi = createApi({
           return { error };
         }
       },
+      providesTags: ['User'],
     }),
     getUserBySlug: builder.query<IUserData, { slug: string }>({
       queryFn: async (credentials) => {
@@ -38,6 +40,7 @@ export const userApi = createApi({
           return { error };
         }
       },
+      providesTags: ['User'],
     }),
     createUser: builder.mutation<null, { data: IUserData }>({
       queryFn: async (credentials) => {
@@ -105,6 +108,7 @@ export const userApi = createApi({
           return { error };
         }
       },
+      invalidatesTags: ['User'],
     }),
     searchUsersByName: builder.query<IUserData[], { value: string }>({
       queryFn: async (credentials) => {

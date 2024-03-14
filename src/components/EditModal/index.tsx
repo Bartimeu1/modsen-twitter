@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { FormInput } from '@components/FormInput';
+import { Loader } from '@components/Loader';
 import { Picture } from '@components/Picture';
 import { PortalWrapper } from '@components/PortalWrapper';
 import { CloseIcon, EditUpload } from '@constants/icons';
@@ -26,11 +27,11 @@ import {
 import { IEditFormValues, IEditModalProps } from './types';
 
 export const EditModal = (props: IEditModalProps) => {
-  const { profileData, setIsVisible, refetch } = props;
+  const { profileData, setIsVisible } = props;
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
-  const [updateUserData] = useUpdateUserDataMutation();
+  const [updateUserData, { isLoading }] = useUpdateUserDataMutation();
 
   const modalRef = useRef(null);
 
@@ -58,17 +59,17 @@ export const EditModal = (props: IEditModalProps) => {
       updateUserData({
         userId: profileData.userId,
         data: { ...data, avatar: uploadedImage },
+      }).then(() => {
+        closeModal();
       });
     }
-
-    refetch();
-    closeModal();
   };
 
   useOnClickOutside(modalRef, closeModal);
 
   return (
     <PortalWrapper>
+      {isLoading && <Loader />}
       <StyledEditModal>
         <ModalContent ref={modalRef}>
           <CloseButton onClick={closeModal}>
