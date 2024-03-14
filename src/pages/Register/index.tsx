@@ -80,9 +80,9 @@ export const RegisterPage = () => {
           phone,
           birth: userBirthDate,
         },
+      }).then(() => {
+        navigate('/');
       });
-
-      navigate('/');
     });
   };
 

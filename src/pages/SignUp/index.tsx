@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { GoogleIcon, LogoIcon } from '@constants/icons';
 import { provider } from '@root/config/firebase';
 import { useAppDispatch } from '@root/hooks';
@@ -25,6 +27,7 @@ import {
 
 export const SignUpPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [createUser] = useCreateUserMutation();
 
@@ -44,6 +47,8 @@ export const SignUpPage = () => {
           token: accessToken,
         }),
       );
+
+      navigate('/');
     });
   };
 

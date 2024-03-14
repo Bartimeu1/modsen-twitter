@@ -2,32 +2,40 @@ import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { NavSidebar } from '@components/NavSidebar';
-import { useAppDispatch } from '@root/hooks';
-import { useAppSelector } from '@root/hooks';
+import { useAppDispatch, useAppSelector, useTimeout } from '@root/hooks';
 import { Container } from '@root/theme';
-import { useGetUserByIdQuery } from '@store/features/user/userApi';
+import { useLazyGetUserByIdQuery } from '@store/features/user/userApi';
 import { setUserData } from '@store/features/user/userSlice';
 
 export const PrivateLayout = () => {
   const authToken = useAppSelector((state) => state.user.token);
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(({ user }) => user.id);
+  const userId = useAppSelector(({ user }) => user.id) || '';
 
-  const { data: userData } = useGetUserByIdQuery({
-    userId: userId || '',
-  });
+  const [trigger, userData] = useLazyGetUserByIdQuery();
 
   useEffect(() => {
     if (userData) {
-      dispatch(setUserData(userData));
+      dispatch(setUserData(userData.data));
     }
-  }, [dispatch, userData]);
+    //eslint-disable-next-line
+  }, [userData]);
+
+  const getUser = () => {
+    trigger({ userId });
+  };
+
+  useTimeout(getUser, 500);
 
   return authToken ? (
-    <Container>
-      <NavSidebar />
-      <Outlet />
-    </Container>
+    userData.data ? (
+      <Container>
+        <NavSidebar />
+        <Outlet />
+      </Container>
+    ) : (
+      <p>loading</p>
+    )
   ) : (
     <Navigate to="/signup" />
   );

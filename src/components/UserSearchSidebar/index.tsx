@@ -54,7 +54,7 @@ export const UserSearchSidebar = () => {
                     <UserSlug>@{slug}</UserSlug>
                   </UserInfo>
                 </UserContent>
-                <VisitLink to={`profile/${slug}`}>Visit</VisitLink>
+                <VisitLink to={`/profile/${slug}`}>Visit</VisitLink>
               </UserItem>
             ))}
           </ResultsList>

@@ -63,7 +63,9 @@ export const ProfilePage = () => {
             <HeaderContent>
               <HeaderText>
                 <HeaderName>{profileData?.name}</HeaderName>
-                <HeaderFollowers>1231 Tweets</HeaderFollowers>
+                <HeaderFollowers>
+                  {tweetsData?.length || 0} Tweets
+                </HeaderFollowers>
               </HeaderText>
               <ToggleButton />
             </HeaderContent>
