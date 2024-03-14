@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { ITweetLikes } from './types';
 
-export const StyledTweetItem = styled.div`
+export const StyledTweetItem = styled.article`
   ${FlexMixin({ align: 'start' })}
 
   padding-bottom: 20px;

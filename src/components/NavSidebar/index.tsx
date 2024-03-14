@@ -4,7 +4,7 @@ import { LogoIcon } from '@constants/icons';
 
 import { Logo, StyledSidebar, TweetButton } from './styled';
 
-const Sidebar = () => {
+export const NavSidebar = () => {
   return (
     <StyledSidebar>
       <Logo>
@@ -16,5 +16,3 @@ const Sidebar = () => {
     </StyledSidebar>
   );
 };
-
-export default Sidebar;

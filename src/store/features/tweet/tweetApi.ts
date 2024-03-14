@@ -79,6 +79,31 @@ export const tweetApi = createApi({
         }
       },
     }),
+    searchTweetsByText: builder.query<ITweetResponse[], { value: string }>({
+      queryFn: async (credentials) => {
+        try {
+          if (credentials.value === '') {
+            return { data: [] };
+          }
+          const dbRef = collection(
+            db,
+            'Tweets',
+          ) as CollectionReference<ITweetResponse>;
+          const matchValueQuery = query(
+            dbRef,
+            where('text', '>=', credentials.value),
+            where('text', '<', credentials.value + '\uf8ff'),
+          );
+
+          const snapshot = await getDocs(matchValueQuery);
+          const tweetsData = snapshot.docs.map((doc) => doc.data());
+
+          return { data: tweetsData };
+        } catch (error) {
+          return { error };
+        }
+      },
+    }),
     likeTweet: builder.mutation<null, { tweetId: string; userId: string }>({
       queryFn: async (credentials) => {
         try {
@@ -113,5 +138,6 @@ export const {
   useCreateTweetMutation,
   useGetAllTweetsQuery,
   useGetTweetsByIdQuery,
+  useSearchTweetsByTextQuery,
   useLikeTweetMutation,
 } = tweetApi;

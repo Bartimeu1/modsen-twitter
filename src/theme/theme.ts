@@ -14,12 +14,16 @@ const lightThemeColors = {
   background: '#fff',
   primary: '#000',
   border: '#00000020;',
+  searchInput: '#EFF3F4',
+  resultsPanel: '#F7F9F9',
 };
 
 const darkThemeColors = {
   background: '#030304',
   primary: '#fff',
   border: '#ffffff20',
+  searchInput: 'red',
+  resultsPanel: 'red',
 };
 
 const layoutValues = {

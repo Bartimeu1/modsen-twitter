@@ -7,6 +7,7 @@ import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/TweetFeed';
 import { BackArrowIcon } from '@constants/icons';
+import { UserSearchSidebar } from '@root/components/UserSearchSidebar';
 import { useAppSelector } from '@root/hooks';
 import { useGetTweetsByIdQuery } from '@root/store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
@@ -55,57 +56,60 @@ export const ProfilePage = () => {
   }
 
   return (
-    <StyledProfilePage>
-      <ProfileHeader>
-        <HeaderContent>
-          {isMyProfile ? (
-            <HeaderText>
-              <HeaderName>{profileData?.name}</HeaderName>
-              <HeaderFollowers>1231 Tweets</HeaderFollowers>
-            </HeaderText>
-          ) : (
-            <BackLink to="/home">
-              <BackArrowIcon />
-              Home
-            </BackLink>
+    <>
+      <StyledProfilePage>
+        <ProfileHeader>
+          <HeaderContent>
+            {isMyProfile ? (
+              <HeaderText>
+                <HeaderName>{profileData?.name}</HeaderName>
+                <HeaderFollowers>1231 Tweets</HeaderFollowers>
+              </HeaderText>
+            ) : (
+              <BackLink to="/home">
+                <BackArrowIcon />
+                Home
+              </BackLink>
+            )}
+            <ToggleButton />
+          </HeaderContent>
+          <HeaderWallpaper />
+        </ProfileHeader>
+        <ProfileContent>
+          <UserInfo>
+            <Picture
+              alt="profileAvatar"
+              image={profileData?.avatar || defaultAvatar}
+              width={150}
+            />
+            <UserName>{profileData?.name}</UserName>
+            <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
+            <UserDesc>{profileData?.bio}</UserDesc>
+          </UserInfo>
+          {isMyProfile && (
+            <EditButton onClick={onEditButtonClick}>Edit profile</EditButton>
           )}
-          <ToggleButton />
-        </HeaderContent>
-        <HeaderWallpaper />
-      </ProfileHeader>
-      <ProfileContent>
-        <UserInfo>
-          <Picture
-            alt="profileAvatar"
-            image={profileData?.avatar || defaultAvatar}
-            width={150}
+        </ProfileContent>
+        <SubscriptionInfo>
+          <SubscriptionBlock>67 Following</SubscriptionBlock>
+          <SubscriptionBlock>47 Followers</SubscriptionBlock>
+        </SubscriptionInfo>
+        {tweetsData && (
+          <TweetFeed
+            refetch={refetchTweets}
+            tweets={tweetsData}
+            isMenuVisible={isMyProfile}
           />
-          <UserName>{profileData?.name}</UserName>
-          <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
-          <UserDesc>{profileData?.bio}</UserDesc>
-        </UserInfo>
-        {isMyProfile && (
-          <EditButton onClick={onEditButtonClick}>Edit profile</EditButton>
         )}
-      </ProfileContent>
-      <SubscriptionInfo>
-        <SubscriptionBlock>67 Following</SubscriptionBlock>
-        <SubscriptionBlock>47 Followers</SubscriptionBlock>
-      </SubscriptionInfo>
-      {tweetsData && (
-        <TweetFeed
-          refetch={refetchTweets}
-          tweets={tweetsData}
-          isMenuVisible={isMyProfile}
-        />
-      )}
-      {isEditModalVisible && (
-        <EditModal
-          refetch={refetchProfile}
-          profileData={profileData}
-          setIsVisible={setIsEditModalVisible}
-        />
-      )}
-    </StyledProfilePage>
+        {isEditModalVisible && (
+          <EditModal
+            refetch={refetchProfile}
+            profileData={profileData}
+            setIsVisible={setIsEditModalVisible}
+          />
+        )}
+      </StyledProfilePage>
+      <UserSearchSidebar />
+    </>
   );
 };

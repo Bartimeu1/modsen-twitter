@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import Sidebar from '@components/Sidebar';
+import { NavSidebar } from '@components/NavSidebar';
 import { useAppDispatch } from '@root/hooks';
 import { useAppSelector } from '@root/hooks';
 import { Container } from '@root/theme';
@@ -25,7 +25,7 @@ export const PrivateLayout = () => {
 
   return authToken ? (
     <Container>
-      <Sidebar />
+      <NavSidebar />
       <Outlet />
     </Container>
   ) : (

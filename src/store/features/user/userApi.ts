@@ -6,6 +6,7 @@ import { generateSlug } from '@utils/helpers';
 import {
   addDoc,
   collection,
+  CollectionReference,
   getDocs,
   query,
   updateDoc,
@@ -20,17 +21,6 @@ export const userApi = createApi({
       queryFn: async (credentials) => {
         try {
           const userData = await getUserByValue('userId', credentials.userId);
-
-          return { data: userData };
-        } catch (error) {
-          return { error };
-        }
-      },
-    }),
-    getUserByEmail: builder.query<IUserData, { email: string }>({
-      queryFn: async (credentials) => {
-        try {
-          const userData = await getUserByValue('email', credentials.email);
 
           return { data: userData };
         } catch (error) {
@@ -116,13 +106,38 @@ export const userApi = createApi({
         }
       },
     }),
+    searchUsersByName: builder.query<IUserData[], { value: string }>({
+      queryFn: async (credentials) => {
+        try {
+          if (credentials.value === '') {
+            return { data: [] };
+          }
+          const dbRef = collection(
+            db,
+            'Users',
+          ) as CollectionReference<IUserData>;
+          const matchValueQuery = query(
+            dbRef,
+            where('name', '>=', credentials.value),
+            where('name', '<', credentials.value + '\uf8ff'),
+          );
+
+          const snapshot = await getDocs(matchValueQuery);
+          const usersData = snapshot.docs.map((doc) => doc.data());
+
+          return { data: usersData };
+        } catch (error) {
+          return { error };
+        }
+      },
+    }),
   }),
 });
 
 export const {
-  useGetUserByEmailQuery,
   useGetUserByIdQuery,
   useGetUserBySlugQuery,
+  useSearchUsersByNameQuery,
   useCreateUserMutation,
   useUpdateUserDataMutation,
 } = userApi;

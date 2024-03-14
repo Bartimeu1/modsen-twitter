@@ -14,3 +14,4 @@ export { ReactComponent as LikeIcon } from '@assets/images/like.svg';
 export { ReactComponent as CloseIcon } from '@assets/images/close.svg';
 export { ReactComponent as EditUpload } from '@assets/images/editUpload.svg';
 export { ReactComponent as BackArrowIcon } from '@assets/images/backArrow.svg';
+export { ReactComponent as SearchIcon } from '@assets/images/search.svg';

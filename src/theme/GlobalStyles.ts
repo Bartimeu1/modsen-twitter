@@ -55,6 +55,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily.primary};
   }
 
+  input {
+    font-family: ${({ theme }) => theme.fontFamily.primary};
+  }
+
   a {
     text-decoration: none;
   }
