@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
 import { LogoIcon } from '@constants/icons';
-import { useSearchTweetsByTextQuery } from '@root/store/features/tweet/tweetApi';
+import { useThrottle } from '@root/hooks';
+import { useLazySearchTweetsByTextQuery } from '@store/features/tweet/tweetApi';
 
 import {
   ResultsTitle,
@@ -16,14 +17,19 @@ import {
 
 export const TweetSearchSidebar = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
+  const throttledSearchValue = useThrottle(searchInputValue, 800);
 
-  const { data: foundedTweets, refetch } = useSearchTweetsByTextQuery({
-    value: searchInputValue,
-  });
+  const [searchTweets, { data: foundedTweets }] =
+    useLazySearchTweetsByTextQuery();
+
+  useEffect(() => {
+    if (throttledSearchValue) {
+      searchTweets({ value: throttledSearchValue });
+    }
+  }, [throttledSearchValue, searchTweets]);
 
   const onSearchInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(e.target.value);
-    refetch();
   };
 
   return (
@@ -33,7 +39,7 @@ export const TweetSearchSidebar = () => {
         onChange={onSearchInputValueChange}
         placeholder="Search Tweets"
       />
-      {foundedTweets?.length ? (
+      {foundedTweets && searchInputValue ? (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
           {foundedTweets.map(({ tweetId, text }) => (

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { SearchBar } from '@components/SearchBar';
-import { useSearchUsersByNameQuery } from '@store/features/user/userApi';
+import { useThrottle } from '@root/hooks';
+import { useLazySearchUsersByNameQuery } from '@store/features/user/userApi';
 
 import {
   ResultsList,
@@ -20,14 +21,18 @@ import {
 
 export const UserSearchSidebar = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
+  const throttledSearchValue = useThrottle(searchInputValue, 800);
 
-  const { data: foundedUsers, refetch } = useSearchUsersByNameQuery({
-    value: searchInputValue,
-  });
+  const [searchUsers, { data: foundedUsers }] = useLazySearchUsersByNameQuery();
+
+  useEffect(() => {
+    if (throttledSearchValue) {
+      searchUsers({ value: throttledSearchValue });
+    }
+  }, [throttledSearchValue, searchUsers]);
 
   const onSearchInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(e.target.value);
-    refetch();
   };
 
   return (
@@ -37,7 +42,7 @@ export const UserSearchSidebar = () => {
         onChange={onSearchInputValueChange}
         placeholder="Search Users"
       />
-      {foundedUsers?.length ? (
+      {foundedUsers && searchInputValue ? (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
           <ResultsList>

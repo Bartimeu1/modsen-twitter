@@ -152,6 +152,6 @@ export const {
   useGetAllTweetsQuery,
   useGetTweetsByUserIdQuery,
   useGetTweetByIdQuery,
-  useSearchTweetsByTextQuery,
+  useLazySearchTweetsByTextQuery,
   useLikeTweetMutation,
 } = tweetApi;

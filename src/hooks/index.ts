@@ -1,3 +1,4 @@
+export { useThrottle } from './useThrottle';
 export { useTimeout } from './useTimeout';
 export { useAppDispatch } from './useAppDispatch';
 export { useAppSelector } from './useAppSelector';

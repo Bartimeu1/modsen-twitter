@@ -142,7 +142,7 @@ export const {
   useGetUserByIdQuery,
   useLazyGetUserByIdQuery,
   useGetUserBySlugQuery,
-  useSearchUsersByNameQuery,
+  useLazySearchUsersByNameQuery,
   useCreateUserMutation,
   useUpdateUserDataMutation,
 } = userApi;

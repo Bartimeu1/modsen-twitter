@@ -34,7 +34,7 @@ export const TweetItem = (props: ITweetItemProps) => {
     return likes ? likes.length : 0;
   });
 
-  const { data: userData,  } = useGetUserByIdQuery({ userId });
+  const { data: userData } = useGetUserByIdQuery({ userId });
   const [likeTweet] = useLikeTweetMutation();
 
   const onLikeButtonClick = () => {
