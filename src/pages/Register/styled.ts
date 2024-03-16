@@ -7,7 +7,7 @@ export const StyledRegisterPage = styled.div`
   ${FlexMixin({ direction: 'column', align: 'center' })}
 
   width: 100%;
-  padding: 30px 0;
+  padding: 30px 15px;
   max-width: 670px;
   margin: 0 auto;
 
@@ -29,6 +29,10 @@ export const RegisterTitle = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin-bottom: 30px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const AuthLink = styled(Link)`
@@ -36,6 +40,10 @@ export const AuthLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   margin-bottom: 35px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    margin-bottom: 15px;
+  }
 `;
 
 export const BirthTitle = styled.h4`
@@ -44,6 +52,10 @@ export const BirthTitle = styled.h4`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin-bottom: 30px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const BirthInfoText = styled.p`
@@ -52,6 +64,16 @@ export const BirthInfoText = styled.p`
   line-height: 24px;
   opacity: 60%;
   margin-bottom: 25px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    font-size: ${({ theme }) => theme.fontSize.xs3}px;
+    line-height: 19px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletS}) {
+    font-size: ${({ theme }) => theme.fontSize.xs4}px;
+    margin-bottom: 15px;
+  }
 `;
 
 export const BirthSelects = styled.div`
@@ -61,6 +83,22 @@ export const BirthSelects = styled.div`
 
   & > div {
     margin: 0 10px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    margin: 0 -10px 20px 0;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletS}) {
+    ${FlexMixin({ align: 'center', direction: 'column' })}
+
+    margin: 0 auto;
+    width: 100%;
+
+    & > div {
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -80,5 +118,11 @@ export const SubmitButton = styled.input`
     background: inherit;
     color: ${({ theme }) => theme.color.ltBlue};
     transition: 0.3s;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0 15px 0;
   }
 `;

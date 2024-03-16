@@ -33,6 +33,7 @@ const layoutValues = {
     secondary: 'Roboto Serif, Arial',
   },
   fontSize: {
+    xs4: 12,
     xs3: 13,
     xs2: 14,
     xs: 16,
@@ -64,6 +65,17 @@ const layoutValues = {
     xl2: 76,
     xl3: 120,
     circle: '50%',
+  },
+  breakpoints: {
+    mobileS: '420px',
+    mobileM: '450px',
+    tabletS: '500px',
+    tabletM: '670px',
+    laptopS: '740px',
+    laptopM: '840px',
+    desktopS: '920px',
+    desktopM: '1150px',
+    desktopL: '1600px',
   },
 };
 
