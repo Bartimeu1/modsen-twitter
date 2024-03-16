@@ -1,6 +1,6 @@
-import { LogoIcon } from '@constants/icons';
+import { LogoIcon } from '@root/constants';
 
-import { BackLink,NotFoundText, StyledNotFound } from './styled';
+import { BackLink, NotFoundText, StyledNotFound } from './styled';
 
 export const NotFoundPage = () => {
   return (

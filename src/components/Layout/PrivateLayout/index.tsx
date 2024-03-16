@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { Loader } from '@components/Loader';
-import { NavSidebar } from '@components/NavSidebar';
+import { NavSidebar } from '@components/Nav';
 import { useAppDispatch, useAppSelector, useTimeout } from '@root/hooks';
 import { Container } from '@root/theme';
 import { useLazyGetUserByIdQuery } from '@store/features/user/userApi';

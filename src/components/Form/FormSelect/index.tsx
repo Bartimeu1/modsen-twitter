@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { ChevronIcon } from '@constants/icons';
+import { ChevronIcon } from '@root/constants';
 import { useOnClickOutside } from '@root/hooks';
 
 import {

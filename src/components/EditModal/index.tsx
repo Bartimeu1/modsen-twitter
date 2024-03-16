@@ -2,22 +2,26 @@ import { Fragment, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
-import { FormInput } from '@components/FormInput';
+import { FormInput } from '@components/Form';
 import { Loader } from '@components/Loader';
 import { Picture } from '@components/Picture';
 import { PortalWrapper } from '@components/PortalWrapper';
-import { CloseIcon, EditUpload } from '@constants/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { failureText, successText } from '@root/constants/text';
+import {
+  CloseIcon,
+  EditUpload,
+  failureText,
+  successText,
+} from '@root/constants';
 import {
   useAppDispatch,
   useLockBodyScroll,
   useOnClickOutside,
 } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
+import { generateImageURL } from '@root/utils';
 import { addToast } from '@store/features/toast/toastSlice';
 import { useUpdateUserDataMutation } from '@store/features/user/userApi';
-import { generateImageURL } from '@utils/helpers';
 
 import { inputControllers, validationSchema } from './config';
 import {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import boundaryImage from '@assets/images/boundary.png';
-import { failureText } from '@constants/text';
+import { failureText } from '@root/constants';
 
 import { Boundary, BoundaryImage, BoundaryText } from './styled';
 

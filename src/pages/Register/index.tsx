@@ -2,23 +2,26 @@ import { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { FormInput } from '@components/FormInput';
-import { FormSelect } from '@components/FormSelect';
-import { endRegisterSelectYear } from '@constants/date';
-import { LogoIcon } from '@constants/icons';
-import { failureText, registerBirthText, successText } from '@constants/text';
+import { FormInput, FormSelect } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  endRegisterSelectYear,
+  failureText,
+  LogoIcon,
+  registerBirthText,
+  successText,
+} from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
-import { addToast } from '@store/features/toast/toastSlice';
-import { useCreateUserMutation } from '@store/features/user/userApi';
-import { setUser } from '@store/features/user/userSlice';
 import {
   generateDate,
   generateDaysArray,
   generateYearsArray,
   getTargetYear,
-} from '@utils/date';
+} from '@root/utils';
+import { addToast } from '@store/features/toast/toastSlice';
+import { useCreateUserMutation } from '@store/features/user/userApi';
+import { setUser } from '@store/features/user/userSlice';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import {

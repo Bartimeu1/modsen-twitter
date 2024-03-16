@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { CloseIcon, UploadImage } from '@constants/icons';
-import { failureText, successText } from '@constants/text';
-import { useAppDispatch,useAppSelector } from '@root/hooks';
+import {
+  CloseIcon,
+  failureText,
+  successText,
+  UploadImage,
+} from '@root/constants';
+import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
+import { generateImageURL } from '@root/utils';
 import { addToast } from '@store/features/toast/toastSlice';
 import { useCreateTweetMutation } from '@store/features/tweet/tweetApi';
-import { generateImageURL } from '@utils/helpers';
 
 import {
   FileInput,

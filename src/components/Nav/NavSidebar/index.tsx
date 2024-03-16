@@ -1,6 +1,6 @@
-import { NavMenu } from '@components/NavMenu';
-import { UserPanel } from '@components/UserPanel';
-import { LogoIcon } from '@constants/icons';
+import { NavMenu } from '@components/Nav';
+import { UserPanel } from '@components/User';
+import { LogoIcon } from '@root/constants';
 
 import { Logo, StyledSidebar, TweetButton } from './styled';
 

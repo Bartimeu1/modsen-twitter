@@ -1,9 +1,9 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { FormInput } from '@components/FormInput';
-import { LogoIcon } from '@constants/icons';
+import { FormInput } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { LogoIcon } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';

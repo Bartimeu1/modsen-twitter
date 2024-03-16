@@ -1,4 +1,4 @@
-import { LogoIcon } from '@constants/icons';
+import { LogoIcon } from '@root/constants';
 
 import { StyledLoader } from './styled';
 

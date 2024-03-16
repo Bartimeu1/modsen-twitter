@@ -1,7 +1,7 @@
 import { ToggleButton } from '@components/ToggleButton';
-import { BackArrowIcon } from '@constants/icons';
+import { BackArrowIcon } from '@root/constants';
 
-import { BackLink, Content,StyledBackPanel } from './styled';
+import { BackLink, Content, StyledBackPanel } from './styled';
 
 export const BackPanel = () => {
   return (

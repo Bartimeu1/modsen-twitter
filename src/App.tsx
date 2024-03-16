@@ -1,9 +1,8 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { ErrorBoundary } from '@components/ErrorBoundary';
-import { PrivateLayout } from '@components/PrivateLayout';
-import { PublicLayout } from '@components/PublicLayout';
-import { ToastList } from '@components/ToastList';
+import { PrivateLayout, PublicLayout } from '@components/Layout';
+import { ToastList } from '@components/Toast';
 import { privateRoutes, publicRoutes } from '@constants/routes';
 import { NotFoundPage } from '@pages/NotFound';
 import { useAppSelector } from '@root/hooks';

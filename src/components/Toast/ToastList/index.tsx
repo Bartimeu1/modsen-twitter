@@ -1,5 +1,5 @@
 import { PortalWrapper } from '@components/PortalWrapper';
-import { Toast } from '@components/Toast';
+import { ToastItem } from '@components/Toast';
 import { useAppSelector } from '@root/hooks';
 
 import { StyledToastList } from './styled';
@@ -11,7 +11,7 @@ export const ToastList = () => {
     <PortalWrapper>
       <StyledToastList>
         {currentToasts.map(({ id, content, type }) => (
-          <Toast key={id} id={id} type={type} content={content} />
+          <ToastItem key={id} id={id} type={type} content={content} />
         ))}
       </StyledToastList>
     </PortalWrapper>

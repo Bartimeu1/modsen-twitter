@@ -7,10 +7,10 @@ import { EditModal } from '@components/EditModal';
 import { Loader } from '@components/Loader';
 import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
-import { TweetFeed } from '@components/TweetFeed';
-import { UserSearchSidebar } from '@root/components/UserSearchSidebar';
+import { TweetFeed } from '@components/Tweet';
+import { UserSearchSidebar } from '@components/User';
 import { useAppSelector } from '@root/hooks';
-import { useGetTweetsByUserIdQuery } from '@root/store/features/tweet/tweetApi';
+import { useGetTweetsByUserIdQuery } from '@store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
 
 import {

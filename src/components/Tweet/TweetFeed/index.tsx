@@ -1,5 +1,4 @@
-import { TweetItem } from '@components/TweetItem';
-import { TweetMenu } from '@components/TweetMenu';
+import { TweetItem, TweetMenu } from '@components/Tweet';
 
 import { TweetsList } from './styled';
 import { ITweetFeedProps } from './types';

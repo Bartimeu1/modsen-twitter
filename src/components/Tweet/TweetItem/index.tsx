@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
-import { LikeIcon } from '@constants/icons';
+import { LikeIcon } from '@root/constants';
+import { formatDate } from '@root/utils';
 import { useLikeTweetMutation } from '@store/features/tweet/tweetApi';
 import { useGetUserByIdQuery } from '@store/features/user/userApi';
-import { formatDate } from '@utils/date';
 
 import {
   LikeButton,

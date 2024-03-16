@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
-import { LogoIcon } from '@constants/icons';
+import { LogoIcon } from '@root/constants';
 import { useThrottle } from '@root/hooks';
 import { useLazySearchTweetsByTextQuery } from '@store/features/tweet/tweetApi';
 

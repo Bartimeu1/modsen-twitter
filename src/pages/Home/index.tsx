@@ -1,13 +1,12 @@
 import { Loader } from '@components/Loader';
 import { ToggleButton } from '@components/ToggleButton';
-import { TweetFeed } from '@components/TweetFeed';
-import { TweetSearchSidebar } from '@components/TweetSearchSidebar';
+import { TweetFeed, TweetSearchSidebar } from '@components/Tweet';
 import { useGetAllTweetsQuery } from '@store/features/tweet/tweetApi';
 
 import { HomeHeader, HomeTitle, StyledHomePage } from './styled';
 
 export const HomePage = () => {
-  const { data: tweetsData, refetch } = useGetAllTweetsQuery({});
+  const { data: tweetsData } = useGetAllTweetsQuery({});
 
   if (!tweetsData) {
     return <Loader />;
@@ -20,13 +19,7 @@ export const HomePage = () => {
           <HomeTitle>Home</HomeTitle>
           <ToggleButton />
         </HomeHeader>
-        {tweetsData && (
-          <TweetFeed
-            tweets={tweetsData}
-            refetch={refetch}
-            isMenuVisible={true}
-          />
-        )}
+        {tweetsData && <TweetFeed tweets={tweetsData} isMenuVisible={true} />}
       </StyledHomePage>
       <TweetSearchSidebar />
     </>

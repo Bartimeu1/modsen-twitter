@@ -2,8 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { BackPanel } from '@components/BackPanel';
 import { Loader } from '@components/Loader';
-import { TweetItem } from '@components/TweetItem';
-import { TweetSearchSidebar } from '@components/TweetSearchSidebar';
+import { TweetItem,TweetSearchSidebar } from '@components/Tweet';
 import { useGetTweetByIdQuery } from '@store/features/tweet/tweetApi';
 
 import { StyledTweetPage } from './styled';

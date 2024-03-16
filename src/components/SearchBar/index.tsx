@@ -1,4 +1,4 @@
-import { SearchIcon } from '@constants/icons';
+import { SearchIcon } from '@root/constants';
 
 import { SearchInput, StyledSearchBar } from './styled';
 import { ISearchBarProps } from './types';

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { IToastStyles } from './types';
 
-export const StyledToast = styled.div<IToastStyles>`
+export const StyledToastItem = styled.div<IToastStyles>`
   color: ${({ theme }) => theme.color.white};
   padding: 10px 20px;
   border-radius: 5px;
