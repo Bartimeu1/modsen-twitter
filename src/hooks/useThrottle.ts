@@ -16,6 +16,8 @@ export const useThrottle = <T>(value: T, interval = 500): T => {
 
       return () => clearTimeout(timerId);
     }
+
+    return () => {};
   }, [value, interval]);
 
   return throttledValue;

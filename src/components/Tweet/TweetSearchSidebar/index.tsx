@@ -1,4 +1,4 @@
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
 import { LogoIcon } from '@root/constants';
@@ -34,8 +34,6 @@ export const TweetSearchSidebar = () => {
     },
     [],
   );
-
-  console.log('render')
 
   return (
     <StyledSearchSidebar>

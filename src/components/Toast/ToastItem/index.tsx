@@ -13,7 +13,5 @@ export const ToastItem = memo(function ToastItem(props: IToast) {
 
   useTimeout(() => dispatch(deleteToast(id)), 4000);
 
-  console.log('render');
-
   return <StyledToastItem $type={type}>{content}</StyledToastItem>;
 });
