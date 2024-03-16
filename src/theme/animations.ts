@@ -17,3 +17,12 @@ export const swing = keyframes`
     transform: rotate(5deg) scale(1.03);
   }
 `;
+
+export const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;

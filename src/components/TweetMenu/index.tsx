@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { CloseIcon, UploadImage } from '@constants/icons';
-import { useAppSelector } from '@root/hooks';
+import { failureText, successText } from '@constants/text';
+import { useAppDispatch,useAppSelector } from '@root/hooks';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
 import { useCreateTweetMutation } from '@store/features/tweet/tweetApi';
 import { generateImageURL } from '@utils/helpers';
 
@@ -21,13 +24,14 @@ import {
 } from './styled';
 
 export const TweetMenu = () => {
+  const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.user);
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [tweetText, setTweetText] = useState('');
   const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(true);
 
-  const [createTweet] = useCreateTweetMutation();
+  const [createTweet, { isError }] = useCreateTweetMutation();
 
   useEffect(() => {
     setIsTweetButtonDisabled(!tweetText && !uploadedImage);
@@ -50,7 +54,14 @@ export const TweetMenu = () => {
       userId: userData.id,
     };
 
-    createTweet({ data: tweetData });
+    createTweet({ data: tweetData }).then(() => {
+      dispatch(
+        addToast({
+          type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+          content: isError ? failureText : successText,
+        }),
+      );
+    });
     setTweetText('');
     setUploadedImage(null);
   };

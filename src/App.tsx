@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { PrivateLayout } from '@components/PrivateLayout';
 import { PublicLayout } from '@components/PublicLayout';
+import { ToastList } from '@components/ToastList';
 import { privateRoutes, publicRoutes } from '@constants/routes';
 import { NotFoundPage } from '@pages/NotFound';
 import { useAppSelector } from '@root/hooks';
@@ -29,6 +30,7 @@ export const App = () => {
           </Route>
         </Routes>
       </HashRouter>
+      <ToastList />
       <GlobalStyles />
     </ThemeProvider>
   );

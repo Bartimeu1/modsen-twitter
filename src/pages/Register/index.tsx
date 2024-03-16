@@ -6,9 +6,11 @@ import { FormInput } from '@components/FormInput';
 import { FormSelect } from '@components/FormSelect';
 import { endRegisterSelectYear } from '@constants/date';
 import { LogoIcon } from '@constants/icons';
-import { registerBirthText } from '@constants/text';
+import { failureText, registerBirthText, successText } from '@constants/text';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch } from '@root/hooks';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
 import { useCreateUserMutation } from '@store/features/user/userApi';
 import { setUser } from '@store/features/user/userSlice';
 import {
@@ -49,7 +51,7 @@ export const RegisterPage = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
-  const [createUser] = useCreateUserMutation();
+  const [createUser, { isError }] = useCreateUserMutation();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -81,6 +83,12 @@ export const RegisterPage = () => {
           birth: userBirthDate,
         },
       }).then(() => {
+        dispatch(
+          addToast({
+            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+            content: isError ? failureText : successText,
+          }),
+        );
         navigate('/');
       });
     });

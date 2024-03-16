@@ -8,7 +8,14 @@ import { Picture } from '@components/Picture';
 import { PortalWrapper } from '@components/PortalWrapper';
 import { CloseIcon, EditUpload } from '@constants/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useOnClickOutside } from '@root/hooks';
+import { failureText, successText } from '@root/constants/text';
+import {
+  useAppDispatch,
+  useLockBodyScroll,
+  useOnClickOutside,
+} from '@root/hooks';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
 import { useUpdateUserDataMutation } from '@store/features/user/userApi';
 import { generateImageURL } from '@utils/helpers';
 
@@ -29,9 +36,11 @@ import { IEditFormValues, IEditModalProps } from './types';
 export const EditModal = (props: IEditModalProps) => {
   const { profileData, setIsVisible } = props;
 
+  const dispatch = useAppDispatch();
+
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
 
-  const [updateUserData, { isLoading }] = useUpdateUserDataMutation();
+  const [updateUserData, { isLoading, isError }] = useUpdateUserDataMutation();
 
   const modalRef = useRef(null);
 
@@ -60,12 +69,19 @@ export const EditModal = (props: IEditModalProps) => {
         userId: profileData.userId,
         data: { ...data, avatar: uploadedImage },
       }).then(() => {
+        dispatch(
+          addToast({
+            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+            content: isError ? failureText : successText,
+          }),
+        );
         closeModal();
       });
     }
   };
 
   useOnClickOutside(modalRef, closeModal);
+  useLockBodyScroll();
 
   return (
     <PortalWrapper>
