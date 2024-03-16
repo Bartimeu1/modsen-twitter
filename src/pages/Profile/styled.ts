@@ -103,9 +103,17 @@ export const UserDesc = styled.p`
 export const EditButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  color: ${({ theme }) => theme.color.primary};
   border: 1px solid ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.lg}px;
   padding: 10px 15px;
+  transition: 0.3s;
+
+  &:hover {
+    background: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.background};
+    transition: 0.3s;
+  }
 `;
 
 export const SubscriptionInfo = styled.div`

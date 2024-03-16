@@ -127,7 +127,7 @@ export const RegisterPage = () => {
             )}
           />
         ))}
-        <AuthLink to="#">Use email</AuthLink>
+        <AuthLink to="/login">Use email</AuthLink>
         <BirthTitle>Date of birth</BirthTitle>
         <BirthInfoText>{registerBirthText}</BirthInfoText>
         <BirthSelects>

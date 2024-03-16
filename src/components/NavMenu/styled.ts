@@ -20,6 +20,10 @@ export const NavigationLink = styled(Link)<INavigationLink>`
 
   & svg {
     margin-right: 15px;
+
+    & path {
+      fill: ${({ theme }) => theme.color.primary};
+    }
   }
 
   ${({ $isTarget, theme }) =>
@@ -28,7 +32,7 @@ export const NavigationLink = styled(Link)<INavigationLink>`
     font-weight: ${theme.fontWeight.bold};
 
     & svg {
-      stroke: black;
+      stroke: ${theme.color.primary}
     }
   `}
 `;

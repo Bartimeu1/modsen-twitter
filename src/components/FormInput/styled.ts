@@ -9,6 +9,7 @@ export const FormInputField = styled.div`
 export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.xs4}px;
+  background: ${({ theme }) => theme.color.background};
   color: ${({ theme }) => theme.color.primary};
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   width: 100%;

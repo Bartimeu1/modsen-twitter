@@ -40,10 +40,12 @@ export const TweetTextarea = styled.textarea`
   color: ${({ theme }) => theme.color.primary};
   font-size: ${({ theme }) => theme.fontSize.lg}px;
   font-family: ${({ theme }) => theme.fontFamily.primary};
+  background: ${({ theme }) => theme.color.background};
   margin-bottom: 20px;
   border: none;
   outline: none;
   resize: none;
+  transition: background 0.3s ease;
 
   &::placeholder {
     opacity: 80%;
@@ -72,7 +74,7 @@ export const TweetButton = styled.button`
   background: ${({ theme }) => theme.color.ltBlue};
   border: 1px solid ${({ theme }) => theme.color.ltBlue};
   border-radius: ${({ theme }) => theme.borderRadius.xl3}px;
-  color: ${({ theme }) => theme.color.background};
+  color: ${({ theme }) => theme.color.white};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: ${({ theme }) => theme.fontSize.xs}px;
   font-family: ${({ theme }) => theme.fontFamily.secondary};

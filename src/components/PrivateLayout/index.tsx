@@ -9,8 +9,8 @@ import { useLazyGetUserByIdQuery } from '@store/features/user/userApi';
 import { setUserData } from '@store/features/user/userSlice';
 
 export const PrivateLayout = () => {
-  const authToken = useAppSelector((state) => state.user.token);
   const dispatch = useAppDispatch();
+  const authToken = useAppSelector(({ user }) => user.token);
   const userId = useAppSelector(({ user }) => user.id) || '';
 
   const [trigger, userData] = useLazyGetUserByIdQuery();

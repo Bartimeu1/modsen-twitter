@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledToggleButton = styled.input`
-  border: 2px solid ${(props) => props.theme.color.primary};
-  background: ${(props) => props.theme.color.background};
+import { IToggleButton } from './types';
+
+export const StyledToggleButton = styled.input<IToggleButton>`
+  border: 2px solid ${({ theme }) => theme.color.primary};
+  background: ${({ theme }) => theme.color.background};
   appearance: none;
   position: relative;
   display: inline-block;
@@ -14,9 +16,10 @@ export const StyledToggleButton = styled.input`
   outline: none;
   cursor: pointer;
   transition: 0.3s;
+
   &::after {
-    background: ${(props) => props.theme.color.background};
-    border: 2px solid ${(props) => props.theme.color.primary};
+    border: 2px solid ${({ theme }) => theme.color.primary};
+    background: ${({ theme }) => theme.color.background};
     content: '';
     display: inline-block;
     position: absolute;
@@ -27,14 +30,8 @@ export const StyledToggleButton = styled.input`
     border-radius: 50%;
     transform: translateX(0);
     transition: 0.3s;
-  }
-  &:checked::after {
-    transform: translateX(calc(100% - 4px));
-    background-color: #fff;
-    transition: 0.3s;
-  }
-  &:checked {
-    background: ${(props) => props.theme.color.primary};
-    transition: 0.3s;
+
+    ${({ $isChecked }) =>
+      $isChecked && `transform: translateX(calc(100% - 4px));`}
   }
 `;

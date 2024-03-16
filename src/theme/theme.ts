@@ -22,9 +22,9 @@ const lightThemeColors = {
 const darkThemeColors = {
   background: '#030304',
   primary: '#fff',
-  border: '#ffffff20',
-  searchInput: 'red',
-  resultsPanel: 'red',
+  border: '#FFFFFF80',
+  searchInput: '#333333',
+  resultsPanel: '#333333',
 };
 
 const layoutValues = {

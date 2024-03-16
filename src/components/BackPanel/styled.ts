@@ -15,6 +15,10 @@ export const BackLink = styled(Link)`
 
   & svg {
     margin-right: 13px;
+
+    & path {
+      fill: ${({ theme }) => theme.color.primary};
+    }
   }
 `;
 

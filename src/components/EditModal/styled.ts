@@ -17,13 +17,13 @@ export const StyledEditModal = styled.div`
 export const ModalContent = styled.div`
   ${FlexMixin({ direction: 'column' })}
 
+  border: 1px solid ${({ theme }) => theme.color.primary};
+  background: ${({ theme }) => theme.color.background};
+  border-radius: ${({ theme }) => theme.borderRadius.xs2}px;
   padding: 25px 20px;
   position: relative;
   width: 100%;
   max-width: 600px;
-  background: ${({ theme }) => theme.color.background};
-  border: 1px solid ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.xs2}px;
 
   & img {
     max-width: 120px;
@@ -48,13 +48,13 @@ export const CloseButton = styled.button`
 `;
 
 export const UploadImageButton = styled.div`
+  background: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.borderRadius.circle};
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border: none;
-  background: ${({ theme }) => theme.color.background};
-  border-radius: ${({ theme }) => theme.borderRadius.circle};
   padding: 10px;
   opacity: 50%;
 `;

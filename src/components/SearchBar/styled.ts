@@ -7,6 +7,10 @@ export const StyledSearchBar = styled.div`
     position: absolute;
     left: 25px;
     top: 14px;
+
+    & path {
+      fill: ${({ theme }) => theme.color.primary};
+    }
   }
 `;
 

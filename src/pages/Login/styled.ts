@@ -27,10 +27,17 @@ export const SubmitButton = styled.input`
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ theme }) => theme.color.white};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  border: none;
+  border: 1px solid ${({ theme }) => theme.color.ltBlue};
   cursor: pointer;
   width: 100%;
   padding: 15px 0 19px 0;
+  transition: 0.3s;
+
+  &:hover {
+    background: inherit;
+    color: ${({ theme }) => theme.color.ltBlue};
+    transition: 0.3s;
+  }
 `;
 
 export const LoginTitle = styled.h3`

@@ -36,7 +36,7 @@ export const UserSlug = styled.p`
 `;
 
 export const LogoutButton = styled.button`
-  color: ${({ theme }) => theme.color.background};
+  color: ${({ theme }) => theme.color.white};
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   background: ${({ theme }) => theme.color.lightGrey};
   border: 1px solid ${({ theme }) => theme.color.lightGrey};

@@ -92,6 +92,10 @@ export const TweetLikes = styled.div<ITweetLikes>`
   border: none;
   max-width: 50px;
 
+  & svg path {
+    fill: ${({ theme }) => theme.color.primary};
+  }
+
   ${({ $isLiked, theme }) =>
     $isLiked &&
     `

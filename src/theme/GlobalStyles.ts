@@ -42,7 +42,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
     position: relative;
     overflow-x: hidden;
-    transition: background 0.1s ease;
+    transition: background 0.3s ease;
   }
 
   #root {

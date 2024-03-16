@@ -21,6 +21,7 @@ export const SearchResults = styled.div`
 export const ResultsTitle = styled.h4`
   font-family: ${({ theme }) => theme.fontFamily.secondary};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.color.primary};
   font-size: ${({ theme }) => theme.fontSize.xl}px;
   margin-bottom: 29px;
 `;
@@ -31,8 +32,8 @@ export const VisitLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.background};
   background: ${({ theme }) => theme.color.primary};
-  border-radius: ${({ theme }) => theme.borderRadius.lg}px;
   border: 1px solid ${({ theme }) => theme.color.primary};
+  border-radius: ${({ theme }) => theme.borderRadius.lg}px;
   padding: 10px 18px;
   transition: 0.3s;
 
@@ -60,6 +61,7 @@ export const TweetContent = styled.div`
 
 export const TweetText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.sm}px;
+  color: ${({ theme }) => theme.color.primary};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -24,6 +24,10 @@ export const Label = styled.div<ISelectLabel>`
     transform: translate(0, -50%);
     transition: 0.3s all;
 
+    & path {
+      fill: ${({ theme }) => theme.color.primary};
+    }
+
     ${({ $isSelectVisible }) =>
       $isSelectVisible &&
       `
