@@ -18,6 +18,7 @@ import {
   useLockBodyScroll,
   useOnClickOutside,
 } from '@root/hooks';
+import { setUserData } from '@root/store/features/user/userSlice';
 import { ToastTypesEnum } from '@root/types/toast';
 import { generateImageURL } from '@root/utils';
 import { addToast } from '@store/features/toast/toastSlice';
@@ -43,10 +44,9 @@ export const EditModal = (props: IEditModalProps) => {
   const dispatch = useAppDispatch();
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const modalRef = useRef(null);
 
   const [updateUserData, { isLoading, isError }] = useUpdateUserDataMutation();
-
-  const modalRef = useRef(null);
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -74,6 +74,11 @@ export const EditModal = (props: IEditModalProps) => {
         data: { ...data, avatar: uploadedImage },
       }).then(() => {
         dispatch(
+          setUserData({
+            ...data,
+            userId: profileData.userId,
+            avatar: uploadedImage && generateImageURL(uploadedImage),
+          }),
           addToast({
             type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
             content: isError ? failureText : successText,

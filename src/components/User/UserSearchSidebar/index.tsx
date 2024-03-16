@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback,useEffect, useState } from 'react';
 
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
@@ -31,9 +31,12 @@ export const UserSearchSidebar = () => {
     }
   }, [throttledSearchValue, searchUsers]);
 
-  const onSearchInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInputValue(e.target.value);
-  };
+  const onSearchInputValueChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInputValue(e.target.value);
+    },
+    [],
+  );
 
   return (
     <StyledSearchSidebar>

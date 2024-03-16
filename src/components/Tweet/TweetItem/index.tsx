@@ -3,6 +3,7 @@ import { useState } from 'react';
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
 import { LikeIcon } from '@root/constants';
+import { useAppSelector } from '@root/hooks';
 import { formatDate } from '@root/utils';
 import { useLikeTweetMutation } from '@store/features/tweet/tweetApi';
 import { useGetUserByIdQuery } from '@store/features/user/userApi';
@@ -24,7 +25,8 @@ import {
 import { ITweetItemProps } from './types';
 
 export const TweetItem = (props: ITweetItemProps) => {
-  const { image, text, tweetId, likes, userId, date } = props;
+  const userId = useAppSelector((state) => state.user.id);
+  const { image, text, tweetId, likes, tweetUserId, date } = props;
 
   const [isTweetLiked, setIsTweetLiked] = useState(() => {
     return userId && likes ? likes.includes(userId) : false;
@@ -34,7 +36,7 @@ export const TweetItem = (props: ITweetItemProps) => {
     return likes ? likes.length : 0;
   });
 
-  const { data: userData } = useGetUserByIdQuery({ userId });
+  const { data: userData } = useGetUserByIdQuery({ userId: tweetUserId });
   const [likeTweet] = useLikeTweetMutation();
 
   const onLikeButtonClick = () => {

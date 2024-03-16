@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { BackPanel } from '@components/BackPanel';
 import { Loader } from '@components/Loader';
-import { TweetItem,TweetSearchSidebar } from '@components/Tweet';
+import { TweetItem, TweetSearchSidebar } from '@components/Tweet';
 import { useGetTweetByIdQuery } from '@store/features/tweet/tweetApi';
 
 import { StyledTweetPage } from './styled';
@@ -25,7 +25,7 @@ export const TweetPage = () => {
           <TweetItem
             key={tweetData.tweetId}
             date={tweetData.date}
-            userId={tweetData.userId}
+            tweetUserId={tweetData.userId}
             likes={tweetData.likes}
             tweetId={tweetData.tweetId}
             text={tweetData.text}

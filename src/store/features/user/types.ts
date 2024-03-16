@@ -4,5 +4,5 @@ export interface IUserSliceState {
   id: string | null;
   token: string | null;
   email: string | null;
-  data?: IUserData;
+  data: IUserData | null;
 }

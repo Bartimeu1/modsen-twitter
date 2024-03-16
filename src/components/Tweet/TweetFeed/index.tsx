@@ -5,6 +5,7 @@ import { ITweetFeedProps } from './types';
 
 export const TweetFeed = (props: ITweetFeedProps) => {
   const { tweets, isMenuVisible } = props;
+
   return (
     <>
       {isMenuVisible && <TweetMenu />}
@@ -16,7 +17,7 @@ export const TweetFeed = (props: ITweetFeedProps) => {
             <TweetItem
               key={tweet.tweetId}
               date={tweet.date}
-              userId={tweet.userId}
+              tweetUserId={tweet.userId}
               likes={tweet.likes}
               tweetId={tweet.tweetId}
               text={tweet.text}

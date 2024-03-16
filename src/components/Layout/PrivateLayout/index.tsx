@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { Loader } from '@components/Loader';
@@ -10,34 +9,34 @@ import { setUserData } from '@store/features/user/userSlice';
 
 export const PrivateLayout = () => {
   const dispatch = useAppDispatch();
-  const authToken = useAppSelector(({ user }) => user.token);
-  const userId = useAppSelector(({ user }) => user.id) || '';
+  const {
+    id: userId,
+    token: userToken,
+    data: userData,
+  } = useAppSelector((state) => state.user);
 
-  const [trigger, userData] = useLazyGetUserByIdQuery();
-
-  useEffect(() => {
-    if (userData) {
-      dispatch(setUserData(userData.data));
-    }
-    //eslint-disable-next-line
-  }, [userData]);
+  const [trigger] = useLazyGetUserByIdQuery();
 
   const getUser = () => {
-    trigger({ userId });
+    if (userId && !userData) {
+      trigger({ userId }).then(({ data }) => {
+        dispatch(setUserData(data));
+      });
+    }
   };
 
-  useTimeout(getUser, 500);
+  useTimeout(getUser, 1000);
 
-  if (!userData.data) {
-    return <Loader />;
+  if (!userToken) {
+    return <Navigate to="/signup" />;
   }
 
-  return authToken ? (
+  return userData ? (
     <Container>
       <NavSidebar />
       <Outlet />
     </Container>
   ) : (
-    <Navigate to="/signup" />
+    <Loader />
   );
 };

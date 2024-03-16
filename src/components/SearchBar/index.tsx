@@ -1,9 +1,11 @@
+import { memo } from 'react';
+
 import { SearchIcon } from '@root/constants';
 
 import { SearchInput, StyledSearchBar } from './styled';
 import { ISearchBarProps } from './types';
 
-export const SearchBar = (props: ISearchBarProps) => {
+export const SearchBar = memo(function SearchBar(props: ISearchBarProps) {
   const { value, onChange, placeholder } = props;
 
   return (
@@ -17,4 +19,4 @@ export const SearchBar = (props: ISearchBarProps) => {
       />
     </StyledSearchBar>
   );
-};
+});

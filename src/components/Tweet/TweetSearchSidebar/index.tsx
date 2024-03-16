@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback,useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
 import { LogoIcon } from '@root/constants';
@@ -28,9 +28,14 @@ export const TweetSearchSidebar = () => {
     }
   }, [throttledSearchValue, searchTweets]);
 
-  const onSearchInputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInputValue(e.target.value);
-  };
+  const onSearchInputValueChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchInputValue(e.target.value);
+    },
+    [],
+  );
+
+  console.log('render')
 
   return (
     <StyledSearchSidebar>

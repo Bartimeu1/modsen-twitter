@@ -6,6 +6,7 @@ const initialState: IUserSliceState = {
   id: null,
   email: null,
   token: null,
+  data: null,
 };
 
 export const userSlice = createSlice({
@@ -20,12 +21,19 @@ export const userSlice = createSlice({
       state.token = token;
     },
     setUserData(state, action) {
-      state.data = action.payload;
+      const newUserData = action.payload;
+      const newAvatar = newUserData.avatar || state.data?.avatar;
+
+      state.data = {
+        ...newUserData,
+        avatar: newAvatar,
+      };
     },
     removeUser(state) {
       state.id = null;
       state.email = null;
       state.token = null;
+      state.data = null;
     },
   },
 });

@@ -1,6 +1,6 @@
 export interface ITweetItemProps {
   tweetId: string;
-  userId: string;
+  tweetUserId: string;
   date: number;
   likes: string[] | null;
   text: string | null;

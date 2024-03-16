@@ -21,9 +21,9 @@ export const UserPanel = () => {
   const onLogoutButtonClick = () => {
     const auth = getAuth();
 
-    signOut(auth);
     persistor.purge();
     dispatch(removeUser());
+    signOut(auth);
   };
 
   return (

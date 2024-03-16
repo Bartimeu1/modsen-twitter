@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 
 import { ChevronIcon } from '@root/constants';
 import { useOnClickOutside } from '@root/hooks';
@@ -14,7 +14,7 @@ import {
 } from './styled';
 import { IFormSelectProps } from './types';
 
-export const FormSelect = (props: IFormSelectProps) => {
+export const FormSelect = memo(function FormSelect(props: IFormSelectProps) {
   const { width, placeholder, onChange, options, validationText } = props;
 
   const selectRef = useRef(null);
@@ -60,4 +60,4 @@ export const FormSelect = (props: IFormSelectProps) => {
       )}
     </StyledFormSelect>
   );
-};
+});

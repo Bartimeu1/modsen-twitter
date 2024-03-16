@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import { FormInputField, Input, ValidationText } from './styled';
 import { IFormInputProps } from './types';
 
-export const FormInput = (props: IFormInputProps) => {
+export const FormInput = memo(function FormInput(props: IFormInputProps) {
   const { placeholder, type, onChange, validationText, baseValue } = props;
 
   const [inputValue, setInputValue] = useState(baseValue);
@@ -32,4 +32,4 @@ export const FormInput = (props: IFormInputProps) => {
       {validationText && <ValidationText>{validationText}</ValidationText>}
     </FormInputField>
   );
-};
+});
