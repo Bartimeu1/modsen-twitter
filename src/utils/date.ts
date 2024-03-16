@@ -1,3 +1,4 @@
+import { monthNames } from '@constants/date';
 import { v4 as uuidv4 } from 'uuid';
 
 export const getTargetYear = () => {
@@ -33,4 +34,11 @@ export const generateDate = (year: number, month: string, day: string) => {
   const monthIndex = getMonthIndex(year, month);
 
   return new Date(year, monthIndex, Number(day));
+};
+
+export const formatDate = (date: Date) => {
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()];
+
+  return `${month} ${day}`;
 };

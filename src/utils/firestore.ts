@@ -1,23 +1,38 @@
-import { addDoc, collection, getDocs,query, where } from '@firebase/firestore';
-import { db } from '@root/config/firebase';
-import { IUserData } from '@root/types/firebase';
+import {
+  collection,
+  CollectionReference,
+  getDocs,
+  query,
+  where,
+} from '@firebase/firestore';
+import { db, storage } from '@root/config/firebase';
+import { ITweetResponse, IUserData } from '@root/types/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
 
-export const createUser = async (data: IUserData) => {
-  const { name, email, phone, birth } = data;
-  const dbref = collection(db, 'Users');
+export const getUserByValue = async (fieldName: string, value: string) => {
+  const dbRef = collection(db, 'Users') as CollectionReference<IUserData>;
+  const matchValueQuery = query(dbRef, where(fieldName, '==', value));
 
-  const matchEmailQuery = query(dbref, where('Email', '==', email));
+  const snapshot = await getDocs(matchValueQuery);
+  const userData = snapshot.docs.map((doc) => doc.data())[0];
 
-  const snapshot = await getDocs(matchEmailQuery);
+  return userData;
+};
 
-  if (!snapshot.empty) {
-    return;
-  }
+export const getTweetByValue = async (fieldName: string, value: string) => {
+  const dbRef = collection(db, 'Tweets') as CollectionReference<ITweetResponse>;
+  const matchValueQuery = query(dbRef, where(fieldName, '==', value));
 
-  await addDoc(dbref, {
-    Name: name,
-    Email: email,
-    Phone: phone || null,
-    Birth: birth || null,
-  });
+  const snapshot = await getDocs(matchValueQuery);
+  const tweetsData = snapshot.docs.map((doc) => doc.data());
+
+  return tweetsData;
+};
+
+export const addImageIntoStorage = async (image: File) => {
+  const imageRef = ref(storage, `images/${image.name + v4()}`);
+  await uploadBytes(imageRef, image);
+
+  return getDownloadURL(imageRef);
 };

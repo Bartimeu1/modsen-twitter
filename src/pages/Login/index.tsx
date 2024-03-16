@@ -1,9 +1,9 @@
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { FormInput } from '@components/FormInput';
-import { LogoIcon } from '@constants/icons';
+import { FormInput } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { LogoIcon } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -35,21 +35,19 @@ export const LoginPage = () => {
     const { email, password } = data;
 
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        // eslint-disable-next-line
-        const { email, uid, accessToken } = user as any;
+    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
+      // eslint-disable-next-line
+      const { email, uid, accessToken } = user as any;
 
-        dispatch(
-          setUser({
-            email,
-            id: uid,
-            token: accessToken,
-          }),
-        );
-        navigate('/profile');
-      })
-      .catch((err) => console.log(err));
+      dispatch(
+        setUser({
+          email,
+          id: uid,
+          token: accessToken,
+        }),
+      );
+      navigate('/profile');
+    });
   };
 
   return (

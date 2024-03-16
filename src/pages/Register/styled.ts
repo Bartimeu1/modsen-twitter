@@ -69,8 +69,16 @@ export const SubmitButton = styled.input`
   border-radius: ${({ theme }) => theme.borderRadius.xl2}px;
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.white};
-  border: none;
+  border: 1px solid ${({ theme }) => theme.color.ltBlue};
   cursor: pointer;
   padding: 15px 0 19px 0;
+  transition: 0.3s;
+
+  &:hover {
+    background: inherit;
+    color: ${({ theme }) => theme.color.ltBlue};
+    transition: 0.3s;
+  }
 `;

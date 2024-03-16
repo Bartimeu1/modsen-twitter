@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, styled } from 'styled-components';
 
 interface IFlexMixin {
   align?: string;
@@ -42,7 +42,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
     position: relative;
     overflow-x: hidden;
-    transition: background 0.1s ease;
+    transition: background 0.3s ease;
   }
 
   #root {
@@ -52,6 +52,10 @@ export const GlobalStyles = createGlobalStyle`
   button {
     background-color: inherit;
     cursor: pointer;
+    font-family: ${({ theme }) => theme.fontFamily.primary};
+  }
+
+  input {
     font-family: ${({ theme }) => theme.fontFamily.primary};
   }
 
@@ -71,4 +75,13 @@ export const FlexMixin = ({
   justify-content: ${justify};
   flex-direction: ${direction};
   flex-wrap: ${wrap};
+`;
+
+export const Container = styled.div`
+  ${FlexMixin({ justify: 'space-between' })}
+
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 1640px;
 `;

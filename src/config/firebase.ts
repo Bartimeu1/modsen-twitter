@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from '@firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 export const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -16,3 +17,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const provider = new GoogleAuthProvider();
+
+export const storage = getStorage(app);

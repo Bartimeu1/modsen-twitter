@@ -6,6 +6,7 @@ const initialState: IUserSliceState = {
   id: null,
   email: null,
   token: null,
+  data: null,
 };
 
 export const userSlice = createSlice({
@@ -19,14 +20,24 @@ export const userSlice = createSlice({
       state.email = email;
       state.token = token;
     },
+    setUserData(state, action) {
+      const newUserData = action.payload;
+      const newAvatar = newUserData.avatar || state.data?.avatar;
+
+      state.data = {
+        ...newUserData,
+        avatar: newAvatar,
+      };
+    },
     removeUser(state) {
       state.id = null;
       state.email = null;
       state.token = null;
+      state.data = null;
     },
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, setUserData, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

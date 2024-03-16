@@ -2,22 +2,29 @@ const commonColors = {
   white: '#fff',
   black: '#000',
   grey: '#828282',
+  lightGrey: '#B3B8BB',
   blue: '#1D9BF0',
   ltBlue: '#1DA1F2',
   mdBlue: '#1E97E1',
-  red: '#FF0000'
+  red: '#FF0000',
+  ltRed: '#EF1C5C',
+  success: '#28A745',
 };
 
 const lightThemeColors = {
   background: '#fff',
   primary: '#000',
   border: '#00000020;',
+  searchInput: '#EFF3F4',
+  resultsPanel: '#F7F9F9',
 };
 
 const darkThemeColors = {
   background: '#030304',
   primary: '#fff',
-  border: '#ffffff20',
+  border: '#FFFFFF80',
+  searchInput: '#333333',
+  resultsPanel: '#333333',
 };
 
 const layoutValues = {
@@ -56,6 +63,7 @@ const layoutValues = {
     xl: 60,
     xl2: 76,
     xl3: 120,
+    circle: '50%',
   },
 };
 

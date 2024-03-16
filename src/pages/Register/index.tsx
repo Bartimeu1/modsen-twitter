@@ -2,21 +2,26 @@ import { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { FormInput } from '@components/FormInput';
-import { FormSelect } from '@components/FormSelect';
-import { endRegisterSelectYear } from '@constants/date';
-import { LogoIcon } from '@constants/icons';
-import { registerBirthText } from '@constants/text';
+import { FormInput, FormSelect } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  endRegisterSelectYear,
+  failureText,
+  LogoIcon,
+  registerBirthText,
+  successText,
+} from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
-import { setUser } from '@store/features/user/userSlice';
+import { ToastTypesEnum } from '@root/types/toast';
 import {
   generateDate,
   generateDaysArray,
   generateYearsArray,
   getTargetYear,
-} from '@utils/date';
-import { createUser } from '@utils/firestore';
+} from '@root/utils';
+import { addToast } from '@store/features/toast/toastSlice';
+import { useCreateUserMutation } from '@store/features/user/userApi';
+import { setUser } from '@store/features/user/userSlice';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 import {
@@ -49,6 +54,7 @@ export const RegisterPage = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
+  const [createUser, { isError }] = useCreateUserMutation();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -70,9 +76,24 @@ export const RegisterPage = () => {
         }),
       );
 
-      createUser({ email, name, password, phone, birth: userBirthDate });
-
-      navigate('/profile');
+      createUser({
+        data: {
+          userId: uid,
+          email,
+          name,
+          password,
+          phone,
+          birth: userBirthDate,
+        },
+      }).then(() => {
+        dispatch(
+          addToast({
+            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+            content: isError ? failureText : successText,
+          }),
+        );
+        navigate('/');
+      });
     });
   };
 
@@ -109,7 +130,7 @@ export const RegisterPage = () => {
             )}
           />
         ))}
-        <AuthLink to="#">Use email</AuthLink>
+        <AuthLink to="/login">Use email</AuthLink>
         <BirthTitle>Date of birth</BirthTitle>
         <BirthInfoText>{registerBirthText}</BirthInfoText>
         <BirthSelects>

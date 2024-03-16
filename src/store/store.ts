@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { tweetApi } from '@store/features/tweet/tweetApi';
+import { userApi } from '@store/features/user/userApi';
 import rootReducer from '@store/reducer';
 import {
   FLUSH,
@@ -14,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',
+  whitelist: ['theme', 'user'],
   storage,
 };
 
@@ -22,11 +25,13 @@ const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedRootReducer,
   middleware: (getDefaultMiddleware) => {
+    const allMiddlewares = [userApi.middleware, tweetApi.middleware];
+
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    });
+    }).concat(...allMiddlewares);
   },
 });
 

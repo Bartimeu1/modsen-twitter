@@ -1,10 +1,17 @@
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
-import { GoogleIcon, LogoIcon } from '@constants/icons';
 import { provider } from '@root/config/firebase';
+import {
+  failureText,
+  GoogleIcon,
+  LogoIcon,
+  successText,
+} from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
+import { useCreateUserMutation } from '@store/features/user/userApi';
 import { setUser } from '@store/features/user/userSlice';
-import { createUser } from '@utils/firestore';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 
 import { NavLinks } from './config';
@@ -29,22 +36,32 @@ export const SignUpPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [createUser, { isError }] = useCreateUserMutation();
+
   const onSignWithGoogleClick = () => {
     const auth = getAuth();
 
     signInWithPopup(auth, provider).then(({ user }) => {
       // eslint-disable-next-line
       const { email, accessToken, uid, displayName } = user as any;
-      dispatch(
-        setUser({
-          email,
-          id: uid,
-          token: accessToken,
-        }),
-      );
 
-      createUser({ email, name: displayName });
-      navigate('/profile');
+      createUser({ data: { userId: uid, email, name: displayName } }).then(
+        () => {
+          dispatch(
+            setUser({
+              email,
+              id: uid,
+              token: accessToken,
+            }),
+            addToast({
+              type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+              content: isError ? failureText : successText,
+            }),
+          );
+
+          navigate('/');
+        },
+      );
     });
   };
 

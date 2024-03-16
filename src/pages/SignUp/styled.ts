@@ -58,14 +58,22 @@ export const SignButton = styled.button`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.md}px;
   padding: 14px 97px;
-
-  &:first-child {
-    margin-bottom: 21px;
-  }
+  transition: 0.3s;
 
   & svg {
     margin-right: 3px;
     padding-bottom: 3px;
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.color.background};
+    background: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.background};
+    transition: 0.3s;
+  }
+
+  &:first-child {
+    margin-bottom: 21px;
   }
 `;
 
@@ -78,6 +86,14 @@ export const SignLink = styled(Link)`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.md}px;
   padding: 14px 97px;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.color.background};
+    background: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.background};
+    transition: 0.3s;
+  }
 `;
 
 export const TermsText = styled.p`
