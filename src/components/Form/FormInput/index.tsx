@@ -24,6 +24,7 @@ export const FormInput = memo(function FormInput(props: IFormInputProps) {
   return (
     <FormInputField>
       <Input
+        data-testid="form-input"
         value={inputValue}
         type={type}
         placeholder={placeholder}

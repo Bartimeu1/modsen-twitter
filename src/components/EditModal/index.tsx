@@ -39,7 +39,7 @@ import {
 import { IEditFormValues, IEditModalProps } from './types';
 
 export const EditModal = (props: IEditModalProps) => {
-  const { profileData, setIsVisible } = props;
+  const { profileData, closeEditModal } = props;
 
   const dispatch = useAppDispatch();
 
@@ -63,10 +63,6 @@ export const EditModal = (props: IEditModalProps) => {
     resolver: yupResolver(validationSchema),
   });
 
-  const closeModal = () => {
-    setIsVisible(false);
-  };
-
   const onEditFormSubmit = async (data: IEditFormValues) => {
     if (profileData?.userId) {
       updateUserData({
@@ -84,12 +80,12 @@ export const EditModal = (props: IEditModalProps) => {
             content: isError ? failureText : successText,
           }),
         );
-        closeModal();
+        closeEditModal();
       });
     }
   };
 
-  useOnClickOutside(modalRef, closeModal);
+  useOnClickOutside(modalRef, closeEditModal);
   useLockBodyScroll();
 
   return (
@@ -97,7 +93,9 @@ export const EditModal = (props: IEditModalProps) => {
       {isLoading && <Loader />}
       <StyledEditModal>
         <ModalContent ref={modalRef}>
-          <CloseButton onClick={closeModal}>
+          <CloseButton
+            onClick={closeEditModal}
+            data-testid="edit-modal-close-button">
             <CloseIcon />
           </CloseButton>
           <AvatarContainer>
@@ -136,7 +134,11 @@ export const EditModal = (props: IEditModalProps) => {
                 />
               </Fragment>
             ))}
-            <SubmitButton type="submit" value="Save" />
+            <SubmitButton
+              type="submit"
+              value="Save"
+              data-testid="edit-modal-submit"
+            />
           </EditForm>
         </ModalContent>
       </StyledEditModal>

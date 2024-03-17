@@ -75,7 +75,7 @@ export const TweetMenu = () => {
   };
 
   return (
-    <StyledTweetMenu>
+    <StyledTweetMenu data-testid="tweet-menu">
       <UserAvatar>
         <Picture
           image={userData.data?.avatar || defaultAvatar}
@@ -85,6 +85,7 @@ export const TweetMenu = () => {
       </UserAvatar>
       <TweetContent>
         <TweetTextarea
+          data-testid="tweet-textarea"
           placeholder="What’s happening"
           onChange={onTweetTextChange}
           value={tweetText}
@@ -96,17 +97,24 @@ export const TweetMenu = () => {
                 image={generateImageURL(uploadedImage)}
                 alt="preview-image"
               />
-              <PreviewCloseButton onClick={onPreviewCloseButtonClick}>
+              <PreviewCloseButton
+                data-testid="close-preview-button"
+                onClick={onPreviewCloseButtonClick}>
                 <CloseIcon />
               </PreviewCloseButton>
             </ImagePreview>
           ) : (
             <ImageButton>
-              <FileInput type="file" onChange={onFileInputChange} />
+              <FileInput
+                data-testid="tweet-file-input"
+                type="file"
+                onChange={onFileInputChange}
+              />
               <UploadImage />
             </ImageButton>
           )}
           <TweetButton
+            data-testid="create-tweet-button"
             onClick={onTweetButtonClick}
             disabled={isTweetButtonDisabled}>
             Tweet

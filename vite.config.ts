@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
+import EnvironmentPlugin from 'vite-plugin-environment';
 import svgr from 'vite-plugin-svgr';
 
 /// <reference types="vite/client" />
@@ -29,6 +30,6 @@ export default defineConfig({
       },
       include: '**/*.svg',
     }),
+    EnvironmentPlugin('all'),
   ],
 });
-
