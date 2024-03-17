@@ -1,9 +1,12 @@
 import { useLocation } from 'react-router-dom';
 
 import { navLinks } from './config';
-import { NavigationLink, StyledNavMenu } from './styled';
+import { LinkText, NavigationLink, StyledNavMenu } from './styled';
+import { INavMenuProps } from './types';
 
-export const NavMenu = () => {
+export const NavMenu = (props: INavMenuProps) => {
+  const { onLinkClick } = props;
+
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -13,9 +16,10 @@ export const NavMenu = () => {
         <NavigationLink
           key={id}
           to={href}
+          onClick={onLinkClick}
           $isTarget={currentPath.includes(href)}>
           <Icon />
-          {name}
+          <LinkText>{name}</LinkText>
         </NavigationLink>
       ))}
     </StyledNavMenu>

@@ -27,6 +27,7 @@ export const StyledTweetItem = styled.article`
 export const UserLink = styled(Link)`
   cursor: pointer;
   padding-left: 15px;
+  min-width: 65px;
 
   & img {
     border-radius: ${({ theme }) => theme.borderRadius.circle};
@@ -80,7 +81,7 @@ export const TweetText = styled.p`
 
 export const TweetImage = styled.img`
   border-radius: ${({ theme }) => theme.borderRadius.xs2}px;
-  width: 100%;
+  width: 95%;
   max-height: 450px;
   margin-top: 15px;
 `;

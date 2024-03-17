@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     font-size: ${({ theme }) => theme.fontSize.xs};
   }
 
@@ -84,4 +85,12 @@ export const Container = styled.div`
   padding: 20px;
   width: 100%;
   max-width: 1640px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.laptopM}) {
+    padding: 10px 0 7px 10px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileS}) {
+    padding: 10px 0;
+  }
 `;

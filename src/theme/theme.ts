@@ -17,6 +17,7 @@ const lightThemeColors = {
   border: '#00000020;',
   searchInput: '#EFF3F4',
   resultsPanel: '#F7F9F9',
+  boxShadow: '#0000005A',
 };
 
 const darkThemeColors = {
@@ -25,6 +26,7 @@ const darkThemeColors = {
   border: '#FFFFFF80',
   searchInput: '#333333',
   resultsPanel: '#333333',
+  boxShadow: '#FFFFFF40',
 };
 
 const layoutValues = {

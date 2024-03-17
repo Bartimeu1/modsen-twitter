@@ -4,9 +4,12 @@ import { FlexMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledSearchSidebar = styled.aside`
-  width: 100%;
-  max-width: 373px;
+  width: 40%;
   margin-left: 28px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.laptopM}) {
+    display: none;
+  }
 `;
 
 export const SearchResults = styled.div`
