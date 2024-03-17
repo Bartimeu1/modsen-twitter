@@ -17,6 +17,7 @@ const lightThemeColors = {
   border: '#00000020;',
   searchInput: '#EFF3F4',
   resultsPanel: '#F7F9F9',
+  boxShadow: '#0000005A',
 };
 
 const darkThemeColors = {
@@ -25,6 +26,7 @@ const darkThemeColors = {
   border: '#FFFFFF80',
   searchInput: '#333333',
   resultsPanel: '#333333',
+  boxShadow: '#FFFFFF40',
 };
 
 const layoutValues = {
@@ -33,6 +35,7 @@ const layoutValues = {
     secondary: 'Roboto Serif, Arial',
   },
   fontSize: {
+    xs4: 12,
     xs3: 13,
     xs2: 14,
     xs: 16,
@@ -64,6 +67,17 @@ const layoutValues = {
     xl2: 76,
     xl3: 120,
     circle: '50%',
+  },
+  breakpoints: {
+    mobileS: '420px',
+    mobileM: '450px',
+    tabletS: '500px',
+    tabletM: '670px',
+    laptopS: '740px',
+    laptopM: '840px',
+    desktopS: '920px',
+    desktopM: '1150px',
+    desktopL: '1600px',
   },
 };
 

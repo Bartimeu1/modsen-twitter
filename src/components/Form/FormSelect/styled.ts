@@ -34,6 +34,12 @@ export const Label = styled.div<ISelectLabel>`
       transform: translate(0, -50%) rotate(180deg);
     `}
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    & svg {
+      right: 5px;
+    }
+  }
 `;
 
 export const LabelPlaceholder = styled.p`

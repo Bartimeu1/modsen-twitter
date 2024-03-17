@@ -34,6 +34,10 @@ export const TweetContent = styled.div`
 
   width: 100%;
   margin-left: 28px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.laptopM}) {
+    margin-left: 15px;
+  }
 `;
 
 export const TweetTextarea = styled.textarea`

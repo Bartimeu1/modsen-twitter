@@ -1,5 +1,7 @@
+import { useCallback,useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
+import { BurgerMenu } from '@components/BurgerMenu';
 import { Loader } from '@components/Loader';
 import { NavSidebar } from '@components/Nav';
 import { useAppDispatch, useAppSelector, useTimeout } from '@root/hooks';
@@ -15,6 +17,8 @@ export const PrivateLayout = () => {
     data: userData,
   } = useAppSelector((state) => state.user);
 
+  const [isBurgerActive, setIsBurgerActive] = useState(false);
+
   const [trigger] = useLazyGetUserByIdQuery();
 
   const getUser = () => {
@@ -25,6 +29,10 @@ export const PrivateLayout = () => {
     }
   };
 
+  const onBurgerMenuClick = useCallback(() => {
+    setIsBurgerActive((prevState) => !prevState);
+  }, []);
+
   useTimeout(getUser, 1000);
 
   if (!userToken) {
@@ -33,7 +41,11 @@ export const PrivateLayout = () => {
 
   return userData ? (
     <Container>
-      <NavSidebar />
+      <BurgerMenu isActive={isBurgerActive} onClick={onBurgerMenuClick} />
+      <NavSidebar
+        isBurgerActive={isBurgerActive}
+        onLinkClick={onBurgerMenuClick}
+      />
       <Outlet />
     </Container>
   ) : (

@@ -1,5 +1,6 @@
 import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
+import { LogOutIcon } from '@root/constants';
 import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { removeUser } from '@store/features/user/userSlice';
 import { persistor } from '@store/store';
@@ -7,6 +8,7 @@ import { getAuth, signOut } from 'firebase/auth';
 
 import {
   LogoutButton,
+  LogoutButtonText,
   StyledUserPanel,
   UserDetails,
   UserInfo,
@@ -39,7 +41,10 @@ export const UserPanel = () => {
           <UserSlug>{userData?.slug && '@' + userData.slug}</UserSlug>
         </UserDetails>
       </UserInfo>
-      <LogoutButton onClick={onLogoutButtonClick}>Log out</LogoutButton>
+      <LogoutButton onClick={onLogoutButtonClick}>
+        <LogOutIcon />
+        <LogoutButtonText>Log out</LogoutButtonText>
+      </LogoutButton>
     </StyledUserPanel>
   );
 };

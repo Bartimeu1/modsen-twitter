@@ -12,6 +12,11 @@ export const StyledEditModal = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s all;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    padding: 0 10px;
+
+  }
 `;
 
 export const ModalContent = styled.div`

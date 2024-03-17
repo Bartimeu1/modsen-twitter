@@ -7,7 +7,7 @@ export const StyledLoginPage = styled.div`
   ${FlexMixin({ direction: 'column' })}
 
   width: 100%;
-  padding: 30px 0;
+  padding: 70px 15px;
   max-width: 450px;
   margin: 0 auto;
 
@@ -19,6 +19,10 @@ export const StyledLoginPage = styled.div`
 export const LoginForm = styled.form`
   width: 100%;
   margin-bottom: 35px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const SubmitButton = styled.input`
@@ -38,6 +42,11 @@ export const SubmitButton = styled.input`
     color: ${({ theme }) => theme.color.ltBlue};
     transition: 0.3s;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    font-size: ${({ theme }) => theme.fontSize.xs}px;
+    padding: 10px 0 15px 0;
+  }
 `;
 
 export const LoginTitle = styled.h3`
@@ -45,6 +54,11 @@ export const LoginTitle = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.xl3}px;
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    font-size: ${({ theme }) => theme.fontSize.xl2}px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const SignLink = styled(Link)`
