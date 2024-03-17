@@ -40,7 +40,10 @@ export const FormSelect = memo(function FormSelect(props: IFormSelectProps) {
 
   return (
     <StyledFormSelect ref={selectRef} $width={width}>
-      <Label onClick={onHeaderClick} $isSelectVisible={isSelectVisible}>
+      <Label
+        onClick={onHeaderClick}
+        $isSelectVisible={isSelectVisible}
+        data-testid="select-label">
         {targetValue ? (
           <LabelValue>{targetValue}</LabelValue>
         ) : (
@@ -50,9 +53,12 @@ export const FormSelect = memo(function FormSelect(props: IFormSelectProps) {
       </Label>
       {validationText && <ValidationText>{validationText}</ValidationText>}
       {isSelectVisible && (
-        <Dropdown>
+        <Dropdown data-testid="select-dropdown">
           {options.map(({ id, value }) => (
-            <DropdownOption key={id} onClick={onDropdownOptionClick(value)}>
+            <DropdownOption
+              key={id}
+              onClick={onDropdownOptionClick(value)}
+              data-testid="select-dropdown-option">
               {value}
             </DropdownOption>
           ))}

@@ -53,7 +53,7 @@ export const TweetItem = (props: ITweetItemProps) => {
   const formattedDate = formatDate(new Date(date));
 
   return (
-    <StyledTweetItem>
+    <StyledTweetItem data-testid="tweet-item">
       <UserLink to={`/profile/${userData?.slug}`}>
         <Picture
           image={userData?.avatar || defaultAvatar}
@@ -70,10 +70,14 @@ export const TweetItem = (props: ITweetItemProps) => {
         <TweetText>{text}</TweetText>
         {image && <TweetImage alt="tweet-image" src={image} />}
         <TweetLikes $isLiked={isTweetLiked}>
-          <LikeButton onClick={onLikeButtonClick}>
+          <LikeButton
+            onClick={onLikeButtonClick}
+            data-testid="tweet-like-button">
             <LikeIcon />
           </LikeButton>
-          <LikesCounter>{likesAmount}</LikesCounter>
+          <LikesCounter data-testid="tweet-like-counter">
+            {likesAmount}
+          </LikesCounter>
         </TweetLikes>
       </TweetContent>
     </StyledTweetItem>

@@ -7,7 +7,7 @@ export const BurgerMenu = memo(function BurgerMenu(props: IBurgerMenuProps) {
   const { isActive, onClick } = props;
 
   return (
-    <StyledBurgerMenu onClick={onClick}>
+    <StyledBurgerMenu onClick={onClick} data-testid="burger-menu">
       <BurgerContent $isActive={isActive}>
         <BurgerRow />
       </BurgerContent>

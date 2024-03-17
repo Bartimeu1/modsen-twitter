@@ -62,6 +62,10 @@ export const ProfilePage = () => {
     return <Loader />;
   }
 
+  const closeEditModal = () => {
+    setIsEditModalVisible(false);
+  };
+
   return (
     <>
       <StyledProfilePage>
@@ -106,7 +110,7 @@ export const ProfilePage = () => {
         {isEditModalVisible && (
           <EditModal
             profileData={profileData}
-            setIsVisible={setIsEditModalVisible}
+            closeEditModal={closeEditModal}
           />
         )}
       </StyledProfilePage>

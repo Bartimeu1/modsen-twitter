@@ -2,7 +2,7 @@ import { IUserData } from '@root/types/firebase';
 
 export interface IEditModalProps {
   profileData: IUserData | undefined;
-  setIsVisible: (value: boolean) => void;
+  closeEditModal: () => void;
 }
 
 export interface IEditFormValues {

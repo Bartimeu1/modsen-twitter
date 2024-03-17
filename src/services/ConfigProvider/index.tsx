@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from '@components/ErrorBoundary';
-import { GlobalStyles,theme } from '@root/theme';
+import { GlobalStyles, theme } from '@root/theme';
 import { store } from '@store/store';
 import { ThemeProvider } from 'styled-components';
 
