@@ -37,6 +37,6 @@ export default defineConfig(({ mode }) => {
         include: '**/*.svg',
       }),
     ],
-    base: '/modsen-twitter/'
+    base: './'
   };
 });
