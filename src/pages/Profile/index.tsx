@@ -92,12 +92,16 @@ export const ProfilePage = () => {
               image={profileData?.avatar || defaultAvatar}
               width={150}
             />
-            <UserName>{profileData?.name}</UserName>
+            <UserName data-testid="profile-name">{profileData?.name}</UserName>
             <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
-            <UserDesc>{profileData?.bio}</UserDesc>
+            <UserDesc data-testid="profile-bio">{profileData?.bio}</UserDesc>
           </UserInfo>
           {isMyProfile && (
-            <EditButton onClick={onEditButtonClick}>Edit profile</EditButton>
+            <EditButton
+              data-testid="open-edit-button"
+              onClick={onEditButtonClick}>
+              Edit profile
+            </EditButton>
           )}
         </ProfileContent>
         <SubscriptionInfo>

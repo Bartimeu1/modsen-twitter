@@ -91,7 +91,7 @@ export const EditModal = (props: IEditModalProps) => {
   return (
     <PortalWrapper>
       {isLoading && <Loader />}
-      <StyledEditModal>
+      <StyledEditModal data-testid="edit-modal">
         <ModalContent ref={modalRef}>
           <CloseButton
             onClick={closeEditModal}
@@ -135,9 +135,9 @@ export const EditModal = (props: IEditModalProps) => {
               </Fragment>
             ))}
             <SubmitButton
+              data-testid="edit-modal-submit"
               type="submit"
               value="Save"
-              data-testid="edit-modal-submit"
             />
           </EditForm>
         </ModalContent>
