@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE');
   const envWithProcessPrefix = {
     'process.env': JSON.stringify(env),
+    __APP_ENV__: process.env.VITE_VERCEL_ENV,
   };
 
   return {
@@ -37,6 +38,6 @@ export default defineConfig(({ mode }) => {
         include: '**/*.svg',
       }),
     ],
-    base: './'
+    base: './',
   };
 });
