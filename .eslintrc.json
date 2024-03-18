@@ -32,12 +32,13 @@
       "alias": {
         "map": [
           ["@root", "./src"],
+          ["@components", "./src/components"],
+          ["@services", "./src/services"],
+          ["@constants", "./src/constants"],
           ["@pages", "./src/pages"],
-          ["@widgets", "./src/widgets"],
-          ["@features", "./src/features"],
-          ["@entities", "./src/entities"],
-          ["@shared", "./src/shared"],
-          ["@store", "./src/store"]
+          ["@middlewares", "./src/middlewares"],
+          ["@utils", "./src/utils"],
+          ["@assets", "./src/assets"]
         ]
       }
     }
