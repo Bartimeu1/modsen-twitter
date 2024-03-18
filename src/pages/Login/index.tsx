@@ -70,9 +70,11 @@ export const LoginPage = () => {
             )}
           />
         ))}
-        <SubmitButton type="submit" value="Log In" />
+        <SubmitButton data-testid="login-submit" type="submit" value="Log In" />
       </LoginForm>
-      <SignLink to="/signup">Sign up to Twitter</SignLink>
+      <SignLink data-testid="login-link" to="/signup">
+        Sign up to Twitter
+      </SignLink>
     </StyledLoginPage>
   );
 };

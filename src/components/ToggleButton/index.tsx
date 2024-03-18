@@ -14,6 +14,7 @@ export const ToggleButton = () => {
 
   return (
     <StyledToggleButton
+      data-testid="theme-toggle-button"
       type="checkbox"
       onClick={onToggleButtonClick}
       $isChecked={currentTheme === ThemeColorsEnum.dark}
