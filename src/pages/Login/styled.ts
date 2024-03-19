@@ -11,7 +11,7 @@ export const StyledLoginPage = styled.div`
   max-width: 450px;
   margin: 0 auto;
 
-  & svg {
+  & > svg {
     margin-bottom: 33px;
   }
 `;

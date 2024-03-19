@@ -31,7 +31,7 @@ export const inputControllers: IInputController[] = [
   {
     id: 2,
     name: 'password',
-    type: 'text',
+    type: 'password',
     placeholder: 'Password',
   },
 ];

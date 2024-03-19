@@ -44,7 +44,7 @@ export const inputControllers: IInputController[] = [
     placeholder: 'Phone number',
   },
   { id: 3, name: 'email', type: 'text', placeholder: 'Email' },
-  { id: 4, name: 'password', type: 'text', placeholder: 'Password' },
+  { id: 4, name: 'password', type: 'password', placeholder: 'Password' },
 ];
 
 export const monthSelectOptions = [

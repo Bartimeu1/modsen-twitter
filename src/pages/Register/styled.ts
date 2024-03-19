@@ -11,7 +11,7 @@ export const StyledRegisterPage = styled.div`
   max-width: 670px;
   margin: 0 auto;
 
-  & svg {
+  & > svg {
     width: 40px;
     margin-bottom: 30px;
   }
