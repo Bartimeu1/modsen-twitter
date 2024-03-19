@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
+import { UserAvatar } from '@components/User';
 import {
   CloseIcon,
   failureText,
@@ -24,7 +24,6 @@ import {
   TweetContent,
   TweetControls,
   TweetTextarea,
-  UserAvatar,
 } from './styled';
 
 export const TweetMenu = () => {
@@ -76,13 +75,7 @@ export const TweetMenu = () => {
 
   return (
     <StyledTweetMenu data-testid="tweet-menu">
-      <UserAvatar>
-        <Picture
-          image={userData.data?.avatar || defaultAvatar}
-          width={50}
-          alt="tweet-avatar"
-        />
-      </UserAvatar>
+      <UserAvatar size={50} image={userData.data?.avatar} />
       <TweetContent>
         <TweetTextarea
           data-testid="tweet-textarea"

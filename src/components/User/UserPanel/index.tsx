@@ -1,5 +1,4 @@
-import defaultAvatar from '@assets/images/defaultAvatar.png';
-import { Picture } from '@components/Picture';
+import { UserAvatar } from '@components/User';
 import { LogOutIcon } from '@root/constants';
 import { useAppDispatch, useAppSelector } from '@root/hooks';
 import { removeUser } from '@store/features/user/userSlice';
@@ -31,11 +30,7 @@ export const UserPanel = () => {
   return (
     <StyledUserPanel>
       <UserInfo>
-        <Picture
-          alt="panelAvatar"
-          image={userData?.avatar || defaultAvatar}
-          width={50}
-        />
+        <UserAvatar image={userData?.avatar} size={50} />
         <UserDetails>
           <UserName>{userData?.name}</UserName>
           <UserSlug>{userData?.slug && '@' + userData.slug}</UserSlug>

@@ -112,9 +112,3 @@ export const PreviewCloseButton = styled.button`
     width: 20px;
   }
 `;
-
-export const UserAvatar = styled.div`
-  & img {
-    border-radius: ${({ theme }) => theme.borderRadius.circle};
-  }
-`;

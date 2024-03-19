@@ -1,8 +1,7 @@
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
-import { Picture } from '@components/Picture';
 import { SearchBar } from '@components/SearchBar';
+import { UserAvatar } from '@components/User';
 import { useThrottle } from '@root/hooks';
 import { useLazySearchUsersByNameQuery } from '@store/features/user/userApi';
 
@@ -52,11 +51,7 @@ export const UserSearchSidebar = () => {
             {foundedUsers.map(({ userId, avatar, name, slug }) => (
               <UserItem key={userId}>
                 <UserContent>
-                  <Picture
-                    width={60}
-                    alt="search-avatar"
-                    image={avatar || defaultAvatar}
-                  />
+                  <UserAvatar size={60} image={avatar} />
                   <UserInfo>
                     <UserName>{name}</UserName>
                     <UserSlug>@{slug}</UserSlug>

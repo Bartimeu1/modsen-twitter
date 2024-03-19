@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
-import { Picture } from '@components/Picture';
+import { UserAvatar } from '@components/User';
 import { LikeIcon } from '@root/constants';
 import { useAppSelector } from '@root/hooks';
 import { formatDate } from '@root/utils';
@@ -56,11 +55,7 @@ export const TweetItem = (props: ITweetItemProps) => {
   return (
     <StyledTweetItem data-testid="tweet-item">
       <UserLink to={`/profile/${userData?.slug}`}>
-        <Picture
-          image={userData?.avatar || defaultAvatar}
-          alt="tweet-avatar"
-          width={50}
-        />
+        <UserAvatar image={userData?.avatar} size={50} />
       </UserLink>
       <TweetContent>
         <TweetHeader>

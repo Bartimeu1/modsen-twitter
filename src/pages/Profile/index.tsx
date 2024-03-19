@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { BackPanel } from '@components/BackPanel';
 import { EditModal } from '@components/EditModal';
 import { Loader } from '@components/Loader';
-import { Picture } from '@components/Picture';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/Tweet';
-import { UserSearchSidebar } from '@components/User';
+import { UserAvatar,UserSearchSidebar } from '@components/User';
 import { useAppSelector } from '@root/hooks';
 import { useGetTweetsByUserIdQuery } from '@store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
@@ -90,11 +88,7 @@ export const ProfilePage = () => {
         </ProfileHeader>
         <ProfileContent>
           <UserInfo>
-            <Picture
-              alt="profileAvatar"
-              image={profileData?.avatar || defaultAvatar}
-              width={150}
-            />
+            <UserAvatar image={profileData?.avatar} size={150} />
             <UserName data-testid="profile-name">{profileData?.name}</UserName>
             <UserSlug>{profileData?.slug && '@' + profileData.slug}</UserSlug>
             <UserDesc data-testid="profile-bio">{profileData?.bio}</UserDesc>

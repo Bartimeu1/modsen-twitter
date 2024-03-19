@@ -1,11 +1,10 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useMemo,useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { FormInput } from '@components/Form';
 import { Loader } from '@components/Loader';
-import { Picture } from '@components/Picture';
 import { PortalWrapper } from '@components/PortalWrapper';
+import { UserAvatar } from '@components/User';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   CloseIcon,
@@ -85,6 +84,14 @@ export const EditModal = (props: IEditModalProps) => {
     }
   };
 
+  const currentAvatarImage = useMemo(() => {
+    if (uploadedImage) {
+      return generateImageURL(uploadedImage);
+    } else {
+      return profileData?.avatar;
+    }
+  }, [uploadedImage, profileData?.avatar]);
+
   useOnClickOutside(modalRef, closeEditModal);
   useLockBodyScroll();
 
@@ -100,20 +107,14 @@ export const EditModal = (props: IEditModalProps) => {
           </CloseButton>
           <AvatarContainer>
             <UploadImageButton>
-              <FileInput type="file" onChange={onFileInputChange} />
+              <FileInput
+                type="file"
+                accept=".jpg, .png"
+                onChange={onFileInputChange}
+              />
               <EditUpload />
             </UploadImageButton>
-            {uploadedImage ? (
-              <Picture
-                image={generateImageURL(uploadedImage)}
-                alt="edit-avatar"
-              />
-            ) : (
-              <Picture
-                image={profileData?.avatar || defaultAvatar}
-                alt="edit-avatar"
-              />
-            )}
+            <UserAvatar image={currentAvatarImage} size={120} />
           </AvatarContainer>
           <EditForm onSubmit={handleSubmit(onEditFormSubmit)}>
             {inputControllers.map(({ id, name, type, placeholder, label }) => (

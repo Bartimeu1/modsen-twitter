@@ -25,10 +25,6 @@ export const ModalContent = styled.div`
   width: 100%;
   max-width: 600px;
 
-  & img {
-    max-width: 120px;
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
     height: 100%;
     padding: 20px;
@@ -41,10 +37,7 @@ export const AvatarContainer = styled.div`
   position: relative;
   width: auto;
   width: 120px;
-
-  & img {
-    border-radius: ${({ theme }) => theme.borderRadius.circle};
-  }
+  margin-bottom: 15px;
 `;
 
 export const CloseButton = styled.button`
