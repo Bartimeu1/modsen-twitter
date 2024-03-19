@@ -55,7 +55,7 @@ export const LoginPage = () => {
       <LogoIcon />
       <LoginTitle>Log in to Twitter</LoginTitle>
       <LoginForm onSubmit={handleSubmit(onLoginFormSubmit)}>
-        {inputControllers.map(({ id, name, type, placeholder }) => (
+        {inputControllers.map(({ id, name, type, placeholder, baseValue }) => (
           <Controller
             key={id}
             name={name}
@@ -63,6 +63,7 @@ export const LoginPage = () => {
             render={({ field: { onChange } }) => (
               <FormInput
                 type={type}
+                baseValue={baseValue}
                 placeholder={placeholder}
                 onChange={onChange}
                 validationText={errors?.[name]?.message}

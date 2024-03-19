@@ -5,7 +5,7 @@ export interface IUserData {
   slug?: string;
   phone?: string;
   password?: string;
-  birth?: Date;
+  birth?: number;
   avatar?: string;
   bio?: string;
 }

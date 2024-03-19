@@ -26,12 +26,14 @@ export const inputControllers: IInputController[] = [
     id: 1,
     name: 'email',
     type: 'text',
+    baseValue: '',
     placeholder: 'Email address',
   },
   {
     id: 2,
     name: 'password',
     type: 'password',
+    baseValue: '',
     placeholder: 'Password',
   },
 ];

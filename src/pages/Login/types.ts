@@ -10,4 +10,5 @@ export interface IInputController {
   name: inputNamesType;
   type: string;
   placeholder: string;
+  baseValue: string;
 }

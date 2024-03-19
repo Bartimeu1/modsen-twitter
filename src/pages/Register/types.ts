@@ -21,5 +21,6 @@ export interface IInputController {
   id: number;
   name: inputNamesType;
   type: string;
+  baseValue: string;
   placeholder: string;
 }

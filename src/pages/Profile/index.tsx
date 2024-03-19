@@ -43,6 +43,9 @@ export const ProfilePage = () => {
     {
       slug: paramSlug,
     },
+    {
+      skip: !paramSlug,
+    },
   );
 
   const { data: tweetsData, isLoading: isTweetsLoading } =
@@ -54,6 +57,10 @@ export const ProfilePage = () => {
     setIsEditModalVisible((prevState) => !prevState);
   };
 
+  const closeEditModal = () => {
+    setIsEditModalVisible(false);
+  };
+
   if (!paramSlug) {
     return <Navigate to={`/profile/${userData?.slug}`} />;
   }
@@ -61,10 +68,6 @@ export const ProfilePage = () => {
   if (isTweetsLoading || isUserLoading) {
     return <Loader />;
   }
-
-  const closeEditModal = () => {
-    setIsEditModalVisible(false);
-  };
 
   return (
     <>

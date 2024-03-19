@@ -37,6 +37,7 @@ export const TweetItem = (props: ITweetItemProps) => {
   });
 
   const { data: userData } = useGetUserByIdQuery({ userId: tweetUserId });
+
   const [likeTweet] = useLikeTweetMutation();
 
   const onLikeButtonClick = () => {

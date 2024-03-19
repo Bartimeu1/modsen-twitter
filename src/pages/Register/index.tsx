@@ -83,7 +83,7 @@ export const RegisterPage = () => {
           name,
           password,
           phone,
-          birth: userBirthDate,
+          birth: userBirthDate.getTime(),
         },
       }).then(() => {
         dispatch(
@@ -115,7 +115,7 @@ export const RegisterPage = () => {
       <LogoIcon />
       <RegisterForm onSubmit={handleSubmit(onRegisterFormSubmit)}>
         <RegisterTitle>Create an account</RegisterTitle>
-        {inputControllers.map(({ id, name, type, placeholder }) => (
+        {inputControllers.map(({ id, name, type, placeholder, baseValue }) => (
           <Controller
             key={id}
             name={name}
@@ -125,6 +125,7 @@ export const RegisterPage = () => {
                 type={type}
                 placeholder={placeholder}
                 onChange={onChange}
+                baseValue={baseValue}
                 validationText={errors?.[name]?.message}
               />
             )}

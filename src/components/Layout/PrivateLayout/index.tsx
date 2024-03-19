@@ -1,4 +1,4 @@
-import { useCallback,useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { BurgerMenu } from '@components/BurgerMenu';
