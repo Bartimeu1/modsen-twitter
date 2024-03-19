@@ -85,6 +85,7 @@ export const Container = styled.div`
   padding: 20px;
   width: 100%;
   max-width: 1640px;
+  position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.laptopM}) {
     padding: 10px 0 7px 10px;

@@ -19,13 +19,16 @@ export const StyledSidebar = styled.aside<IStyledSidebar>`
       $isBurgerActive &&
       `
       background: ${theme.color.background};
-      padding-top: 50px;
+      padding: 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: absolute;
-      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
       height: 100%;
+      width: 100%;
+      overflow-y: scroll;
       z-index: 6;
     `};
   }
@@ -44,6 +47,10 @@ export const Logo = styled.div`
     & svg {
       width: 35px;
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileS}) {
+    margin-bottom: 0;
   }
 `;
 
