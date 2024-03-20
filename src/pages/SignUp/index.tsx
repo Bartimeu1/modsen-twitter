@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { provider } from '@root/config/firebase';
 import {
   failureText,
   GoogleIcon,
@@ -8,6 +7,7 @@ import {
   successText,
   urls,
 } from '@root/constants';
+import { provider } from '@root/firebase/firebase';
 import { useAppDispatch } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
 import { addToast } from '@store/features/toast/toastSlice';
