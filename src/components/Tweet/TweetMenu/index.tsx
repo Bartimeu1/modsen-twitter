@@ -25,8 +25,11 @@ import {
   TweetControls,
   TweetTextarea,
 } from './styled';
+import { ITweetMenuProps } from './types';
 
-export const TweetMenu = () => {
+export const TweetMenu = (props: ITweetMenuProps) => {
+  const { onAddTweet } = props;
+
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.user);
 
@@ -67,6 +70,7 @@ export const TweetMenu = () => {
     });
     setTweetText('');
     setUploadedImage(null);
+    onAddTweet && onAddTweet();
   };
 
   const onPreviewCloseButtonClick = () => {
