@@ -6,6 +6,7 @@ import {
   GoogleIcon,
   LogoIcon,
   successText,
+  urls,
 } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
@@ -59,7 +60,7 @@ export const SignUpPage = () => {
             }),
           );
 
-          navigate('/');
+          navigate(urls.base);
         },
       );
     });

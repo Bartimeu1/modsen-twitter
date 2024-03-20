@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { LogoIcon } from '@root/constants';
+import { LogoIcon, urls } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -46,7 +46,7 @@ export const LoginPage = () => {
           token: accessToken,
         }),
       );
-      navigate('/profile');
+      navigate(urls.profile);
     });
   };
 

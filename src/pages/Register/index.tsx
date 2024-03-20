@@ -10,6 +10,7 @@ import {
   LogoIcon,
   registerBirthText,
   successText,
+  urls,
 } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { ToastTypesEnum } from '@root/types/toast';
@@ -92,7 +93,7 @@ export const RegisterPage = () => {
             content: isError ? failureText : successText,
           }),
         );
-        navigate('/');
+        navigate(urls.base);
       });
     });
   };
