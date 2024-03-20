@@ -9,6 +9,7 @@ import {
 } from '@root/constants';
 import { provider } from '@root/firebase/firebase';
 import { useAppDispatch } from '@root/hooks';
+import { IFirebaseUser } from '@root/types/firebase';
 import { ToastTypesEnum } from '@root/types/toast';
 import { addToast } from '@store/features/toast/toastSlice';
 import { useCreateUserMutation } from '@store/features/user/userApi';
@@ -43,8 +44,7 @@ export const SignUpPage = () => {
     const auth = getAuth();
 
     signInWithPopup(auth, provider).then(({ user }) => {
-      // eslint-disable-next-line
-      const { email, accessToken, uid, displayName } = user as any;
+      const { email, accessToken, uid, displayName } = user as IFirebaseUser;
 
       createUser({ data: { userId: uid, email, name: displayName } }).then(
         () => {

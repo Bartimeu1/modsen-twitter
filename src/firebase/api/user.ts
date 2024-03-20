@@ -48,7 +48,7 @@ export const createUser = async (userData: IUserData) => {
   const snapshot = await getDocs(matchEmailQuery);
 
   if (!snapshot.empty) {
-    throw new Error('User with this email already exists.');
+    return;
   }
 
   await addDoc(dbref, {

@@ -1,3 +1,5 @@
+import { User } from '@firebase/auth';
+
 export interface IUserData {
   userId: string;
   name: string;
@@ -8,6 +10,12 @@ export interface IUserData {
   birth?: number;
   avatar?: string;
   bio?: string;
+}
+
+export interface IFirebaseUser extends User {
+  accessToken: string;
+  email: string;
+  displayName: string;
 }
 
 export interface ITweetData {

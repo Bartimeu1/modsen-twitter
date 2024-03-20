@@ -5,6 +5,7 @@ import { FormInput } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LogoIcon, urls } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
+import { IFirebaseUser } from '@root/types/firebase';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -36,8 +37,7 @@ export const LoginPage = () => {
 
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      // eslint-disable-next-line
-      const { email, uid, accessToken } = user as any;
+      const { email, uid, accessToken } = user as IFirebaseUser;
 
       dispatch(
         setUser({

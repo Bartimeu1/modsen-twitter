@@ -13,6 +13,7 @@ import {
   urls,
 } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
+import { IFirebaseUser } from '@root/types/firebase';
 import { ToastTypesEnum } from '@root/types/toast';
 import {
   generateDate,
@@ -66,8 +67,7 @@ export const RegisterPage = () => {
 
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      // eslint-disable-next-line
-      const { email, uid, accessToken } = user as any;
+      const { email, uid, accessToken } = user as IFirebaseUser;
 
       dispatch(
         setUser({
