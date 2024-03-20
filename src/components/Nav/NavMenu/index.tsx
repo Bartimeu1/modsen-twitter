@@ -17,7 +17,8 @@ export const NavMenu = (props: INavMenuProps) => {
           key={id}
           to={href}
           onClick={onLinkClick}
-          $isTarget={currentPath.includes(href)}>
+          $isTarget={currentPath.includes(href)}
+        >
           <Icon />
           <LinkText>{name}</LinkText>
         </NavigationLink>

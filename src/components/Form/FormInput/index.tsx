@@ -56,7 +56,8 @@ export const FormInput = memo(function FormInput(props: IFormInputProps) {
         <PasswordVisibilityButton
           data-testid="password-visibility-button"
           onClick={togglePasswordVisibility}
-          type="button">
+          type="button"
+        >
           {isPasswordVisible ? <PassOpened /> : <PassClosed />}
         </PasswordVisibilityButton>
       )}

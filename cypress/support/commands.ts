@@ -11,4 +11,3 @@ Cypress.Commands.add('login', () => {
     cy.url().should('include', '/profile');
   });
 });
-

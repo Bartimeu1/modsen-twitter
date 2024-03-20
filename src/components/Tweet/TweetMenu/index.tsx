@@ -96,7 +96,8 @@ export const TweetMenu = (props: ITweetMenuProps) => {
               />
               <PreviewCloseButton
                 data-testid="close-preview-button"
-                onClick={onPreviewCloseButtonClick}>
+                onClick={onPreviewCloseButtonClick}
+              >
                 <CloseIcon />
               </PreviewCloseButton>
             </ImagePreview>
@@ -113,7 +114,8 @@ export const TweetMenu = (props: ITweetMenuProps) => {
           <TweetButton
             data-testid="create-tweet-button"
             onClick={onTweetButtonClick}
-            disabled={isTweetButtonDisabled}>
+            disabled={isTweetButtonDisabled}
+          >
             Tweet
           </TweetButton>
         </TweetControls>

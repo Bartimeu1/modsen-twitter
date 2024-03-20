@@ -1,4 +1,4 @@
-import { Fragment, useMemo,useRef, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { FormInput } from '@components/Form';
@@ -102,7 +102,8 @@ export const EditModal = (props: IEditModalProps) => {
         <ModalContent ref={modalRef}>
           <CloseButton
             onClick={closeEditModal}
-            data-testid="edit-modal-close-button">
+            data-testid="edit-modal-close-button"
+          >
             <CloseIcon />
           </CloseButton>
           <AvatarContainer>

@@ -17,6 +17,6 @@ export const StyledToastItem = styled.div<IToastStyles>`
     $type === ToastTypesEnum.error
       ? `background: ${theme.color.red}`
       : $type === ToastTypesEnum.success
-      ? `background: ${theme.color.success}`
-      : ''};
+        ? `background: ${theme.color.success}`
+        : ''};
 `;

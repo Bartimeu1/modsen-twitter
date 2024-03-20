@@ -21,7 +21,8 @@ export const TweetModal = (props: ITweetModalProps) => {
         <TweetModalContent ref={tweetModalRef}>
           <CloseButton
             onClick={closeTweetModal}
-            data-testid="tweet-modal-close-button">
+            data-testid="tweet-modal-close-button"
+          >
             <CloseIcon />
           </CloseButton>
           <TweetMenu onAddTweet={closeTweetModal} />

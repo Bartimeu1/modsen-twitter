@@ -6,7 +6,7 @@ import { EditModal } from '@components/EditModal';
 import { Loader } from '@components/Loader';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/Tweet';
-import { UserAvatar,UserSearchSidebar } from '@components/User';
+import { UserAvatar, UserSearchSidebar } from '@components/User';
 import { useAppSelector } from '@root/hooks';
 import { useGetTweetsByUserIdQuery } from '@store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
@@ -96,7 +96,8 @@ export const ProfilePage = () => {
           {isMyProfile && (
             <EditButton
               data-testid="open-edit-button"
-              onClick={onEditButtonClick}>
+              onClick={onEditButtonClick}
+            >
               Edit profile
             </EditButton>
           )}

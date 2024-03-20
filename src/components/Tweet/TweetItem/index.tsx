@@ -68,7 +68,8 @@ export const TweetItem = (props: ITweetItemProps) => {
         <TweetLikes $isLiked={isTweetLiked}>
           <LikeButton
             onClick={onLikeButtonClick}
-            data-testid="tweet-like-button">
+            data-testid="tweet-like-button"
+          >
             <LikeIcon />
           </LikeButton>
           <LikesCounter data-testid="tweet-like-counter">
