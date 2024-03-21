@@ -9,7 +9,7 @@ export interface IUserData {
   password?: string;
   birth?: number;
   avatar?: string;
-  bio?: string;
+  bio?: string | null;
 }
 
 export interface IFirebaseUser extends User {

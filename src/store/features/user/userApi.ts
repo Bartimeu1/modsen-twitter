@@ -49,9 +49,9 @@ export const userApi = createApi({
       },
     }),
     createUser: builder.mutation<null, { data: IUserData }>({
-      queryFn: async (credentials) => {
+      queryFn: async ({ data }) => {
         try {
-          createUser(credentials.data);
+          createUser(data);
 
           return { data: null };
         } catch (error) {
@@ -60,15 +60,14 @@ export const userApi = createApi({
       },
     }),
     updateUserData: builder.mutation<
-      null,
+      IUserData,
       { data: IChangeUserData; userId: string }
     >({
-      queryFn: async (credentials) => {
-        const { data, userId } = credentials;
+      queryFn: async ({ data, userId }) => {
         try {
-          updateUserData(data, userId);
+          const newUserData = await updateUserData(data, userId);
 
-          return { data: null };
+          return { data: newUserData };
         } catch (error) {
           return { error };
         }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import { BackPanel } from '@components/BackPanel';
@@ -46,8 +46,6 @@ export const ProfilePage = () => {
       skip: !paramSlug,
     },
   );
-
-  useEffect(() => {}, [profileData]);
 
   const { data: tweetsData, isLoading: isTweetsLoading } =
     useGetTweetsByUserIdQuery({

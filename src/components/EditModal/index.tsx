@@ -18,6 +18,7 @@ import {
   useOnClickOutside,
 } from '@root/hooks';
 import { setUserData } from '@root/store/features/user/userSlice';
+import { IUserData } from '@root/types/firebase';
 import { ToastTypesEnum } from '@root/types/toast';
 import { generateImageURL } from '@root/utils';
 import { addToast } from '@store/features/toast/toastSlice';
@@ -67,18 +68,15 @@ export const EditModal = (props: IEditModalProps) => {
       updateUserData({
         userId: profileData.userId,
         data: { ...data, avatar: uploadedImage },
-      }).then(() => {
-        dispatch(
-          setUserData({
-            ...data,
-            userId: profileData.userId,
-            avatar: uploadedImage && generateImageURL(uploadedImage),
-          }),
-          addToast({
-            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
-            content: isError ? failureText : successText,
-          }),
-        );
+      }).then((response: { data?: IUserData; error?: unknown }) => {
+        if (response.data)
+          dispatch(
+            setUserData(response.data),
+            addToast({
+              type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+              content: isError ? failureText : successText,
+            }),
+          );
         closeEditModal();
       });
     }

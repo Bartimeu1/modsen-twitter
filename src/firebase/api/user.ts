@@ -76,14 +76,19 @@ export const updateUserData = async (data: IChangeUserData, userId: string) => {
   const userDoc = snapshot.docs[0];
   const userData = userDoc.data();
 
-  await updateDoc(userDoc.ref, {
+  const newUserData = {
     ...userData,
+    userId: userData.userId,
     email,
     name,
     bio: bio || null,
     slug,
     avatar: imageUrl || userData.avatar || null,
-  });
+  };
+
+  await updateDoc(userDoc.ref, newUserData);
+
+  return newUserData;
 };
 
 export const searchUsersByName = async (value: string) => {

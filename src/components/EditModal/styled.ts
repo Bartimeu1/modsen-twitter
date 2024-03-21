@@ -27,7 +27,9 @@ export const ModalContent = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
     height: 100%;
+    max-height: 670px;
     padding: 20px;
+    margin: 0 5px;
     border-radius: 0;
     overflow-y: scroll;
   }
