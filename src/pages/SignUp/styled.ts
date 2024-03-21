@@ -28,7 +28,7 @@ const SignButtonStyles = css`
   }
 `;
 
-export const StyledSignUp = styled.section`
+export const StyledSignUp = styled.main`
   ${FlexMixin({ direction: 'column' })}
 
   height: 100%;

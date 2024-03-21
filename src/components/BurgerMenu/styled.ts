@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { IBurgerMenu } from './types';
 
-export const StyledBurgerMenu = styled.div`
+export const StyledBurgerMenu = styled.aside`
   ${FlexMixin({ align: 'center', justify: 'center' })}
 
   display: none;

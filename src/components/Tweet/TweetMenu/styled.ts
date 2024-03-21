@@ -1,7 +1,7 @@
 import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledTweetMenu = styled.div`
+export const StyledTweetMenu = styled.section`
   ${FlexMixin({ align: 'start' })};
 
   width: 100%;

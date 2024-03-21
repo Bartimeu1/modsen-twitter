@@ -62,7 +62,7 @@ export const HeaderWallpaper = styled.div`
   background-size: cover;
 `;
 
-export const ProfileContent = styled.div`
+export const ProfileContent = styled.section`
   ${FlexMixin({ justify: 'space-between', align: 'start' })}
 
   width: 100%;
@@ -114,7 +114,7 @@ export const EditButton = styled.button`
   }
 `;
 
-export const SubscriptionInfo = styled.div`
+export const SubscriptionInfo = styled.section`
   ${FlexMixin({ align: 'center' })}
 
   margin: 0 -15px 50px -15px;

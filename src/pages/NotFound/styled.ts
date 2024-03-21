@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledNotFound = styled.div`
+export const StyledNotFound = styled.main`
   ${FlexMixin({ align: 'center', direction: 'column' })}
 
   padding-top: 150px;

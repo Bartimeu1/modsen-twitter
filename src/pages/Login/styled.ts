@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledLoginPage = styled.div`
+export const StyledLoginPage = styled.main`
   ${FlexMixin({ direction: 'column' })}
 
   width: 100%;

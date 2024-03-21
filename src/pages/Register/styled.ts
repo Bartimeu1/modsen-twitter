@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledRegisterPage = styled.div`
+export const StyledRegisterPage = styled.main`
   ${FlexMixin({ direction: 'column', align: 'center' })}
 
   width: 100%;
