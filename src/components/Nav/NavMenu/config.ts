@@ -18,5 +18,5 @@ export const navLinks = [
   { id: 5, Icon: BookmarksIcon, name: 'Bookmarks', href: '#' },
   { id: 6, Icon: ListsIcon, name: 'Lists', href: '#' },
   { id: 7, Icon: ProfileIcon, name: 'Profile', href: urls.profile },
-  { id: 8, Icon: MoreIcon, name: 'More', href: '#' },
+  { id: 8, Icon: MoreIcon, name: 'More', href: urls.settings },
 ];

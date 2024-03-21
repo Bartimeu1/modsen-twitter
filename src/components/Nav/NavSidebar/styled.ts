@@ -6,9 +6,11 @@ import { IStyledSidebar } from './types';
 export const StyledSidebar = styled.aside<IStyledSidebar>`
   width: 25%;
   margin-right: 53px;
+  max-width: 185px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktopM}) {
     width: auto;
+    max-width: none;
     margin-right: 15px;
   }
 

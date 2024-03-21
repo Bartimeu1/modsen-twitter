@@ -10,6 +10,8 @@ export const phoneValidationText = 'Phone number is not valid';
 
 export const requiredValidationText = 'This field is required';
 
+export const passwordMatchText = 'Passwords must match';
+
 export const failureText = 'Something went wrong';
 
 export const successText = 'Operation completed successfully';

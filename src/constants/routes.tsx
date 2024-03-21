@@ -2,6 +2,7 @@ import { HomePage } from '@pages/Home';
 import { LoginPage } from '@pages/Login';
 import { ProfilePage } from '@pages/Profile';
 import { RegisterPage } from '@pages/Register';
+import { SettingsPage } from '@pages/Settings';
 import { SignUpPage } from '@pages/SignUp';
 import { TweetPage } from '@pages/Tweet';
 
@@ -14,6 +15,7 @@ export const urls = {
   signup: '/signup',
   register: 'register',
   login: '/login',
+  settings: '/settings',
 };
 
 export const publicRoutes = [
@@ -42,5 +44,10 @@ export const privateRoutes = [
     id: 4,
     path: `${urls.tweet}/:tweetId`,
     element: <TweetPage />,
+  },
+  {
+    id: 5,
+    path: urls.settings,
+    element: <SettingsPage />,
   },
 ];
