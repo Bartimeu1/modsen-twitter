@@ -21,3 +21,8 @@ export interface IInputController {
   label: string;
   placeholder: string;
 }
+
+export interface IUpdateResponse {
+  data?: IUserData;
+  error?: unknown;
+}

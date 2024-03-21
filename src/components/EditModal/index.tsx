@@ -18,7 +18,6 @@ import {
   useOnClickOutside,
 } from '@root/hooks';
 import { setUserData } from '@root/store/features/user/userSlice';
-import { IUserData } from '@root/types/firebase';
 import { ToastTypesEnum } from '@root/types/toast';
 import { generateImageURL } from '@root/utils';
 import { addToast } from '@store/features/toast/toastSlice';
@@ -36,7 +35,7 @@ import {
   SubmitButton,
   UploadImageButton,
 } from './styled';
-import { IEditFormValues, IEditModalProps } from './types';
+import { IEditFormValues, IEditModalProps, IUpdateResponse } from './types';
 
 export const EditModal = (props: IEditModalProps) => {
   const { profileData, closeEditModal } = props;
@@ -68,7 +67,7 @@ export const EditModal = (props: IEditModalProps) => {
       updateUserData({
         userId: profileData.userId,
         data: { ...data, avatar: uploadedImage },
-      }).then((response: { data?: IUserData; error?: unknown }) => {
+      }).then((response: IUpdateResponse) => {
         if (response.data)
           dispatch(
             setUserData(response.data),

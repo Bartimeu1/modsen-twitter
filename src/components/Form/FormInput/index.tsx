@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, memo, useMemo, useState } from 'react';
 
 import { PassClosed, PassOpened } from '@root/constants';
 
@@ -26,11 +26,9 @@ export const FormInput = memo(function FormInput(props: IFormInputProps) {
     }
   }, [type, isPasswordInput, isPasswordVisible]);
 
-  useEffect(() => {
-    if (baseValue) {
-      onChange(baseValue);
-    }
-  }, [baseValue, onChange]);
+  if (baseValue) {
+    onChange(baseValue);
+  }
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

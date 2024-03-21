@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Picture } from '@components/Picture';
 import { UserAvatar } from '@components/User';
@@ -35,13 +35,10 @@ export const TweetMenu = (props: ITweetMenuProps) => {
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [tweetText, setTweetText] = useState('');
-  const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(true);
 
   const [createTweet, { isError }] = useCreateTweetMutation();
 
-  useEffect(() => {
-    setIsTweetButtonDisabled(!tweetText && !uploadedImage);
-  }, [uploadedImage, tweetText]);
+  const isTweetButtonDisabled = !tweetText && !uploadedImage;
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
