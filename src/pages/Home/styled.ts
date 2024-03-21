@@ -1,4 +1,4 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledHomePage = styled.main`
@@ -35,8 +35,7 @@ export const HomeHeader = styled.header`
 `;
 
 export const HomeTitle = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.xl}px;
+  ${FontsMixin({ weight: 'bold', family: 'secondary', size: 'xl' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;

@@ -1,4 +1,4 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledUserPanel = styled.div`
@@ -38,16 +38,16 @@ export const UserDetails = styled.div`
 `;
 
 export const UserName = styled.p`
+  ${FontsMixin({ size: 'xs', weight: 'semiBold' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
   margin-bottom: 6px;
 `;
 
 export const UserSlug = styled.p`
+  ${FontsMixin({ size: 'xs' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
   opacity: 60%;
 `;
 
@@ -87,10 +87,9 @@ export const LogoutButton = styled.button`
 `;
 
 export const LogoutButtonText = styled.p`
+  ${FontsMixin({ size: 'xs', family: 'secondary', weight: 'bold' })}
+
   color: ${({ theme }) => theme.color.white};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.xs}sm;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktopM}) {
     display: none;

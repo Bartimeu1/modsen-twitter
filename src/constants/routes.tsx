@@ -25,7 +25,7 @@ export const publicRoutes = [
 export const privateRoutes = [
   {
     id: 1,
-    path: `/${urls.profile}/:userSlug`,
+    path: `${urls.profile}/:userSlug`,
     element: <ProfilePage />,
   },
   {
@@ -40,7 +40,7 @@ export const privateRoutes = [
   },
   {
     id: 4,
-    path: `/${urls.tweet}/:tweetId`,
+    path: `${urls.tweet}/:tweetId`,
     element: <TweetPage />,
   },
 ];

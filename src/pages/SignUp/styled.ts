@@ -1,8 +1,32 @@
 import { Link } from 'react-router-dom';
 
 import bannerBg from '@assets/images/bannerBg.jpg';
-import { FlexMixin } from '@root/theme';
-import styled from 'styled-components';
+import { FlexMixin, FontsMixin } from '@root/theme';
+import styled, { css } from 'styled-components';
+
+const SignButtonStyles = css`
+  ${FlexMixin({ align: 'center', justify: 'center' })}
+  ${FontsMixin({ size: 'md', weight: 'medium' })}
+
+  color: ${({ theme }) => theme.color.primary};
+  border: 1px solid ${({ theme }) => theme.color.border};
+  border-radius: ${({ theme }) => theme.borderRadius.md}px;
+  padding: 14px 0;
+  width: 400px;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.color.background};
+    background: ${({ theme }) => theme.color.primary};
+    color: ${({ theme }) => theme.color.background};
+    transition: 0.3s;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    font-size: ${({ theme }) => theme.fontSize.sm}px;
+    width: 100%;
+  }
+`;
 
 export const StyledSignUp = styled.section`
   ${FlexMixin({ direction: 'column' })}
@@ -48,9 +72,8 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl4}px;
-  font-weight: ${({ theme }) => theme.fontWeight.black};
+  ${FontsMixin({ size: 'xl4', weight: 'black' })}
+
   margin: 50px 0 46px 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -60,9 +83,9 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.p`
+  ${FontsMixin({ size: 'xl3', weight: 'black' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl3}px;
-  font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 31px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -86,67 +109,31 @@ export const Buttons = styled.div`
 
 export const SignButton = styled.button`
   ${FlexMixin({ align: 'center', justify: 'center' })}
+  ${SignButtonStyles}
 
-  color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.md}px;
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius.md}px;
   padding: 14px 0;
-  width: 400px;
-  transition: 0.3s;
 
   & svg {
     margin-right: 3px;
     padding-bottom: 3px;
   }
 
-  &:hover {
-    border-color: ${({ theme }) => theme.color.background};
-    background: ${({ theme }) => theme.color.primary};
-    color: ${({ theme }) => theme.color.background};
-    transition: 0.3s;
-  }
-
   &:first-child {
     margin-bottom: 21px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
-    font-size: ${({ theme }) => theme.fontSize.sm}px;
-    width: 100%;
   }
 `;
 
 export const SignLink = styled(Link)`
   ${FlexMixin({ align: 'center', justify: 'center' })}
+  ${SignButtonStyles}
 
-  color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.md}px;
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius.md}px;
   padding: 18px 0;
-  width: 400px;
-  transition: 0.3s;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.color.background};
-    background: ${({ theme }) => theme.color.primary};
-    color: ${({ theme }) => theme.color.background};
-    transition: 0.3s;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
-    font-size: ${({ theme }) => theme.fontSize.sm}px;
-    width: 100%;
-  }
 `;
 
 export const TermsText = styled.p`
+  ${FontsMixin({ size: 'xs2' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xs2}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
   max-width: 373px;
   margin-bottom: 20px;
 
@@ -157,9 +144,9 @@ export const TermsText = styled.p`
 `;
 
 export const LogInText = styled.p`
+  ${FontsMixin({ size: 'xs' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
     font-size: ${({ theme }) => theme.fontSize.xs2}px;
@@ -183,9 +170,8 @@ export const Nav = styled.nav`
 `;
 
 export const NavLink = styled(Link)`
-  color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xs3}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  ${FontsMixin({ size: 'xs3' })}
 
+  color: ${({ theme }) => theme.color.primary};
   margin: 0 19px;
 `;

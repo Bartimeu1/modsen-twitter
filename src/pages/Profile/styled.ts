@@ -1,5 +1,5 @@
 import defaultWallpaper from '@assets/images/dafaultWallpaper.jpg';
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledProfilePage = styled.main`
@@ -43,15 +43,14 @@ export const HeaderText = styled.div`
 `;
 
 export const HeaderName = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.md}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  ${FontsMixin({ size: 'md', weight: 'bold', family: 'secondary' })}
+
   margin-bottom: 6px;
 `;
 
 export const HeaderFollowers = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  ${FontsMixin({ size: 'xs' })}
+
   opacity: 60%;
 `;
 
@@ -84,9 +83,8 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.xl}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  ${FontsMixin({ size: 'xl', weight: 'bold', family: 'secondary' })}
+
   margin-bottom: 4px;
 `;
 
@@ -101,8 +99,8 @@ export const UserDesc = styled.p`
 `;
 
 export const EditButton = styled.button`
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  ${FontsMixin({ size: 'sm', weight: 'semiBold' })}
+
   color: ${({ theme }) => theme.color.primary};
   border: 1px solid ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.lg}px;

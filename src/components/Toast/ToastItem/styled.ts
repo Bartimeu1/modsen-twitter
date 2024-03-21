@@ -11,7 +11,7 @@ export const StyledToastItem = styled.div<IToastStyles>`
   margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
-  animation: ${fadeOut} 4s forwards;
+  animation: ${fadeOut} 8s forwards;
 
   ${({ $type, theme }) =>
     $type === ToastTypesEnum.error

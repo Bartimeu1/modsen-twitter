@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledNotFound = styled.div`
@@ -14,15 +14,14 @@ export const StyledNotFound = styled.div`
 `;
 
 export const NotFoundText = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.md}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  ${FontsMixin({ size: 'md', weight: 'bold' })}
+
   margin-bottom: 50px;
 `;
 
 export const BackLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  ${FontsMixin({ size: 'sm', weight: 'bold', family: 'secondary' })}
+
   color: ${({ theme }) => theme.color.background};
   background: ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.lg}px;

@@ -76,6 +76,7 @@ export const tweetApi = createApi({
     likeTweet: builder.mutation<null, { tweetId: string; userId: string }>({
       queryFn: async ({ tweetId, userId }) => {
         try {
+          console.log('@like');
           await likeTweet(tweetId, userId);
 
           return { data: null };

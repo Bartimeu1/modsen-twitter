@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
 import { BackPanel } from '@components/BackPanel';
@@ -7,6 +7,7 @@ import { Loader } from '@components/Loader';
 import { ToggleButton } from '@components/ToggleButton';
 import { TweetFeed } from '@components/Tweet';
 import { UserAvatar, UserSearchSidebar } from '@components/User';
+import { urls } from '@root/constants';
 import { useAppSelector } from '@root/hooks';
 import { useGetTweetsByUserIdQuery } from '@store/features/tweet/tweetApi';
 import { useGetUserBySlugQuery } from '@store/features/user/userApi';
@@ -46,6 +47,8 @@ export const ProfilePage = () => {
     },
   );
 
+  useEffect(() => {}, [profileData]);
+
   const { data: tweetsData, isLoading: isTweetsLoading } =
     useGetTweetsByUserIdQuery({
       userId: profileData?.userId || '',
@@ -60,7 +63,7 @@ export const ProfilePage = () => {
   };
 
   if (!paramSlug) {
-    return <Navigate to={`/profile/${userData?.slug}`} />;
+    return <Navigate to={`${urls.profile}/${userData?.slug}`} />;
   }
 
   if (isTweetsLoading || isUserLoading) {

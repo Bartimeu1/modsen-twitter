@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledSearchSidebar = styled.aside`
@@ -22,17 +22,15 @@ export const SearchResults = styled.div`
 `;
 
 export const ResultsTitle = styled.h4`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  ${FontsMixin({ size: 'xl', family: 'secondary', weight: 'bold' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl}px;
   margin-bottom: 29px;
 `;
 
 export const VisitLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  ${FontsMixin({ size: 'sm', family: 'secondary', weight: 'bold' })}
+
   color: ${({ theme }) => theme.color.background};
   background: ${({ theme }) => theme.color.primary};
   border: 1px solid ${({ theme }) => theme.color.primary};

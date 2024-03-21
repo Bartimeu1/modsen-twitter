@@ -2,11 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
 import { UserAvatar } from '@components/User';
+import { urls } from '@root/constants';
 import { useThrottle } from '@root/hooks';
+import { useAppSelector } from '@root/hooks';
 import { useLazySearchUsersByNameQuery } from '@store/features/user/userApi';
 
 import {
-  ResultsList,
   ResultsTitle,
   SearchResults,
   StyledSearchSidebar,
@@ -19,6 +20,8 @@ import {
 } from './styled';
 
 export const UserSearchSidebar = () => {
+  const userId = useAppSelector((state) => state.user.data?.userId);
+
   const [searchInputValue, setSearchInputValue] = useState('');
   const throttledSearchValue = useThrottle(searchInputValue, 800);
 
@@ -44,11 +47,12 @@ export const UserSearchSidebar = () => {
         onChange={onSearchInputValueChange}
         placeholder="Search Users"
       />
-      {foundedUsers && searchInputValue ? (
+      {foundedUsers && searchInputValue && (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
-          <ResultsList>
-            {foundedUsers.map(({ userId, avatar, name, slug }) => (
+          {foundedUsers
+            .filter((tweet) => tweet.userId !== userId)
+            .map(({ userId, avatar, name, slug }) => (
               <UserItem key={userId}>
                 <UserContent>
                   <UserAvatar size={60} image={avatar} />
@@ -57,12 +61,11 @@ export const UserSearchSidebar = () => {
                     <UserSlug>@{slug}</UserSlug>
                   </UserInfo>
                 </UserContent>
-                <VisitLink to={`/profile/${slug}`}>Visit</VisitLink>
+                <VisitLink to={`${urls.profile}/${slug}`}>Visit</VisitLink>
               </UserItem>
             ))}
-          </ResultsList>
         </SearchResults>
-      ) : null}
+      )}
     </StyledSearchSidebar>
   );
 };

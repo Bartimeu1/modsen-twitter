@@ -1,17 +1,17 @@
 import { monthNames } from '@constants/date';
 import { v4 as uuidv4 } from 'uuid';
 
+const getDaysInMonth = (year: number, month: string) => {
+  const monthIndex = getMonthIndex(year, month);
+  return new Date(year, monthIndex, 0).getDate();
+};
+
 export const getTargetYear = () => {
   return new Date().getFullYear();
 };
 
 export const getMonthIndex = (year: number, month: string) => {
   return new Date(Date.parse(month + ' 1, ' + year)).getMonth() + 1;
-};
-
-export const getDaysInMonth = (year: number, month: string) => {
-  const monthIndex = getMonthIndex(year, month);
-  return new Date(year, monthIndex, 0).getDate();
 };
 
 export const generateYearsArray = (startYear: number, endYear: number) => {

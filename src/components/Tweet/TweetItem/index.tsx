@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { UserAvatar } from '@components/User';
-import { LikeIcon } from '@root/constants';
+import { LikeIcon, urls } from '@root/constants';
 import { useAppSelector } from '@root/hooks';
 import { formatDate } from '@root/utils';
 import { useLikeTweetMutation } from '@store/features/tweet/tweetApi';
@@ -24,37 +24,40 @@ import {
 import { ITweetItemProps } from './types';
 
 export const TweetItem = (props: ITweetItemProps) => {
-  const userId = useAppSelector((state) => state.user.id);
   const { image, text, tweetId, likes, tweetUserId, date } = props;
 
-  const [isTweetLiked, setIsTweetLiked] = useState(() => {
-    return userId && likes ? likes.includes(userId) : false;
-  });
+  const userId = useAppSelector((state) => state.user.id);
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
-  const [likesAmount, setLikesAmount] = useState(() => {
-    return likes ? likes.length : 0;
-  });
+  const [likesAmount, setLikesAmount] = useState(likes ? likes.length : 0);
+  const [isTweetLiked, setIsTweetLiked] = useState(
+    userId && likes ? likes.includes(userId) : false,
+  );
 
   const { data: userData } = useGetUserByIdQuery({ userId: tweetUserId });
-
   const [likeTweet] = useLikeTweetMutation();
 
   const onLikeButtonClick = () => {
-    if (userId) {
-      likeTweet({ tweetId, userId });
-    }
+    setIsTweetLiked((prevState) => !prevState);
 
     setLikesAmount((prevState) =>
       isTweetLiked ? prevState - 1 : prevState + 1,
     );
-    setIsTweetLiked((prevState) => !prevState);
+
+    clearTimeout(timeoutRef.current);
+
+    timeoutRef.current = setTimeout(() => {
+      if (userId) {
+        likeTweet({ tweetId, userId });
+      }
+    }, 500);
   };
 
-  const formattedDate = formatDate(new Date(date));
+  const formattedDate = useMemo(() => formatDate(new Date(date)), [date]);
 
   return (
     <StyledTweetItem data-testid="tweet-item">
-      <UserLink to={`/profile/${userData?.slug}`}>
+      <UserLink to={`${urls.profile}/${userData?.slug}`}>
         <UserAvatar image={userData?.avatar} size={50} />
       </UserLink>
       <TweetContent>

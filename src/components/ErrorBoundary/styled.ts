@@ -1,4 +1,4 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const Boundary = styled.div`
@@ -14,6 +14,5 @@ export const BoundaryImage = styled.img`
 `;
 
 export const BoundaryText = styled.p`
-  font-family: ${({ theme }) => theme.fontFamily.boundary};
-  font-size: ${({ theme }) => theme.fontSize.lg};
+  ${FontsMixin({ size: 'lg', family: 'primary' })}
 `;

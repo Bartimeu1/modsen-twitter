@@ -1,4 +1,4 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 import { IStyledSidebar } from './types';
@@ -98,9 +98,8 @@ export const TweetButton = styled.button`
 `;
 
 export const TweetButtonText = styled.p`
+  ${FontsMixin({ size: 'xs', weight: 'bold' })}
   color: ${({ theme }) => theme.color.white};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktopM}) {
     display: none;

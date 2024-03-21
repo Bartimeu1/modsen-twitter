@@ -7,6 +7,13 @@ interface IFlexMixin {
   wrap?: string;
 }
 
+interface IFontsMixin {
+  size?: string;
+  weight?: string;
+  family?: string;
+  line?: string;
+}
+
 export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
@@ -76,6 +83,16 @@ export const FlexMixin = ({
   justify-content: ${justify};
   flex-direction: ${direction};
   flex-wrap: ${wrap};
+`;
+
+export const FontsMixin = ({
+  size = 'sm',
+  weight = 'regular',
+  family = 'primary',
+}: IFontsMixin = {}) => css`
+  font-size: ${({ theme }) => theme.fontSize[size]}px;
+  font-weight: ${({ theme }) => theme.fontWeight[weight]};
+  font-family: ${({ theme }) => theme.fontFamily[family]};
 `;
 
 export const Container = styled.div`
