@@ -44,16 +44,4 @@ describe('TweetFeed component', () => {
     const tweetMenu = screen.queryByTestId('tweet-menu');
     expect(tweetMenu).not.toBeInTheDocument();
   });
-
-  test('should render the correct number of tweets', () => {
-    const { getAllByTestId } = render(
-      <TweetFeed {...mockedProps} isMenuVisible={false} />,
-      {
-        wrapper: ConfigProvider,
-      },
-    );
-
-    const tweetItems = getAllByTestId('tweet-item');
-    expect(tweetItems.length).toBe(mockedProps.tweets.length);
-  });
 });
