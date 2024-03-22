@@ -14,12 +14,14 @@
     "prettier": "prettier .",
     "prettier:fix": "prettier . --write",
     "test:unit": "jest",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "firebase:emulate": "firebase emulators:start --import mocks"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.2.1",
     "firebase": "^10.8.1",
+    "firebase-tools": "^13.5.2",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

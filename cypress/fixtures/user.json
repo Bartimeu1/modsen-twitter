@@ -1,6 +1,7 @@
 {
   "email": "test@example.com",
   "password": "Password123",
+  "phone": "+375291231233",
   "name": "Test Name",
   "bio": "Test bio"
 }

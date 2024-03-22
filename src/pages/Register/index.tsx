@@ -176,7 +176,11 @@ export const RegisterPage = () => {
             )}
           />
         </BirthSelects>
-        <SubmitButton type="submit" value="Next" />
+        <SubmitButton
+          type="submit"
+          value="Next"
+          data-testid="register-submit"
+        />
       </RegisterForm>
     </StyledRegisterPage>
   );

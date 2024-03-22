@@ -25,9 +25,9 @@ export const validationSchema = yup.object().shape({
     .matches(phoneRegex, phoneValidationText)
     .required(requiredValidationText),
   name: yup.string().min(2).max(20).required(requiredValidationText),
-  birthMonth: yup.string().required(requiredValidationText),
-  birthDay: yup.string().required(requiredValidationText),
-  birthYear: yup.number().required(requiredValidationText),
+  birthMonth: yup.string(),
+  birthDay: yup.string(),
+  birthYear: yup.number(),
 });
 
 export const inputControllers: IInputController[] = [

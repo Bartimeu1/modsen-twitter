@@ -1,7 +1,12 @@
-import { GoogleAuthProvider } from '@firebase/auth';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import {
+  connectAuthEmulator,
+  getAuth,
+  GoogleAuthProvider,
+} from '@firebase/auth';
+import firebase from 'firebase/compat/app';
 import { getStorage } from 'firebase/storage';
+
+import 'firebase/compat/firestore';
 
 export const firebaseConfig = {
   apiKey: process.env.VITE_FIREBASE_API_KEY,
@@ -12,10 +17,22 @@ export const firebaseConfig = {
   appId: process.env.VITE_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-
-export const db = getFirestore(app);
-
+export const app = firebase.initializeApp(firebaseConfig);
+const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
+firebase.firestore().settings({
+  experimentalForceLongPolling: true,
+});
+
+export const db = firebase.firestore(app);
 
 export const storage = getStorage(app);
+
+if (window.Cypress) {
+  db.settings({
+    merge: true,
+    experimentalForceLongPolling: true,
+  });
+  connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+  db.useEmulator('127.0.0.1', 8080);
+}
