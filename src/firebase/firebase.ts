@@ -9,22 +9,23 @@ import { getStorage } from 'firebase/storage';
 import 'firebase/compat/firestore';
 
 export const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY,
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.VITE_FIREBASE_APP_ID,
+  apiKey: process.env.VITE_FIREBASE_API_KEY || 'mock',
+  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || 'mock',
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID || 'mock',
+  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || 'mock',
+  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || 'mock',
+  appId: process.env.VITE_FIREBASE_APP_ID || 'mock',
 };
 
-export const app = firebase.initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const app = firebase.initializeApp(firebaseConfig);
 export const provider = new GoogleAuthProvider();
+
+const auth = getAuth(app);
+export const db = firebase.firestore(app);
+
 firebase.firestore().settings({
   experimentalForceLongPolling: true,
 });
-
-export const db = firebase.firestore(app);
 
 export const storage = getStorage(app);
 

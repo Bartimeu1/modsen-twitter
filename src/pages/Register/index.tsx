@@ -63,7 +63,11 @@ export const RegisterPage = () => {
   const onRegisterFormSubmit = async (data: IRegisterFormValues) => {
     const { email, name, password, phone, birthDay, birthMonth, birthYear } =
       data;
-    const userBirthDate = generateDate(birthYear, birthMonth, birthDay);
+
+    let userBirthDate: Date;
+    if (birthMonth && birthYear && birthDay) {
+      userBirthDate = generateDate(birthYear, birthMonth, birthDay);
+    }
 
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
@@ -84,7 +88,7 @@ export const RegisterPage = () => {
           name,
           password,
           phone,
-          birth: userBirthDate.getTime(),
+          birth: userBirthDate && userBirthDate.getTime(),
         },
       }).then(() => {
         dispatch(
