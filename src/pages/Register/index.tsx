@@ -6,11 +6,11 @@ import { FormInput, FormSelect } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   endRegisterSelectYear,
-  failureText,
   LogoIcon,
   registerBirthText,
   successText,
   urls,
+  userAlreadyExist,
 } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { IFirebaseUser } from '@root/types/firebase';
@@ -56,7 +56,7 @@ export const RegisterPage = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
-  const [createUser, { isError }] = useCreateUserMutation();
+  const [createUser] = useCreateUserMutation();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
@@ -70,36 +70,44 @@ export const RegisterPage = () => {
     }
 
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      const { email, uid, accessToken } = user as IFirebaseUser;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const { email, uid, accessToken } = user as IFirebaseUser;
 
-      dispatch(
-        setUser({
-          email,
-          id: uid,
-          token: accessToken,
-        }),
-      );
-
-      createUser({
-        data: {
-          userId: uid,
-          email,
-          name,
-          password,
-          phone,
-          birth: userBirthDate && userBirthDate.getTime(),
-        },
-      }).then(() => {
         dispatch(
-          addToast({
-            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
-            content: isError ? failureText : successText,
+          setUser({
+            email,
+            id: uid,
+            token: accessToken,
           }),
         );
-        navigate(urls.base);
+        createUser({
+          data: {
+            userId: uid,
+            email,
+            name,
+            password,
+            phone,
+            birth: userBirthDate && userBirthDate.getTime(),
+          },
+        }).then(() => {
+          dispatch(
+            addToast({
+              type: ToastTypesEnum.success,
+              content: successText,
+            }),
+          );
+          navigate(urls.base);
+        });
+      })
+      .catch(() => {
+        dispatch(
+          addToast({
+            type: ToastTypesEnum.error,
+            content: userAlreadyExist,
+          }),
+        );
       });
-    });
   };
 
   const yearSelectOptions = generateYearsArray(

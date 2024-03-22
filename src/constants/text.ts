@@ -15,3 +15,7 @@ export const passwordMatchText = 'Passwords must match';
 export const failureText = 'Something went wrong';
 
 export const successText = 'Operation completed successfully';
+
+export const userDoesNotExist = 'This user does not exist';
+
+export const userAlreadyExist = 'User already exist';

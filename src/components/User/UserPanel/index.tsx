@@ -27,17 +27,13 @@ export const UserPanel = () => {
     signOut(auth);
   };
 
-  if (!userData) {
-    return null;
-  }
-
   return (
     <StyledUserPanel>
       <UserInfo>
-        <UserAvatar image={userData.avatar} size={50} />
+        <UserAvatar image={userData?.avatar} size={50} />
         <UserDetails>
-          <UserName>{userData.name}</UserName>
-          <UserSlug>{userData.slug && '@' + userData.slug}</UserSlug>
+          <UserName>{userData?.name}</UserName>
+          <UserSlug>{userData?.slug && '@' + userData?.slug}</UserSlug>
         </UserDetails>
       </UserInfo>
       <LogoutButton onClick={onLogoutButtonClick}>

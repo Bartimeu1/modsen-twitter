@@ -1,9 +1,13 @@
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/Form';
 import { UserSearchSidebar } from '@components/User';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { successText } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
 import { removeUser } from '@store/features/user/userSlice';
 import { persistor } from '@store/store';
 import { updatePassword } from 'firebase/auth';
@@ -15,6 +19,7 @@ import { IResetFormValues } from './types';
 
 export const SettingsPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -30,11 +35,21 @@ export const SettingsPage = () => {
     const currentUser = auth.currentUser;
 
     if (currentUser) {
-      updatePassword(currentUser, password).then(() => {
-        signOut(auth);
-        dispatch(removeUser());
-        persistor.purge();
-      });
+      updatePassword(currentUser, password)
+        .then(() => {
+          signOut(auth);
+          dispatch(removeUser());
+          persistor.purge();
+        })
+        .then(() => {
+          navigate('/login');
+          dispatch(
+            addToast({
+              type: ToastTypesEnum.success,
+              content: successText,
+            }),
+          );
+        });
     }
   };
 

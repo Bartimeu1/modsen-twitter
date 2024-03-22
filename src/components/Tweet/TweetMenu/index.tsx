@@ -103,6 +103,7 @@ export const TweetMenu = (props: ITweetMenuProps) => {
               <FileInput
                 data-testid="tweet-file-input"
                 type="file"
+                accept=".jpg, .png"
                 onChange={onFileInputChange}
               />
               <UploadImage />

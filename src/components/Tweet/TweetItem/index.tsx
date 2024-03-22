@@ -55,19 +55,15 @@ export const TweetItem = (props: ITweetItemProps) => {
 
   const formattedDate = useMemo(() => formatDate(new Date(date)), [date]);
 
-  if (!userData) {
-    return null;
-  }
-
   return (
     <StyledTweetItem data-testid="tweet-item">
-      <UserLink to={`${urls.profile}/${userData.slug}`}>
-        <UserAvatar image={userData.avatar} size={50} />
+      <UserLink to={`${urls.profile}/${userData?.slug}`}>
+        <UserAvatar image={userData?.avatar} size={50} />
       </UserLink>
       <TweetContent>
         <TweetHeader>
-          <UserName>{userData.name}</UserName>
-          <UserSlug>@{userData.slug}</UserSlug>
+          <UserName>{userData?.name}</UserName>
+          <UserSlug>@{userData?.slug}</UserSlug>
           <TweetDate>{formattedDate}</TweetDate>
         </TweetHeader>
         <TweetText>{text}</TweetText>

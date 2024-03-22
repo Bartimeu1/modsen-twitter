@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { FormInput } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { LogoIcon, urls } from '@root/constants';
+import { LogoIcon, urls, userDoesNotExist } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
 import { IFirebaseUser } from '@root/types/firebase';
+import { ToastTypesEnum } from '@root/types/toast';
+import { addToast } from '@store/features/toast/toastSlice';
 import { setUser } from '@store/features/user/userSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -36,18 +38,27 @@ export const LoginPage = () => {
     const { email, password } = data;
 
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      const { email, uid, accessToken } = user as IFirebaseUser;
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const { email, uid, accessToken } = user as IFirebaseUser;
 
-      dispatch(
-        setUser({
-          email,
-          id: uid,
-          token: accessToken,
-        }),
-      );
-      navigate(urls.profile);
-    });
+        dispatch(
+          setUser({
+            email,
+            id: uid,
+            token: accessToken,
+          }),
+        );
+        navigate(urls.profile);
+      })
+      .catch(() => {
+        dispatch(
+          addToast({
+            type: ToastTypesEnum.error,
+            content: userDoesNotExist,
+          }),
+        );
+      });
   };
 
   return (

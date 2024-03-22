@@ -68,10 +68,6 @@ export const ProfilePage = () => {
     return <Loader />;
   }
 
-  if (!profileData || !tweetsData) {
-    return null;
-  }
-
   return (
     <>
       <StyledProfilePage>
@@ -79,7 +75,7 @@ export const ProfilePage = () => {
           {isMyProfile ? (
             <HeaderContent>
               <HeaderText>
-                <HeaderName>{profileData.name}</HeaderName>
+                <HeaderName>{profileData?.name}</HeaderName>
                 <HeaderFollowers>
                   {tweetsData ? tweetsData.length : 0} Tweets
                 </HeaderFollowers>
@@ -93,10 +89,10 @@ export const ProfilePage = () => {
         </ProfileHeader>
         <ProfileContent>
           <UserInfo>
-            <UserAvatar image={profileData.avatar} size={150} />
-            <UserName data-testid="profile-name">{profileData.name}</UserName>
-            <UserSlug>{profileData.slug && '@' + profileData.slug}</UserSlug>
-            <UserDesc data-testid="profile-bio">{profileData.bio}</UserDesc>
+            <UserAvatar image={profileData?.avatar} size={150} />
+            <UserName data-testid="profile-name">{profileData?.name}</UserName>
+            <UserSlug>{profileData?.slug && '@' + profileData?.slug}</UserSlug>
+            <UserDesc data-testid="profile-bio">{profileData?.bio}</UserDesc>
           </UserInfo>
           {isMyProfile && (
             <EditButton
