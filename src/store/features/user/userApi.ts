@@ -1,17 +1,12 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import { db } from '@root/config/firebase';
-import { IChangeUserData, IUserData } from '@root/types/firebase';
-import { addImageIntoStorage, getUserByValue } from '@utils/firestore';
-import { generateSlug } from '@utils/helpers';
 import {
-  addDoc,
-  collection,
-  CollectionReference,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from 'firebase/firestore';
+  createUser,
+  getUserById,
+  getUserBySlug,
+  searchUsersByName,
+  updateUserData,
+} from '@root/firebase/api/user';
+import { IChangeUserData, IUserData } from '@root/types/firebase';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -21,7 +16,7 @@ export const userApi = createApi({
     getUserById: builder.query<IUserData, { userId: string }>({
       queryFn: async (credentials) => {
         try {
-          const userData = await getUserByValue('userId', credentials.userId);
+          const userData = await getUserById(credentials.userId);
 
           return { data: userData };
         } catch (error) {
@@ -33,7 +28,7 @@ export const userApi = createApi({
     getUserBySlug: builder.query<IUserData, { slug: string }>({
       queryFn: async (credentials) => {
         try {
-          const userData = await getUserByValue('slug', credentials.slug);
+          const userData = await getUserBySlug(credentials.slug);
 
           return { data: userData };
         } catch (error) {
@@ -42,29 +37,21 @@ export const userApi = createApi({
       },
       providesTags: ['User'],
     }),
-    createUser: builder.mutation<null, { data: IUserData }>({
+    searchUsersByName: builder.query<IUserData[], { value: string }>({
       queryFn: async (credentials) => {
         try {
-          const { userId, name, email, phone, birth } = credentials.data;
-          const dbref = collection(db, 'Users');
+          const users = await searchUsersByName(credentials.value);
 
-          const userSlugName = generateSlug();
-          const matchEmailQuery = query(dbref, where('email', '==', email));
-
-          const snapshot = await getDocs(matchEmailQuery);
-
-          if (!snapshot.empty) {
-            return { data: null };
-          }
-
-          await addDoc(dbref, {
-            userId,
-            name: name,
-            slug: userSlugName,
-            email: email,
-            phone: phone || null,
-            birth: birth || null,
-          });
+          return { data: users };
+        } catch (error) {
+          return { error };
+        }
+      },
+    }),
+    createUser: builder.mutation<null, { data: IUserData }>({
+      queryFn: async ({ data }) => {
+        try {
+          createUser(data);
 
           return { data: null };
         } catch (error) {
@@ -73,67 +60,19 @@ export const userApi = createApi({
       },
     }),
     updateUserData: builder.mutation<
-      null,
+      IUserData,
       { data: IChangeUserData; userId: string }
     >({
-      queryFn: async (credentials) => {
-        const { email, name, bio, slug, avatar } = credentials.data;
+      queryFn: async ({ data, userId }) => {
         try {
-          const dbRef = collection(db, 'Users');
-          const matchIdQuery = query(
-            dbRef,
-            where('userId', '==', credentials.userId),
-          );
-          const snapshot = await getDocs(matchIdQuery);
+          const newUserData = await updateUserData(data, userId);
 
-          let imageUrl = null;
-          if (avatar) {
-            imageUrl = await addImageIntoStorage(avatar);
-          }
-
-          const userDoc = snapshot.docs[0];
-          const userData = userDoc.data();
-
-          await updateDoc(userDoc.ref, {
-            ...userData,
-            email,
-            name,
-            bio: bio || null,
-            slug,
-            avatar: imageUrl || userData.avatar || null,
-          });
-
-          return { data: null };
+          return { data: newUserData };
         } catch (error) {
           return { error };
         }
       },
       invalidatesTags: ['User'],
-    }),
-    searchUsersByName: builder.query<IUserData[], { value: string }>({
-      queryFn: async (credentials) => {
-        try {
-          if (credentials.value === '') {
-            return { data: [] };
-          }
-          const dbRef = collection(
-            db,
-            'Users',
-          ) as CollectionReference<IUserData>;
-          const matchValueQuery = query(
-            dbRef,
-            where('name', '>=', credentials.value),
-            where('name', '<', credentials.value + '\uf8ff'),
-          );
-
-          const snapshot = await getDocs(matchValueQuery);
-          const usersData = snapshot.docs.map((doc) => doc.data());
-
-          return { data: usersData };
-        } catch (error) {
-          return { error };
-        }
-      },
     }),
   }),
 });

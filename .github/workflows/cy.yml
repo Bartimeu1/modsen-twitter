@@ -29,7 +29,10 @@ jobs:
 
       - name: Run ESLint
         run: yarn lint
-      
+
+      - name: Run Prettier
+        run: yarn prettier
+
       - name: Run Tests:unit
         run: yarn test:unit
 

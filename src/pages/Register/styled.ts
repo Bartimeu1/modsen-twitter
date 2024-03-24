@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledRegisterPage = styled.div`
+export const StyledRegisterPage = styled.main`
   ${FlexMixin({ direction: 'column', align: 'center' })}
 
   width: 100%;
@@ -11,7 +11,7 @@ export const StyledRegisterPage = styled.div`
   max-width: 670px;
   margin: 0 auto;
 
-  & svg {
+  & > svg {
     width: 40px;
     margin-bottom: 30px;
   }
@@ -24,10 +24,9 @@ export const RegisterForm = styled.form`
 `;
 
 export const RegisterTitle = styled.h2`
+  ${FontsMixin({ size: 'xl2', family: 'secondary', weight: 'bold' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl2}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin-bottom: 30px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -36,9 +35,9 @@ export const RegisterTitle = styled.h2`
 `;
 
 export const AuthLink = styled(Link)`
+  ${FontsMixin({ size: 'sm' })}
+
   color: ${({ theme }) => theme.color.ltBlue};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
   margin-bottom: 35px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -47,10 +46,9 @@ export const AuthLink = styled(Link)`
 `;
 
 export const BirthTitle = styled.h4`
+  ${FontsMixin({ size: 'sm', weight: 'bold', family: 'secondary' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin-bottom: 30px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -103,11 +101,10 @@ export const BirthSelects = styled.div`
 `;
 
 export const SubmitButton = styled.input`
+  ${FontsMixin({ size: 'sm', weight: 'bold', family: 'secondary' })}
+
   background: ${({ theme }) => theme.color.ltBlue};
   border-radius: ${({ theme }) => theme.borderRadius.xl2}px;
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.ltBlue};
   cursor: pointer;

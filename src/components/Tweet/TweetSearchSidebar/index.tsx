@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { SearchBar } from '@components/SearchBar';
-import { LogoIcon } from '@root/constants';
+import { LogoIcon, urls } from '@root/constants';
 import { useThrottle } from '@root/hooks';
 import { useLazySearchTweetsByTextQuery } from '@store/features/tweet/tweetApi';
 
@@ -42,7 +42,7 @@ export const TweetSearchSidebar = () => {
         onChange={onSearchInputValueChange}
         placeholder="Search Tweets"
       />
-      {foundedTweets && searchInputValue ? (
+      {foundedTweets && searchInputValue && (
         <SearchResults>
           <ResultsTitle>Search results</ResultsTitle>
           {foundedTweets.map(({ tweetId, text }) => (
@@ -51,11 +51,11 @@ export const TweetSearchSidebar = () => {
                 <LogoIcon />
                 <TweetText>{text}</TweetText>
               </TweetContent>
-              <VisitLink to={`/tweet/${tweetId}`}>Visit</VisitLink>
+              <VisitLink to={`${urls.tweet}/${tweetId}`}>Visit</VisitLink>
             </TweetItem>
           ))}
         </SearchResults>
-      ) : null}
+      )}
     </StyledSearchSidebar>
   );
 };

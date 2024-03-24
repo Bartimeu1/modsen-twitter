@@ -12,11 +12,6 @@ export const StyledEditModal = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s all;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
-    padding: 0 10px;
-
-  }
 `;
 
 export const ModalContent = styled.div`
@@ -30,8 +25,13 @@ export const ModalContent = styled.div`
   width: 100%;
   max-width: 600px;
 
-  & img {
-    max-width: 120px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
+    height: 100%;
+    max-height: 670px;
+    padding: 20px;
+    margin: 0 5px;
+    border-radius: 0;
+    overflow-y: scroll;
   }
 `;
 
@@ -39,10 +39,7 @@ export const AvatarContainer = styled.div`
   position: relative;
   width: auto;
   width: 120px;
-
-  & img {
-    border-radius: ${({ theme }) => theme.borderRadius.circle};
-  }
+  margin-bottom: 15px;
 `;
 
 export const CloseButton = styled.button`

@@ -1,5 +1,5 @@
 import { ConfigProvider } from '@services/ConfigProvider';
-import { fireEvent,render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { TweetSearchSidebar } from '.';
 

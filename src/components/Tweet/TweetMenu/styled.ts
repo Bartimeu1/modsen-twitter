@@ -1,7 +1,7 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledTweetMenu = styled.div`
+export const StyledTweetMenu = styled.section`
   ${FlexMixin({ align: 'start' })};
 
   width: 100%;
@@ -41,9 +41,9 @@ export const TweetContent = styled.div`
 `;
 
 export const TweetTextarea = styled.textarea`
+  ${FontsMixin({ size: 'lg', family: 'primary' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.lg}px;
-  font-family: ${({ theme }) => theme.fontFamily.primary};
   background: ${({ theme }) => theme.color.background};
   margin-bottom: 20px;
   border: none;
@@ -75,13 +75,12 @@ export const FileInput = styled.input`
 `;
 
 export const TweetButton = styled.button`
+  ${FontsMixin({ size: 'xs', weight: 'bold', family: 'secondary' })}
+
   background: ${({ theme }) => theme.color.ltBlue};
   border: 1px solid ${({ theme }) => theme.color.ltBlue};
   border-radius: ${({ theme }) => theme.borderRadius.xl3}px;
   color: ${({ theme }) => theme.color.white};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
   padding: 15px 30px 18px 30px;
   transition: 0.3s;
 
@@ -110,11 +109,5 @@ export const PreviewCloseButton = styled.button`
 
   & svg {
     width: 20px;
-  }
-`;
-
-export const UserAvatar = styled.div`
-  & img {
-    border-radius: ${({ theme }) => theme.borderRadius.circle};
   }
 `;

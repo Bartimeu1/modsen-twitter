@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
-export const StyledLoginPage = styled.div`
+export const StyledLoginPage = styled.main`
   ${FlexMixin({ direction: 'column' })}
 
   width: 100%;
@@ -11,7 +11,7 @@ export const StyledLoginPage = styled.div`
   max-width: 450px;
   margin: 0 auto;
 
-  & svg {
+  & > svg {
     margin-bottom: 33px;
   }
 `;
@@ -26,11 +26,11 @@ export const LoginForm = styled.form`
 `;
 
 export const SubmitButton = styled.input`
+  ${FontsMixin({ size: 'sm', weight: 'bold' })}
+
   background: ${({ theme }) => theme.color.ltBlue};
   border-radius: ${({ theme }) => theme.borderRadius.xl2}px;
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
   color: ${({ theme }) => theme.color.white};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   border: 1px solid ${({ theme }) => theme.color.ltBlue};
   cursor: pointer;
   width: 100%;
@@ -50,9 +50,9 @@ export const SubmitButton = styled.input`
 `;
 
 export const LoginTitle = styled.h3`
+  ${FontsMixin({ size: 'xl3', weight: 'black' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl3}px;
-  font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletM}) {
@@ -62,8 +62,8 @@ export const LoginTitle = styled.h3`
 `;
 
 export const SignLink = styled(Link)`
+  ${FontsMixin({ size: 'xs' })}
+
   color: ${({ theme }) => theme.color.ltBlue};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
   text-align: end;
 `;

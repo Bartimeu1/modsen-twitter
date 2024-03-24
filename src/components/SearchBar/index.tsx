@@ -12,7 +12,7 @@ export const SearchBar = memo(function SearchBar(props: ISearchBarProps) {
     <StyledSearchBar>
       <SearchIcon />
       <SearchInput
-        data-testid='search-bar-input'
+        data-testid="search-bar-input"
         value={value}
         onChange={onChange}
         type="text"

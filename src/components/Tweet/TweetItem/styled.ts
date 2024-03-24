@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 import { ITweetLikes } from './types';
@@ -47,15 +47,13 @@ export const TweetHeader = styled.div`
 `;
 
 export const UserName = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.md}px;
+  ${FontsMixin({ size: 'md', weight: 'bold', family: 'secondary' })}
+
   color: ${({ theme }) => theme.color.primary};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
   margin-right: 5px;
 `;
 
 export const UserSlug = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
   color: ${({ theme }) => theme.color.primary};
   opacity: 60%;
   margin-right: 12px;

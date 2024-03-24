@@ -1,0 +1,27 @@
+{
+  "kind": "identitytoolkit#DownloadAccountResponse",
+  "users": [
+    {
+      "localId": "hya9Vq4QhDDEEKNZ5D5YrACWjJJG",
+      "lastLoginAt": "1710869230811",
+      "emailVerified": false,
+      "email": "test@gmail.com",
+      "salt": "fakeSaltv055yrbQKRI3MSSJGZui",
+      "passwordHash": "fakeHash:salt=fakeSaltv055yrbQKRI3MSSJGZui:password=2312247",
+      "passwordUpdatedAt": 1710869221767,
+      "validSince": "1710869221",
+      "createdAt": "1710869221767",
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "email": "test@gmail.com",
+          "federatedId": "test@gmail.com",
+          "rawId": "test@gmail.com",
+          "displayName": "test firebase mock)"
+        }
+      ],
+      "lastRefreshAt": "2024-03-19T17:27:10.811Z",
+      "displayName": "test firebase mock)"
+    }
+  ]
+}

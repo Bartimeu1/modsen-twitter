@@ -1,4 +1,4 @@
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 import { IStyledSidebar } from './types';
@@ -6,9 +6,11 @@ import { IStyledSidebar } from './types';
 export const StyledSidebar = styled.aside<IStyledSidebar>`
   width: 25%;
   margin-right: 53px;
+  max-width: 185px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktopM}) {
     width: auto;
+    max-width: none;
     margin-right: 15px;
   }
 
@@ -19,13 +21,16 @@ export const StyledSidebar = styled.aside<IStyledSidebar>`
       $isBurgerActive &&
       `
       background: ${theme.color.background};
-      padding-top: 50px;
+      padding: 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: absolute;
-      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
       height: 100%;
+      width: 100%;
+      overflow-y: scroll;
       z-index: 6;
     `};
   }
@@ -44,6 +49,10 @@ export const Logo = styled.div`
     & svg {
       width: 35px;
     }
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileS}) {
+    margin-bottom: 0;
   }
 `;
 
@@ -91,9 +100,8 @@ export const TweetButton = styled.button`
 `;
 
 export const TweetButtonText = styled.p`
+  ${FontsMixin({ size: 'xs', weight: 'bold' })}
   color: ${({ theme }) => theme.color.white};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.xs}px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktopM}) {
     display: none;

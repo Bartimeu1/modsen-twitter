@@ -6,12 +6,14 @@ import { FormInput, FormSelect } from '@components/Form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   endRegisterSelectYear,
-  failureText,
   LogoIcon,
   registerBirthText,
   successText,
+  urls,
+  userAlreadyExist,
 } from '@root/constants';
 import { useAppDispatch } from '@root/hooks';
+import { IFirebaseUser } from '@root/types/firebase';
 import { ToastTypesEnum } from '@root/types/toast';
 import {
   generateDate,
@@ -54,47 +56,58 @@ export const RegisterPage = () => {
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
-  const [createUser, { isError }] = useCreateUserMutation();
+  const [createUser] = useCreateUserMutation();
 
   const [selectedYear, selectedMonth] = watch(['birthYear', 'birthMonth']);
 
   const onRegisterFormSubmit = async (data: IRegisterFormValues) => {
     const { email, name, password, phone, birthDay, birthMonth, birthYear } =
       data;
-    const userBirthDate = generateDate(birthYear, birthMonth, birthDay);
+
+    let userBirthDate: Date;
+    if (birthMonth && birthYear && birthDay) {
+      userBirthDate = generateDate(birthYear, birthMonth, birthDay);
+    }
 
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password).then(({ user }) => {
-      // eslint-disable-next-line
-      const { email, uid, accessToken } = user as any;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const { email, uid, accessToken } = user as IFirebaseUser;
 
-      dispatch(
-        setUser({
-          email,
-          id: uid,
-          token: accessToken,
-        }),
-      );
-
-      createUser({
-        data: {
-          userId: uid,
-          email,
-          name,
-          password,
-          phone,
-          birth: userBirthDate,
-        },
-      }).then(() => {
         dispatch(
-          addToast({
-            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
-            content: isError ? failureText : successText,
+          setUser({
+            email,
+            id: uid,
+            token: accessToken,
           }),
         );
-        navigate('/');
+        createUser({
+          data: {
+            userId: uid,
+            email,
+            name,
+            password,
+            phone,
+            birth: userBirthDate && userBirthDate.getTime(),
+          },
+        }).then(() => {
+          dispatch(
+            addToast({
+              type: ToastTypesEnum.success,
+              content: successText,
+            }),
+          );
+          navigate(urls.base);
+        });
+      })
+      .catch(() => {
+        dispatch(
+          addToast({
+            type: ToastTypesEnum.error,
+            content: userAlreadyExist,
+          }),
+        );
       });
-    });
   };
 
   const yearSelectOptions = generateYearsArray(
@@ -115,7 +128,7 @@ export const RegisterPage = () => {
       <LogoIcon />
       <RegisterForm onSubmit={handleSubmit(onRegisterFormSubmit)}>
         <RegisterTitle>Create an account</RegisterTitle>
-        {inputControllers.map(({ id, name, type, placeholder }) => (
+        {inputControllers.map(({ id, name, type, placeholder, baseValue }) => (
           <Controller
             key={id}
             name={name}
@@ -125,6 +138,7 @@ export const RegisterPage = () => {
                 type={type}
                 placeholder={placeholder}
                 onChange={onChange}
+                baseValue={baseValue}
                 validationText={errors?.[name]?.message}
               />
             )}
@@ -174,7 +188,11 @@ export const RegisterPage = () => {
             )}
           />
         </BirthSelects>
-        <SubmitButton type="submit" value="Next" />
+        <SubmitButton
+          type="submit"
+          value="Next"
+          data-testid="register-submit"
+        />
       </RegisterForm>
     </StyledRegisterPage>
   );

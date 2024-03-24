@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FlexMixin } from '@root/theme';
+import { FlexMixin, FontsMixin } from '@root/theme';
 import styled from 'styled-components';
 
 export const StyledSearchSidebar = styled.aside`
@@ -22,26 +22,21 @@ export const SearchResults = styled.div`
 `;
 
 export const ResultsTitle = styled.h4`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: ${({ theme }) => theme.fontSize.xl}px;
+  ${FontsMixin({ family: 'secondary', weight: 'bold', size: 'xl' })}
+
   margin-bottom: 29px;
 `;
-
-export const ResultsList = styled.div``;
 
 export const UserItem = styled.div`
   ${FlexMixin({ align: 'center', justify: 'space-between' })}
 
   margin-bottom: 25px;
-  & img {
-    border-radius: ${({ theme }) => theme.borderRadius.circle};
-    margin-right: 13px;
-  }
 `;
 
 export const UserInfo = styled.div`
   ${FlexMixin({ direction: 'column' })}
+
+  margin-left: 13px;
 `;
 
 export const UserContent = styled.div`
@@ -49,6 +44,8 @@ export const UserContent = styled.div`
 `;
 
 export const UserName = styled.p`
+  ${FontsMixin({ weight: 'semiBold', size: 'sm' })}
+
   font-size: ${({ theme }) => theme.fontSize.sm}px;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   color: ${({ theme }) => theme.color.primary};
@@ -62,9 +59,8 @@ export const UserSlug = styled.p`
 `;
 
 export const VisitLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
-  font-size: ${({ theme }) => theme.fontSize.sm}px;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  ${FontsMixin({ weight: 'bold', family: 'secondary', size: 'sm' })}
+
   color: ${({ theme }) => theme.color.background};
   background: ${({ theme }) => theme.color.primary};
   border-radius: ${({ theme }) => theme.borderRadius.lg}px;

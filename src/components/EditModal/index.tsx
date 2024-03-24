@@ -1,11 +1,10 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useMemo, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { FormInput } from '@components/Form';
 import { Loader } from '@components/Loader';
-import { Picture } from '@components/Picture';
 import { PortalWrapper } from '@components/PortalWrapper';
+import { UserAvatar } from '@components/User';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   CloseIcon,
@@ -36,7 +35,7 @@ import {
   SubmitButton,
   UploadImageButton,
 } from './styled';
-import { IEditFormValues, IEditModalProps } from './types';
+import { IEditFormValues, IEditModalProps, IUpdateResponse } from './types';
 
 export const EditModal = (props: IEditModalProps) => {
   const { profileData, closeEditModal } = props;
@@ -68,22 +67,27 @@ export const EditModal = (props: IEditModalProps) => {
       updateUserData({
         userId: profileData.userId,
         data: { ...data, avatar: uploadedImage },
-      }).then(() => {
-        dispatch(
-          setUserData({
-            ...data,
-            userId: profileData.userId,
-            avatar: uploadedImage && generateImageURL(uploadedImage),
-          }),
-          addToast({
-            type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
-            content: isError ? failureText : successText,
-          }),
-        );
+      }).then((response: IUpdateResponse) => {
+        if (response.data)
+          dispatch(
+            setUserData(response.data),
+            addToast({
+              type: isError ? ToastTypesEnum.error : ToastTypesEnum.success,
+              content: isError ? failureText : successText,
+            }),
+          );
         closeEditModal();
       });
     }
   };
+
+  const currentAvatarImage = useMemo(() => {
+    if (uploadedImage) {
+      return generateImageURL(uploadedImage);
+    } else {
+      return profileData?.avatar;
+    }
+  }, [uploadedImage, profileData?.avatar]);
 
   useOnClickOutside(modalRef, closeEditModal);
   useLockBodyScroll();
@@ -95,25 +99,20 @@ export const EditModal = (props: IEditModalProps) => {
         <ModalContent ref={modalRef}>
           <CloseButton
             onClick={closeEditModal}
-            data-testid="edit-modal-close-button">
+            data-testid="edit-modal-close-button"
+          >
             <CloseIcon />
           </CloseButton>
           <AvatarContainer>
             <UploadImageButton>
-              <FileInput type="file" onChange={onFileInputChange} />
+              <FileInput
+                type="file"
+                accept=".jpg, .png"
+                onChange={onFileInputChange}
+              />
               <EditUpload />
             </UploadImageButton>
-            {uploadedImage ? (
-              <Picture
-                image={generateImageURL(uploadedImage)}
-                alt="edit-avatar"
-              />
-            ) : (
-              <Picture
-                image={profileData?.avatar || defaultAvatar}
-                alt="edit-avatar"
-              />
-            )}
+            <UserAvatar image={currentAvatarImage} size={120} />
           </AvatarContainer>
           <EditForm onSubmit={handleSubmit(onEditFormSubmit)}>
             {inputControllers.map(({ id, name, type, placeholder, label }) => (

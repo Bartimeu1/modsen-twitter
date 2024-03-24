@@ -1,5 +1,5 @@
 import { ConfigProvider } from '@services/ConfigProvider';
-import { fireEvent,render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { FormInput } from '.';
 import { IFormInputProps } from './types';
@@ -39,5 +39,22 @@ describe('FormInput component', () => {
 
     const validationTextElement = getByText('Required field');
     expect(validationTextElement).toBeInTheDocument();
+  });
+
+  test('should change password visibility after button click', () => {
+    const { getByTestId } = render(
+      <FormInput {...mockedProps} type="password" />,
+      {
+        wrapper: ConfigProvider,
+      },
+    );
+
+    const formInput = getByTestId('form-input');
+    expect(formInput).toHaveAttribute('type', 'password');
+
+    const passwordVisibilityButton = getByTestId('password-visibility-button');
+    fireEvent.click(passwordVisibilityButton);
+
+    expect(formInput).toHaveAttribute('type', 'text');
   });
 });

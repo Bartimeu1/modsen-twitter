@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import defaultAvatar from '@assets/images/defaultAvatar.png';
 import { Picture } from '@components/Picture';
+import { UserAvatar } from '@components/User';
 import {
   CloseIcon,
   failureText,
@@ -24,22 +24,21 @@ import {
   TweetContent,
   TweetControls,
   TweetTextarea,
-  UserAvatar,
 } from './styled';
+import { ITweetMenuProps } from './types';
 
-export const TweetMenu = () => {
+export const TweetMenu = (props: ITweetMenuProps) => {
+  const { onAddTweet } = props;
+
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.user);
 
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [tweetText, setTweetText] = useState('');
-  const [isTweetButtonDisabled, setIsTweetButtonDisabled] = useState(true);
 
   const [createTweet, { isError }] = useCreateTweetMutation();
 
-  useEffect(() => {
-    setIsTweetButtonDisabled(!tweetText && !uploadedImage);
-  }, [uploadedImage, tweetText]);
+  const isTweetButtonDisabled = !tweetText && !uploadedImage;
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -68,6 +67,7 @@ export const TweetMenu = () => {
     });
     setTweetText('');
     setUploadedImage(null);
+    onAddTweet && onAddTweet();
   };
 
   const onPreviewCloseButtonClick = () => {
@@ -76,13 +76,7 @@ export const TweetMenu = () => {
 
   return (
     <StyledTweetMenu data-testid="tweet-menu">
-      <UserAvatar>
-        <Picture
-          image={userData.data?.avatar || defaultAvatar}
-          width={50}
-          alt="tweet-avatar"
-        />
-      </UserAvatar>
+      <UserAvatar size={50} image={userData.data?.avatar} />
       <TweetContent>
         <TweetTextarea
           data-testid="tweet-textarea"
@@ -99,7 +93,8 @@ export const TweetMenu = () => {
               />
               <PreviewCloseButton
                 data-testid="close-preview-button"
-                onClick={onPreviewCloseButtonClick}>
+                onClick={onPreviewCloseButtonClick}
+              >
                 <CloseIcon />
               </PreviewCloseButton>
             </ImagePreview>
@@ -108,6 +103,7 @@ export const TweetMenu = () => {
               <FileInput
                 data-testid="tweet-file-input"
                 type="file"
+                accept=".jpg, .png"
                 onChange={onFileInputChange}
               />
               <UploadImage />
@@ -116,7 +112,8 @@ export const TweetMenu = () => {
           <TweetButton
             data-testid="create-tweet-button"
             onClick={onTweetButtonClick}
-            disabled={isTweetButtonDisabled}>
+            disabled={isTweetButtonDisabled}
+          >
             Tweet
           </TweetButton>
         </TweetControls>

@@ -29,7 +29,7 @@
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],
       "@assets/*": ["src/assets/*"]
-    },
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"],

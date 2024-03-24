@@ -2,34 +2,52 @@ import { HomePage } from '@pages/Home';
 import { LoginPage } from '@pages/Login';
 import { ProfilePage } from '@pages/Profile';
 import { RegisterPage } from '@pages/Register';
+import { SettingsPage } from '@pages/Settings';
 import { SignUpPage } from '@pages/SignUp';
 import { TweetPage } from '@pages/Tweet';
 
+export const urls = {
+  stub: '*',
+  base: '/',
+  home: '/home',
+  profile: '/profile',
+  tweet: '/tweet',
+  signup: '/signup',
+  register: 'register',
+  login: '/login',
+  settings: '/settings',
+};
+
 export const publicRoutes = [
-  { id: 1, path: '/signup', element: <SignUpPage /> },
-  { id: 2, path: '/register', element: <RegisterPage /> },
-  { id: 3, path: '/login', element: <LoginPage /> },
+  { id: 1, path: urls.signup, element: <SignUpPage /> },
+  { id: 2, path: urls.register, element: <RegisterPage /> },
+  { id: 3, path: urls.login, element: <LoginPage /> },
 ];
 
 export const privateRoutes = [
   {
     id: 1,
-    path: '/profile/:userSlug',
+    path: `${urls.profile}/:userSlug`,
     element: <ProfilePage />,
   },
   {
     id: 2,
-    path: '/profile',
+    path: urls.profile,
     element: <ProfilePage />,
   },
   {
     id: 3,
-    path: '/home',
+    path: urls.home,
     element: <HomePage />,
   },
   {
     id: 4,
-    path: '/tweet/:tweetId',
+    path: `${urls.tweet}/:tweetId`,
     element: <TweetPage />,
+  },
+  {
+    id: 5,
+    path: urls.settings,
+    element: <SettingsPage />,
   },
 ];

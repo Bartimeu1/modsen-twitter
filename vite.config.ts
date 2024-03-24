@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
+import babel from 'vite-plugin-babel';
 import svgr from 'vite-plugin-svgr';
 
 /// <reference types="vite/client" />
@@ -27,6 +28,15 @@ export default defineConfig(({ mode }) => {
     },
     define: envWithProcessPrefix,
     plugins: [
+      babel({
+        babelConfig: {
+          babelrc: false,
+          configFile: false,
+          plugins: [
+            ['react-remove-properties', { attributes: ['data-testid'] }],
+          ],
+        },
+      }),
       react(),
       svgr({
         svgrOptions: {

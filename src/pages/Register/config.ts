@@ -25,9 +25,9 @@ export const validationSchema = yup.object().shape({
     .matches(phoneRegex, phoneValidationText)
     .required(requiredValidationText),
   name: yup.string().min(2).max(20).required(requiredValidationText),
-  birthMonth: yup.string().required(requiredValidationText),
-  birthDay: yup.string().required(requiredValidationText),
-  birthYear: yup.number().required(requiredValidationText),
+  birthMonth: yup.string(),
+  birthDay: yup.string(),
+  birthYear: yup.number(),
 });
 
 export const inputControllers: IInputController[] = [
@@ -35,16 +35,24 @@ export const inputControllers: IInputController[] = [
     id: 1,
     name: 'name',
     type: 'text',
+    baseValue: '',
     placeholder: 'Name',
   },
   {
     id: 2,
     name: 'phone',
     type: 'text',
+    baseValue: '',
     placeholder: 'Phone number',
   },
-  { id: 3, name: 'email', type: 'text', placeholder: 'Email' },
-  { id: 4, name: 'password', type: 'text', placeholder: 'Password' },
+  { id: 3, name: 'email', type: 'text', baseValue: '', placeholder: 'Email' },
+  {
+    id: 4,
+    name: 'password',
+    type: 'password',
+    baseValue: '',
+    placeholder: 'Password',
+  },
 ];
 
 export const monthSelectOptions = [

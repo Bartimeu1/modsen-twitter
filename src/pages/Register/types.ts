@@ -3,9 +3,9 @@ export interface IRegisterFormValues {
   email: string;
   phone: string;
   password: string;
-  birthMonth: string;
-  birthYear: number;
-  birthDay: string;
+  birthMonth?: string;
+  birthYear?: number;
+  birthDay?: string;
 }
 
 type inputNamesType =
@@ -21,5 +21,6 @@ export interface IInputController {
   id: number;
   name: inputNamesType;
   type: string;
+  baseValue: string;
   placeholder: string;
 }

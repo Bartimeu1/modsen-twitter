@@ -17,3 +17,5 @@ export { ReactComponent as BackArrowIcon } from '@assets/images/backArrow.svg';
 export { ReactComponent as SearchIcon } from '@assets/images/search.svg';
 export { ReactComponent as CreateTweet } from '@assets/images/createTweet.svg';
 export { ReactComponent as LogOutIcon } from '@assets/images/logOut.svg';
+export { ReactComponent as PassClosed } from '@assets/images/passClosed.svg';
+export { ReactComponent as PassOpened } from '@assets/images/passOpened.svg';

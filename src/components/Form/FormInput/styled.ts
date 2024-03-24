@@ -24,3 +24,11 @@ export const ValidationText = styled.p`
   color: ${({ theme }) => theme.color.red};
   font-size: ${({ theme }) => theme.fontSize.xs3}px;
 `;
+
+export const PasswordVisibilityButton = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border: none;
+`;

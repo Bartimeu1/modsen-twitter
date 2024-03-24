@@ -43,7 +43,8 @@ export const FormSelect = memo(function FormSelect(props: IFormSelectProps) {
       <Label
         onClick={onHeaderClick}
         $isSelectVisible={isSelectVisible}
-        data-testid="select-label">
+        data-testid="select-label"
+      >
         {targetValue ? (
           <LabelValue>{targetValue}</LabelValue>
         ) : (
@@ -58,7 +59,8 @@ export const FormSelect = memo(function FormSelect(props: IFormSelectProps) {
             <DropdownOption
               key={id}
               onClick={onDropdownOptionClick(value)}
-              data-testid="select-dropdown-option">
+              data-testid="select-dropdown-option"
+            >
               {value}
             </DropdownOption>
           ))}

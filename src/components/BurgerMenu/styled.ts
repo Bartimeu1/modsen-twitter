@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 import { IBurgerMenu } from './types';
 
-export const StyledBurgerMenu = styled.div`
+export const StyledBurgerMenu = styled.aside`
   ${FlexMixin({ align: 'center', justify: 'center' })}
 
+  display: none;
   box-shadow: 0px 5px 10px 0px ${({ theme }) => theme.color.boxShadow};
   border-radius: ${({ theme }) => theme.borderRadius.circle};
   background: ${({ theme }) => theme.color.background};
@@ -15,6 +16,10 @@ export const StyledBurgerMenu = styled.div`
   z-index: 10;
   padding: 15px;
   transition: 0.3s;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileS}) {
+    display: block;
+  }
 `;
 
 export const BurgerContent = styled.div<IBurgerMenu>`
